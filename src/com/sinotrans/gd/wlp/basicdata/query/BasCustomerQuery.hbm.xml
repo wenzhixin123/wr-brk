@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BasCustomerQuery">
+		<![CDATA[
+
+select * from bas_customer c 
+where 1=1
+<<and c.customer_code=:customerCode>>
+<<and c.customer_name like '%' || :customerName || '%'>>
+<<and c.customer_name_en=:customerNameEn>>
+<<and c.status=:status>>
+<<and substr(c.control_word,:controlWord1,1)='1'>>
+<<and substr(c.control_word,:controlWord2,1)='1'>>
+<<and substr(c.control_word,:controlWord3,1)='1'>>
+<<and substr(c.control_word,:controlWord4,1)='1'>>
+<<and substr(c.control_word,:controlWord5,1)='1'>>
+<<and substr(c.control_word,:controlWord6,1)='1'>>
+<<and substr(c.control_word,:controlWord7,1)='1'>>
+<<and substr(c.control_word,:controlWord8,1)='1'>>
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

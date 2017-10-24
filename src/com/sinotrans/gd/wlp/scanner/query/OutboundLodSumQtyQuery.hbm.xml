@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="OutboundLodSumQtyQuery">
+		<![CDATA[
+
+SELECT LOD.ITEM_CODE,
+       LOD.GOODS_DESC,
+       SUM(LOD.QTY) AS QTY,
+       SUM(LOD.DELIVERED_QTY) AS DELIVERED_QTY,
+       LOD.QTY_UNIT_DESC
+  FROM LOGISTICS_ORDER_DETAIL LOD
+ WHERE LOD.LOGISTICS_ORDER_NO = :logisticsOrderNo
+   AND LOD.OFFICE_CODE = :officeCode
+   AND LOD.TRANSACTION_STATUS = 'Active'
+   AND LOD.TRANSACTION_TYPE = 'SOT'
+ GROUP BY LOD.ITEM_CODE, LOD.GOODS_DESC, LOD.QTY_UNIT_DESC
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

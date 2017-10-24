@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="eaiWmClient" class="com.sinotrans.framework.core.support.webMethods.WebMethodsClient">
+		<!--测试环境<property name="webMethodsHost" value="172.28.7.63:5555"/>-->
+		<!--正式环境<property name="webMethodsHost" value="172.28.13.187:5555"/>-->
+		<property name="webMethodsHost" value="172.28.13.187:5555"/>
+		
+		<property name="username" value="system_wlp"/>
+		<property name="password" value="system_wlp"/>
+	</bean>
+	<bean id="ediWmClient" class="com.sinotrans.framework.core.support.webMethods.EdiRequest">
+		<!--测试环境<property name="webMethodsHost" value="172.28.7.63:9595"/>-->
+		<!--正式环境<property name="webMethodsHost" value="172.28.13.186:9595"/>-->
+		<property name="webMethodsHost" value="172.28.13.186:9595"/>
+		<!--测试环境<property name="callbackUrl" value="http://172.28.7.12:7002/wlp_sit/JsonFacadeCallBackServlet?json_parameters="/>-->
+		<!--正式环境<property name="callbackUrl" value="http://172.28.13.192:7002/wlp_exp/JsonFacadeCallBackServlet?json_parameters="/>-->		
+ 		<property name="callbackUrl" value="http://172.28.13.192:7002/wlp_exp/JsonFacadeCallBackServlet?json_parameters="/>
+		<property name="username" value=""/>
+		<property name="password" value=""/>
+		<property name="packageName" value="Sino_Common_MP.service"/>
+		<property name="serviceName" value="receiveRequest"/>
+	</bean>
+</beans>

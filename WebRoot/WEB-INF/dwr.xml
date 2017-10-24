@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+	<init>
+		<converter class="com.sinotrans.framework.core.support.dwr.FrosDateConverter" id="frosdate" />
+	</init>
+	
+	<allow>
+		<convert match="java.lang.Object" converter="bean"/>
+		<convert match="java.util.Date" converter="frosdate"/>
+		<convert match="java.lang.String;" converter="array"/>
+		<convert match="com.sinotrans.framework.core.model.BaseModel" converter="hibernate3"/>
+		<convert match="java.lang.Exception" converter="exception">
+			<param name='include' value='message,lineNumber'/>
+		</convert>
+	</allow>
+</dwr>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="SysUserQuery">
+		<![CDATA[
+
+   select  su.*,sr.role_name  from SYS_USER su,sys_role_user  sru,sys_role sr
+where su.user_code <> 'ADMIN'
+  and su.user_uuid=sru.user_uuid 
+  and sr.sys_role_uuid=sru.sys_role_uuid
+  and su.OFFICE_CODE in(:officeCode)
+<<and sr.role_code=:roleCode>>
+<<and su.user_name like '%' || :userName || '%'>>
+<<and su.USER_TYPE=:userType>>
+<<and su.Create_Time >=:startDate>>
+<<and su.Create_Time <:endDate+1>>
+   and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

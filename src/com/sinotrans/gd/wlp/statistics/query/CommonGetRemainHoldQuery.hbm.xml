@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CommonGetRemainHoldQuery">
+		<![CDATA[
+
+SELECT DISTINCT LOD.LOGISTICS_ORDER_DETAIL_UUID AS IN_LOGISTICS_ORDER_DETAIL_UUID,
+                        LOD.LOGISTICS_ORDER_NO AS IN_LOGISTICS_ORDER_NO,
+                        LOD.BILL_NO,
+                        LOD.SEQ_NO,
+                        LOD.GOODS_DESC,
+                        LOD.MODEL,
+                        LOD.SPEC,
+                        LOD.LENGTH_UNIT_CODE,
+                        LOD.LENGTH,
+                        LOD.WIDTH,
+                        LOD.HEIGHT,
+                        LOD.DANGER_CODE,
+                        LOD.PACKAGE_TYPE,
+                        LOD.VOLUME_UNIT_CODE,
+                        LOD.VOLUME_UNIT_DESC,
+                        LOD.WEIGHT_UNIT_CODE,
+                        LOD.WEIGHT_UNIT_DESC,
+                        LOD.UNIT_PRICE,
+                        LOD.CURRENCY_CODE,
+                        LOD.CURRENCY_DESC,
+                        LOD.QTY_UNIT_CODE,
+                        LOD.QTY_UNIT_DESC,
+                        LOD.TOTAL_PRICE,
+                        LOD.LENGTH_UNIT_DESC,
+                        LOD.AUX5,
+                        SOD.SUBMIT_ORDER_DETAIL_UUID,
+                        SOD.QTY,
+                        RH.GOODS_KIND,
+                        RH.GOODS_NATURE,
+                        RH.PACKAGE_NO,
+                        RH.REMAIN_HOLD_UUID,
+                        RH.ITEM_CODE,
+                        RH.ITEM_SEQNO,
+                        RH.BATCH_NO,
+                        RH.MARKS_NUMBER,
+                        RH.BARCODE,
+                        RH.INSTOCK_QTY,
+                        RH.INSTOCK_NET_WEIGHT,
+                        RH.INSTOCK_GROSS_WEIGHT,
+                        RH.INSTOCK_VOLUME,
+                        RH.INSTOCK_UNIT_CODE AS UNIT_CODE,
+                        RH.INSTOCK_UNIT_DESC AS UNIT_DESC,
+                        RH.INSTOCK_SECOND_UNIT_CODE AS SECOND_UNIT_CODE,
+                        RH.INSTOCK_SECOND_UNIT_DESC AS SECOND_UNIT_DESC,
+                        RH.INSTOCK_THIRD_UNIT_CODE AS THIRD_UNIT_CODE,
+                        RH.INSTOCK_THIRD_UNIT_DESC AS THIRD_UNIT_DESC,
+                        RH.REMAIN_THIRD_QTY AS THIRD_QTY,
+                        RH.REMAIN_QTY AS REMAIN_QTY,
+                        RH.HOLD_QTY AS HOLD_QTY,
+                        RH.REMAIN_SECOND_QTY AS SECOND_QTY,
+                        RH.REMAIN_GROSS_WEIGHT AS GROSS_WEIGHT,
+                        RH.REMAIN_NET_WEIGHT AS NET_WEIGHT,
+                        RH.REMAIN_VOLUME AS VOLUME,
+                        (RH.REMAIN_QTY - RH.HOLD_QTY - GET_HOLDQTY2(RH.REMAIN_HOLD_UUID, RH.OFFICE_CODE)) AS REMAIN_QTY_HOLD_QTY_SUM,
+                        IFNULL(RH.REMAIN_SECOND_QTY, 0) -
+                        IFNULL(RH.HOLD_SECOND_QTY, 0) AS REMAIN_SECOND_QTY_HOLD_SUM,
+                        RH.PRODUCTION_DATE AS PRODUCTION_DATE,
+                        RH.CREATE_TIME AS CREATE_TIME,
+                        LOD.QTY AS LOD_QTY,
+                        STR_TO_DATE(DATE_FORMAT(LO.CUT_OFF_DATE,
+                                                '%Y-%m-%d'),
+                                        '%Y-%m-%d') AS RH_CUT_OFF_DATE
+  FROM LOGISTICS_ORDER        LO,
+       LOGISTICS_ORDER_DETAIL LOD,
+       REMAIN_HOLD            RH,
+       SUBMIT_ORDER           SO,
+       SUBMIT_ORDER_DETAIL    SOD
+ WHERE SO.SUBMIT_ORDER_UUID = SOD.SUBMIT_ORDER_UUID
+   AND LO.LOGISTICS_ORDER_UUID = LOD.LOGISTICS_ORDER_UUID
+   AND LOD.LOGISTICS_ORDER_DETAIL_UUID = RH.IN_LOGISTICS_ORDER_DETAIL_UUID
+   AND (RH.REMAIN_QTY > 0 OR RH.REMAIN_SECOND_QTY > 0)
+   AND IFNULL(RH.REMAIN_QTY, 0 ) - IFNULL(RH.HOLD_QTY, 0 ) > 0
+   AND (RH.REMAIN_QTY - RH.HOLD_QTY -GET_HOLDQTY2(RH.REMAIN_HOLD_UUID, RH.OFFICE_CODE)) > 0
+   AND RH.OFFICE_CODE = :officeCode
+   AND SOD.OFFICE_CODE = :officeCode
+    << AND SOD.SUBMIT_ORDER_UUID= :submitOrderUuid >>
+   AND SOD.SUBMIT_ORDER_DETAIL_UUID IN(:submitOrderDetailUuid)
+   AND ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

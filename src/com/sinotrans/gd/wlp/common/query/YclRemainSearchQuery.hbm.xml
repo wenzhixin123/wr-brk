@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="YclRemainSearchQuery">
+		<![CDATA[
+
+SELECT T.item_code,
+       T.goods_desc,
+       T.loc_area_name,
+       SUM(T.sum_remain_qty) AS sum_remain_qty,
+       SUM(T.sum_remain_qty)-IFNULL(sum(T.SUM_rhqty),0) as remain_hold_qty,
+       T.bas_loc_area_uuid,
+       T.warehouse_name,
+       T.ext_item_code
+  FROM (select rs.item_code,
+               rs.goods_desc,
+               bw.warehouse_name,
+               bla.loc_area_name,
+               sum(rs.remain_qty) as sum_remain_qty,  
+               bla.bas_loc_area_uuid,
+               ( 0) AS SUM_rhqty,
+               bw.warehouse_code,
+               BLA.LOC_AREA_CODE,
+               rs.OFFICE_CODE,
+               rs.ext_item_code,
+               rs.in_LOGISTICS_ORDER_DETAIL_UUID
+          from bas_loc_area           bla,
+               bas_lot_stock          bls,
+               remain_sinwork         rs,
+               bas_warehouse          bw,
+               logistics_order        lo,
+               logistics_order_detail lod
+         where bla.bas_loc_area_uuid = bls.bas_loc_area_uuid
+           and bla.bas_warehouse_uuid = bw.bas_warehouse_uuid
+           and lo.logistics_order_uuid = lod.logistics_order_uuid
+           and lod.logistics_order_detail_uuid =
+               rs.in_logistics_order_detail_uuid
+           and rs.lot_code = bls.lot_code
+          and bls.office_code = :officeCode
+           and bla.office_code = :officeCode
+           and bw.office_code = :officeCode
+           and bls.status='Active'
+           and rs.office_code = :officeCode
+  <<and exists(select 1 from delivery_order do,delivery_order_detail dod where do.delivery_order_uuid=dod.delivery_order_uuid and lod.logistics_order_detail_uuid=dod.logistics_order_detail_uuid and do.delivery_type=:deliveryType and do.delivery_order_no=:deliveryOrderNo)>>
+  <<and lo.order_no like '%' || :orderNo || '%'>>
+  <<and lo.logistics_order_no like '%' || :logisticsOrderNo || '%'>>
+  <<and bw.warehouse_code like '%' || :warehouseCode || '%'>>
+  <<and bla.loc_area_code like '%' || :locAreaCode || '%'>>
+  <<and rs.barcode like '%' || :barcode || '%'>>
+  <<and rs.goods_kind=:goodsKind>>
+  <<AND RS.LOT_CODE=:lotCode>>
+  <<and rs.goods_nature=:goodsNature>>
+  <<and lod.aux5=:cargoConsigneeCode>>
+  <<and rs.panel_no=:panelNo>>  
+         group by bla.loc_area_name,
+                  rs.item_code,
+                  rs.goods_desc,
+                  bw.warehouse_name,                 
+                  bla.bas_loc_area_uuid,
+                  bw.warehouse_code,
+                  BLA.LOC_AREA_CODE,
+                  rs.OFFICE_CODE,
+                  rs.ext_item_code,
+                  rs.in_LOGISTICS_ORDER_DETAIL_UUID) T
+ group by T.item_code, T.goods_desc, T.loc_area_name,   T.bas_loc_area_uuid,
+       T.warehouse_name,T.ext_item_code
+ order by T.item_code
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

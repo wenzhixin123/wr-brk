@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+/* CSS Document */
+body,a,b,p,h1,h2,h3,h4,h5,div,span,strong,em,i,ul,li,dl,dd,dt,img {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-size: 13px;
+	font-family: Arial;
+	background: #d5e9f6;
+	color: #402e13;
+}
+
+fieldset {
+	border: none;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a img {
+	border: none;
+}
+
+a:visited {
+	color: #402e13;
+}
+
+a:link {
+	color: #402e13;
+}
+
+a:active {
+	color: #402e13;
+}
+
+a:hover {
+	color: #402e13;
+}
+
+i,em {
+	font-style: normal;
+}
+
+.fl {
+	float: left;
+	display: inline;
+}
+
+.fr {
+	float: right;
+	display: inline;
+}
+
+.tableList {
+	border: 1px solid #2e3d4e;
+	border-right: none;
+	border-bottom: none;
+	background: #fff;
+	width: 100%;
+	font-size: 13px;
+	font-family: Arial;
+}
+
+.tableList td,.tableList th {
+	border: 1px solid #2e3d4e;
+	border-top: none;
+	border-left: none;
+	padding: 5px;
+}
+
+.tableList .td_name,.tableList th {
+	background: #e6ecf9;
+}
+
+.tableList .font_vertical {
+	background: #cbd1e1;
+	font-weight: bold;
+	text-align: center;
+}
+
+.tableList thead td,.text_14_black {
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 0px;
+}
+
+.tableList2 {
+	font-size: 12px;
+}
+
+.pages2 {
+	text-align: center;
+	padding: 20px 0px;
+}
+
+.pages2 a {
+	color: #402e13;
+	margin-right: 3px;
+}
+
+.pages2 a:hover {
+	color: #68a0e3;
+}
+
+.pages2 a img {
+	vertical-align: -3px;
+	margin-right: 2px;
+}
+
+.pages2 span {
+	margin: 0px 2px;
+}
+
+.pages2 ul li {
+	float: left;
+	margin: 0px 2px;
+}
+
+.pages2 .jump {
+	text-align: center;
+	width: 30px;
+}
+
+.pages2 .count em {
+	margin: 0px 5px;
+}
+
+.pages2 .count i {
+	margin: 0px 3px 0px 10px;
+}

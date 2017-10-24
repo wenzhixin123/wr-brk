@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="YclRecevingCheckBarcodeQuery">
+		<![CDATA[
+
+SELECT 
+       LT.LOCATION_TASK_UUID,
+       LT.LOGISTICS_ORDER_DETAIL_UUID,
+       LT.IN_LOGISTICS_ORDER_DETAIL_UUID,
+       LT.IN_STOCK_WORK_UUID,
+       LT.LOC_TASK_NO,
+       LT.LOC_TASK_DATE,
+       LT.LOC_TASK_TYPE,
+       LT.LOC_TASK_DESC,
+       RS.BATCH_NO,
+       RS.ITEM_CODE,
+       RS.ITEM_SEQNO,
+       RS.EXT_ITEM_CODE,
+       RS.GOODS_DESC,
+       RS.MARKS_NUMBER,
+       LT.MODEL,
+       LT.SPEC,
+       LT.LENGTH_UNIT_CODE,
+       LT.LENGTH_UNIT_DESC,
+       RS.LENGTH,
+       RS.WIDTH,
+       RS.HEIGHT,
+       LT.QTY,
+       RS.INSTOCK_UNIT_CODE AS UNIT_CODE,
+       RS.INSTOCK_UNIT_DESC AS UNIT_DESC,
+       RS.REMAIN_SECOND_QTY AS SECOND_QTY,
+       RS.INSTOCK_SECOND_UNIT_CODE AS SECOND_UNIT_CODE,
+       RS.INSTOCK_SECOND_UNIT_DESC AS SECOND_UNIT_DESC,
+       RS.REMAIN_THIRD_QTY AS THIRD_QTY,
+       RS.INSTOCK_THIRD_UNIT_CODE AS THIRD_UNIT_CODE,
+       RS.INSTOCK_THIRD_UNIT_DESC AS THIRD_UNIT_DESC,
+       LT.WEIGHT_UNIT_CODE,
+       LT.WEIGHT_UNIT_DESC,
+       RS.REMAIN_GROSS_WEIGHT AS GROSS_WEIGHT,
+       RS.REMAIN_NET_WEIGHT AS NET_WEIGHT,
+       LT.VOLUME_UNIT_CODE,
+       LT.VOLUME_UNIT_DESC,
+       RS.REMAIN_VOLUME AS VOLUME,
+       LT.CONTROL_WORD,
+       LT.LAST_LOCATION_TASK_UUID,
+       LT.STATUS,
+       RS.GOODS_KIND,
+       RS.GOODS_NATURE,
+       LT.DANGER_CODE,
+       RS.PACKAGE_NO,
+       LT.PACKAGE_TYPE,
+       LT.SOURCE_LOT_CODE,
+       LT.TARGET_LOT_CODE,
+       RS.BARCODE,
+       RS.PANEL_NO,
+       LT.WRH_WORKER,
+       LT.WRH_CUST,
+       LT.REMARK,
+       LT.AUX1,
+       LT.AUX2,
+       LT.AUX3,
+       LT.AUX4,
+       LT.AUX5,
+       LT.OFFICE_CODE,
+       LT.OTHER_PK_UUID,
+       RS.PRODUCTION_DATE,
+       LOD.CONTROL_WORD AS LOD_CW
+  FROM LOGISTICS_ORDER_DETAIL LOD,
+       LOGISTICS_ORDER        LO,
+       LOCATION_TASK          LT,
+       STOCK_WORK             SW,
+       REMAIN_SINWORK         RS
+ WHERE LOD.LOGISTICS_ORDER_DETAIL_UUID = LT.LOGISTICS_ORDER_DETAIL_UUID
+   AND LT.LOCATION_TASK_UUID = SW.LOCATION_TASK_UUID
+   AND SW.STOCK_WORK_UUID = RS.IN_STOCK_WORK_UUID
+   AND LO.LOGISTICS_ORDER_UUID = LOD.LOGISTICS_ORDER_UUID
+   <<AND LOD.TRANSACTION_STATUS=:lodStatus>>
+   AND LT.OFFICE_CODE = LOD.OFFICE_CODE
+   AND LO.OFFICE_CODE = :officeCode
+   <<AND LT.LOC_TASK_TYPE = :locTaskType>>
+   <<AND LT.LOC_TASK_TYPE <> :locTaskTypes>>
+   AND (LOD.LOGISTICS_ORDER_NO = :orderNo OR LO.ORDER_NO = :orderNo)
+   <<AND (RS.BARCODE LIKE :barcode || '%' OR RS.PACKAGE_NO = :barcode)>>
+   <<AND RS.BARCODE BETWEEN :startBarcode AND :endBarcode>>
+   <<AND RS.BATCH_NO = :batchNo>>
+   <<AND RS.MARKS_NUMBER = :marksNumber>>
+   AND ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

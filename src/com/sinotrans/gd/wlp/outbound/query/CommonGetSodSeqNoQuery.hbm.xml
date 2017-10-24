@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CommonGetSodSeqNoQuery">
+		<![CDATA[
+
+SELECT IFNULL(MAX(SOD.SEQ_NO),0) AS SEQ_NO
+  FROM SUBMIT_ORDER_DETAIL SOD
+ WHERE SOD.SUBMIT_ORDER_UUID=:submitOrderUuid
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

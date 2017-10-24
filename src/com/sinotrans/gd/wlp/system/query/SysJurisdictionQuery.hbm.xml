@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="SysJurisdictionQuery">
+		<![CDATA[
+
+SELECT DISTINCT SMI.MENU_ITEM_NAME,
+                SVB.OFFICE_CODE,
+                SVB.SYS_VIEW_BUTTON_UUID,
+                SVB.SYS_MENU_ITEM_UUID,
+                SVB.BTN_CODE,
+                SVB.BTN_NAME,
+                SVB.BTN_NAME_EN,
+                SVB.BTN_URL,
+                SVB.BTN_ACTION,
+                SVB.REMARK,
+              -- SVB.LOC_PLAN_UUID,
+                SMI.MENU_ITEM_NAME_CN,
+                SMI.MENU_ITEM_CODE,
+                SMI.MENU_ITEM_URL,
+                SMI.MENU_ITEM_ACTION
+  FROM SYS_VIEW_BUTTON      SVB,
+       SYS_ROLE_MENU_BUTTON SRMB,
+       SYS_ROLE_MENU_ITEM   SRMI,
+       SYS_MENU_ITEM        SMI,
+       SYS_ROLE             SR,
+       SYS_USER             SU,
+       SYS_ROLE_USER        SRU
+ WHERE SRMB.SYS_VIEW_BUTTON_UUID = SVB.SYS_VIEW_BUTTON_UUID
+   AND SRMB.SYS_ROLE_MENU_ITEM_UUID = SRMI.SYS_ROLE_MENU_ITEM_UUID
+   AND SRMI.SYS_MENU_ITEM_UUID = SMI.SYS_MENU_ITEM_UUID
+   AND SR.SYS_ROLE_UUID = SRMI.SYS_ROLE_UUID
+   AND SR.SYS_ROLE_UUID = SRU.SYS_ROLE_UUID
+   AND SRU.USER_UUID = SU.USER_UUID
+   AND SU.OFFICE_CODE = :officeCode
+   AND SU.USER_CODE = :userCode
+ <<AND SVB.BTN_CODE = :btnCode>>
+ <<AND SVB.BTN_CODE in (:btnCodeArr)>>
+ <<AND SMI.SYS_MENU_ITEM_UUID = :sysMenuItemUuid>>
+ <<AND SMI.SYS_MENU_GROUP_UUID = :sysMenuGroupUuid>>
+ <<AND SMI.MENU_ITEM_CODE = :sysMenuItemCode>>
+ << and substr(svb.control_word,1,1)=:buttonType  --按钮类型 >>
+   and ##CONDITIONS##
+ ORDER BY svb.BTN_CODE DESC
+		]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BasLotStockQuery">
+		<![CDATA[
+
+select  (select blt.loc_type_name from bas_loc_type blt where  blt.bas_bas_loc_type_uuid = bls.bas_bas_loc_type_uuid AND ROWNUM=1) AS loc_type_name , bls.*
+  from bas_lot_stock bls 
+ where bls.office_code = :officeCode
+      <<and bls.bas_loc_area_uuid  = :basLocAreaUuid>>
+      <<and bls.bas_bas_loc_type_uuid = :basBasLocTypeUuid>>
+      <<and bls.lot_code = :lotCode>>
+      <<and bls.lot_name = :lotName>>
+      <<and bls.pri =:pri>>
+      <<and bls.status = :status>>
+   and ##CONDITIONS##
+
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

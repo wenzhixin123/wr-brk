@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="GetCodeDefQuery">
+		<![CDATA[
+
+select bcd.remark, bcd.display_value, bcd.display_value_en
+  from bas_code_type bct, BAS_CODE_DEF bcd
+ where bct.bas_code_type_uuid = bcd.bas_code_type_uuid
+   and bcd.code_value = :codeValue
+   and bct.type_code = :typeCode
+   and bcd.office_code = :officeCode
+   and bcd.status ='Active'
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

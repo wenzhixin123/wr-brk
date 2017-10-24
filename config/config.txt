@@ -1,0 +1,2 @@
+IMP_ORDER 进口作业单号
+约桥 用的JOBCONF在系统参数中配的(parameter-type='JOBCONF',table :DCS_PARAMETERS)

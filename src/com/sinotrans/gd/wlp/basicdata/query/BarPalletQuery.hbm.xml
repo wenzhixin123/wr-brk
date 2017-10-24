@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BarPalletQuery">
+		<![CDATA[
+
+select rs.item_code, -- 物料编码
+       rs.goods_desc, -- 货物名称
+       rs.instock_unit_desc, -- 单位
+       rs.remain_qty, -- 数量
+       rs.lot_code -- 货位
+from remain_sinwork rs
+where rs.panel_no = :palletNo
+and rs.office_code = :officeCode
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

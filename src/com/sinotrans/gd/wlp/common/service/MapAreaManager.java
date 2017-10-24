@@ -1,0 +1,31 @@
+package com.sinotrans.gd.wlp.common.service;
+
+import java.util.Collection;
+import java.util.List;
+
+import com.sinotrans.framework.core.service.BaseManager;
+import com.sinotrans.gd.wlp.common.model.MapAreaModel;
+import com.sinotrans.gd.wlp.common.web.SinotransPageJson;
+
+public interface MapAreaManager extends BaseManager {
+
+	MapAreaModel get(String id);
+
+	List<MapAreaModel> getAll();
+
+	List<MapAreaModel> findByExample(MapAreaModel example);
+
+	MapAreaModel save(MapAreaModel model);
+
+	List<MapAreaModel> saveAll(Collection<MapAreaModel> models);
+
+	void remove(MapAreaModel model);
+
+	void removeAll(Collection<MapAreaModel> models);
+
+	void removeByPk(String id);
+
+	void removeAllByPk(Collection<String> ids);
+
+	SinotransPageJson synchronyMapArea();
+}

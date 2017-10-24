@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9296a210-61ba-4ed2-a484-c964761ecbe6">
+	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="4"/>
+	<style name="PdfField" fontName="宋体" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 8">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 9">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 10">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="releasedEqdList" uuid="410a7790-0c9d-4d5b-83a3-11e40962d256">
+		<field name="rowState" class="java.lang.String"/>
+		<field name="releasedEqdId" class="java.lang.String"/>
+		<field name="msgEdqId" class="java.lang.String"/>
+		<field name="releasedId" class="java.lang.String"/>
+		<field name="eqdControlWord" class="java.lang.String"/>
+		<field name="ctIsoCode" class="java.lang.String"/>
+		<field name="containerType" class="java.lang.String"/>
+		<field name="sealNo" class="java.lang.String"/>
+		<field name="containerNo" class="java.lang.String"/>
+		<field name="ctMaterial" class="java.lang.String"/>
+		<field name="rel" class="java.lang.String"/>
+		<field name="acc" class="java.lang.String"/>
+		<field name="locationCode" class="java.lang.String"/>
+		<field name="containerWorkNo" class="java.lang.String"/>
+		<field name="logisticsOrderNo" class="java.lang.String"/>
+		<field name="creator" class="java.lang.String"/>
+		<field name="modifier" class="java.lang.String"/>
+		<field name="officeCode" class="java.lang.String"/>
+		<field name="prrmaryKeyName" class="java.lang.String"/>
+		<field name="orderId" class="java.lang.String"/>
+		<field name="orderNo" class="java.lang.String"/>
+		<field name="numberCts" class="java.lang.Long"/>
+		<group name="containerTypeGroup">
+			<groupExpression><![CDATA[$F{containerType}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="DWR" class="java.lang.Object"/>
+	<parameter name="signature" class="java.lang.String"/>
+	<parameter name="SYSTEM_PATH" class="java.lang.String"/>
+	<parameter name="printType" class="java.lang.String"/>
+	<field name="rowState" class="java.lang.String"/>
+	<field name="releasedId" class="java.lang.String"/>
+	<field name="controlWord" class="java.lang.String"/>
+	<field name="bookingNumber" class="java.lang.String"/>
+	<field name="releasedNo" class="java.lang.String"/>
+	<field name="releasedDesc" class="java.lang.String"/>
+	<field name="verifyCode" class="java.lang.String"/>
+	<field name="containerType" class="java.lang.String"/>
+	<field name="releaseDesc" class="java.lang.String"/>
+	<field name="releaseCode" class="java.lang.String"/>
+	<field name="receiveCode" class="java.lang.String"/>
+	<field name="receiveDesc" class="java.lang.String"/>
+	<field name="pickupDepot" class="java.lang.String"/>
+	<field name="returnDepot" class="java.lang.String"/>
+	<field name="payDesc" class="java.lang.String"/>
+	<field name="isWeigh" class="java.lang.String"/>
+	<field name="liner" class="java.lang.String"/>
+	<field name="linerDesc" class="java.lang.String"/>
+	<field name="goodsName" class="java.lang.String"/>
+	<field name="locationCode" class="java.lang.String"/>
+	<field name="remark" class="java.lang.String"/>
+	<field name="printReason" class="java.lang.String"/>
+	<field name="containerWorkNo" class="java.lang.String"/>
+	<field name="creator" class="java.lang.String"/>
+	<field name="modifier" class="java.lang.String"/>
+	<field name="officeCode" class="java.lang.String"/>
+	<field name="returnRemark" class="java.lang.String"/>
+	<field name="cntrAdminCode" class="java.lang.String"/>
+	<field name="prrmaryKeyName" class="java.lang.String"/>
+	<field name="count_20" class="java.lang.String"/>
+	<field name="count_40" class="java.lang.String"/>
+	<field name="count_40hq" class="java.lang.String"/>
+	<field name="count_45" class="java.lang.String"/>
+	<field name="collectFee" class="java.lang.String"/>
+	<field name="collector" class="java.lang.String"/>
+	<field name="logisticsOrderNo" class="java.lang.String"/>
+	<field name="releasedEqdList" class="java.util.List"/>
+	<field name="linerName" class="java.lang.String"/>
+	<field name="payDescName" class="java.lang.String"/>
+	<field name="pickupDepotName" class="java.lang.String"/>
+	<field name="releasedFee" class="java.lang.String"/>
+	<field name="releasePerson" class="java.lang.String"/>
+	<field name="releasePerson1" class="java.lang.String"/>
+	<field name="releasePerson2" class="java.lang.String"/>
+	<field name="releaseTel1" class="java.lang.String"/>
+	<field name="releaseTel2" class="java.lang.String"/>
+	<field name="printPerson" class="java.lang.String"/>
+	<field name="validityDate" class="java.lang.String"/>
+	<field name="releaseDate" class="java.lang.String"/>
+	<field name="releaseDateString" class="java.lang.String"/>
+	<field name="returnDepotName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114">
+			<staticText>
+				<reportElement style="PdfField" x="102" y="9" width="361" height="30" uuid="9768e751-a088-442c-a58a-e66af6c12ab8"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="24" isBold="false"/>
+				</textElement>
+				<text><![CDATA[广运船务有限公司放箱纸]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="3" y="54" width="58" height="16" uuid="81e7d386-23d9-41e6-a45c-6c7bd7580d72"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[放柜编号：]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="47" width="258" height="30" uuid="4a4152f4-2d6c-454f-9651-209903a057b2"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*"+$F{releasedNo}+"*"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="PdfField" x="3" y="81" width="70" height="15" uuid="934398bd-eca2-4c78-a33f-04e3fc5d23ab"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[订仓提单号：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="279" y="81" width="64" height="15" uuid="4d2869a3-4e0b-40da-a120-81141b8c4931"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[箱属公司：]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="342" y="75" width="116" height="25" uuid="3aaa04eb-58e9-41cc-8502-b85987be57d6"/>
+				<textElement>
+					<font fontName="宋体" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{linerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="76" width="156" height="26" uuid="2b98a37f-0808-478d-a866-720b7e652c47"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bookingNumber}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="318" y="54" width="238" height="22" uuid="ffb5d149-2619-4280-bed7-cb7aa405debc"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{releasedNo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="457" y="75" width="106" height="25" uuid="92d4b857-2581-4d2d-87a7-ce0095dab6fa"/>
+				<textElement>
+					<font fontName="宋体" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(由"
++ ($F{linerDesc}!=null?$F{linerDesc}
+    :"广运"
+)
++"控箱)"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="1" y="100" width="42" height="12" isPrintWhenDetailOverflows="true" uuid="3a232b9a-3a2a-446b-b440-96a13de33b0a"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Horizontal" ignoreWidth="true">
+					<datasetRun subDataset="releasedEqdList" uuid="72b1cce8-baa3-4e61-9563-7c56202fb9cd">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{releasedEqdList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="12" width="42">
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="0" y="0" width="40" height="12" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="916c0227-1a2a-4db7-ae31-f33ff0c44e35">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT} < 6]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{numberCts}+"X"+$F{containerType}+ " "]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6"/>
+	</pageHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<componentElement>
+				<reportElement x="3" y="18" width="261" height="15" uuid="527fafdc-b03c-45a0-900a-942bff8f40b0"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="releasedEqdList" uuid="3d719157-05fe-4d0b-9cbc-f9525444dc01">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{releasedEqdList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="261">
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="131" y="0" width="45" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="d72ac604-aad0-486f-9139-7e1766663c28">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{numberCts}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="81" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="85f4e06b-f35f-41ab-9d89-749ceb9c0e4f">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{containerNo}==null?"柜号待定":$F{containerNo}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="81" y="0" width="50" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="bcc7c2cc-a1da-4b1a-ab63-40ba29834f2c">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{containerType}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="176" y="0" width="85" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="e6b24e1e-1160-45d5-aa81-e0d513aafc54">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sealNo}==null?"封条号待定":$F{sealNo}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement style="table 1_TD" mode="Opaque" x="3" y="3" width="81" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ca4eb701-8a09-496e-8721-2f6032808bf5"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[柜号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" mode="Opaque" x="84" y="3" width="50" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="e7a100b9-c537-4cd0-8eb3-68fbaa03af5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[柜型]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="179" y="3" width="85" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="462eb565-1aac-4732-9002-befcf0212bff"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[封条号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="134" y="3" width="45" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="f8b3435a-597a-402e-9dff-2440e51647a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[数量]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="280" y="18" width="260" height="15" uuid="0783e00e-5d14-4a86-9962-18aa8fd90e0d"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="releasedEqdList" uuid="e5f4f2e2-c83f-4278-864d-28c5da7a21e6">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{releasedEqdList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="260">
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="131" y="0" width="45" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="b5a13469-71d0-4cb5-bf6e-13e96c6315a2">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{numberCts}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="81" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="a14323c3-33ba-4f5a-8834-88ef892e75fb">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{containerNo}==null?"柜号待定":$F{containerNo}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="81" y="0" width="50" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="64f96b1f-e76e-4882-8ab5-b67ee7fd82e9">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{containerType}]]></textFieldExpression>
+						</textField>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="table_TD" mode="Opaque" x="175" y="0" width="85" height="15" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="ac6c835c-e293-46bc-ab2e-03b9261f3109">
+								<printWhenExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+								<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{sealNo}==null?"封条号待定":$F{sealNo}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement style="table_CH" mode="Opaque" x="280" y="3" width="81" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="327eb467-a9ae-471e-a547-ccf8f4efc4a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[柜号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="410" y="3" width="45" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="6089b861-de70-4239-831c-ded198953dd1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" mode="Opaque" x="361" y="3" width="50" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c32a6a7d-893f-411d-bce1-931a520ea48d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[柜型]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="455" y="3" width="85" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="794436d5-f9c4-4ffc-b0e0-dc087a22329d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[封条号]]></text>
+			</staticText>
+		</band>
+		<band height="133">
+			<staticText>
+				<reportElement style="PdfField" x="0" y="7" width="37" height="15" uuid="ff52dc7c-0a48-4c9d-ace8-eb8a4d50760e"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[货名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="26" width="61" height="15" uuid="bd24b1c7-161a-449c-b146-ca333aaa2517"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[用柜情况：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="84" y="26" width="18" height="15" uuid="a9df0ec7-1969-4701-b6a3-13b4f4a3d816"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="195" y="26" width="18" height="15" uuid="84e47656-c7a6-4ea6-9bb5-a1fdfda4a9a5"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[B、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="120" y="26" width="57" height="15" uuid="d6c46501-859a-4f1b-b312-e02f18634865"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[吉出重回]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="231" y="26" width="57" height="15" uuid="bf49c6b7-31fe-44e6-97f1-bccdd10154a2"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[吉出不回]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="306" y="26" width="18" height="15" uuid="4f4e2f04-814c-4995-a26e-24fc1e0ab8e7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[C、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="342" y="26" width="30" height="15" uuid="b08ce750-ab6f-489c-9391-e1f9b807d3a8"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[内装]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="390" y="26" width="18" height="15" uuid="d5d81f92-b72f-4d52-a022-7ac09103b730"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[D、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="426" y="26" width="57" height="15" uuid="de715b38-ceb4-4c57-9f60-1440f7a16ddf"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[重出不回]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="102" y="26" width="18" height="15" uuid="8245ea15-e87b-454d-b624-2e71ca5407d1">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CEF" )&&$F{pickupDepot}.equals( $F{returnDepot} )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="213" y="26" width="18" height="15" uuid="97e26a13-faf6-4826-8b7f-026b87f3015a">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CEN" )||($F{releasedDesc}.equals( "CEF" )&&!$F{pickupDepot}.equals( $F{returnDepot} ))||($F{releasedDesc}.equals( "CEE" )&&!$F{pickupDepot}.equals( $F{returnDepot} ))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="324" y="26" width="18" height="15" uuid="bfa4c505-6329-4280-8f0f-bd9f3bd0f6f9">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CIZ" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="408" y="26" width="18" height="15" uuid="9389116b-f237-453e-8bf0-d5d89086fb8e">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CFN" )||(($F{releasedDesc}.equals( "CFE" )||$F{releasedDesc}.equals( "CFF" ))&&$F{pickupDepot}!=$F{returnDepot})]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="303" y="40" width="18" height="15" uuid="1f499309-7c98-402d-80a2-58369e30620a"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[H、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="61" y="40" width="30" height="15" uuid="d1bf83f5-3daa-4d9b-9436-02b7f9683079"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[吉进]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="192" y="40" width="18" height="15" uuid="db5e7da3-c415-478d-ae9a-87617aab0e68"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[G、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="210" y="40" width="18" height="15" uuid="99092c44-897c-446c-a7f8-a8b86c80b88f">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CFE" )&&$F{pickupDepot}.equals( $F{returnDepot} )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="339" y="40" width="57" height="15" uuid="c7146dc2-ffbc-4a4d-a273-aeb71c35eec0"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[重出重回]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="43" y="40" width="18" height="15" uuid="76a6afb5-17df-4f44-8185-0ff2a00edf8a">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CIE" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="321" y="40" width="18" height="15" uuid="dfe8c222-2625-407f-92a7-290cca9e39e6">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CFF" )&&$F{pickupDepot}.equals( $F{returnDepot} )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="25" y="40" width="18" height="15" uuid="f86fc062-4a8b-4179-b6b2-eb9ddeda03ba"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[E、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="145" y="40" width="29" height="15" uuid="9fc537c1-c2cf-41e8-9c38-598306b4f201"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[重进]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="109" y="40" width="18" height="15" uuid="89e80298-ba46-49c4-8101-6f03e3153674"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[F、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="127" y="40" width="18" height="15" uuid="36684cb3-88c2-4cd3-a11d-469f2736ad21">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CIF" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="450" y="40" width="57" height="15" uuid="2b1bab0c-e0e5-42bb-9149-f8626c982901"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[吉出吉回]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="414" y="40" width="18" height="15" uuid="22882315-2090-4f17-acdc-b9757c47e846"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[I、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="432" y="40" width="18" height="15" uuid="c7b00794-6d98-4d27-a9c5-fc88adf5356c">
+					<printWhenExpression><![CDATA[$F{releasedDesc}.equals( "CEE" )&&$F{pickupDepot}.equals( $F{returnDepot} )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="228" y="40" width="57" height="15" uuid="027e13b6-9858-49ea-8607-a2ad24e8a532"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[重出吉回]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="54" width="61" height="15" uuid="d08e8ba4-8a9d-433a-b7e9-ddda71cb856e"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[付费单位：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="291" y="54" width="18" height="15" uuid="68a19462-9c8a-4d39-b969-9bd1b0b83f6b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[B、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="202" y="54" width="72" height="15" uuid="504478b6-795c-4b48-83a7-1767389ce091"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[提\卸柜人]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="166" y="54" width="18" height="15" uuid="908af803-0578-42c2-bc19-0b53a9715d42"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A、]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="309" y="54" width="18" height="15" uuid="d060c7ad-bd00-49f2-80b9-2ff0f845464e">
+					<printWhenExpression><![CDATA[$F{payDesc}.equals( "2" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="327" y="54" width="29" height="15" uuid="a28f67f4-f5c3-43a1-9079-1eeda8fa5944"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[其它]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="184" y="54" width="18" height="15" uuid="19552c1f-35a8-4cb8-8eac-694529278709">
+					<printWhenExpression><![CDATA[$F{payDesc}.equals( "1" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[√]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="68" width="37" height="15" uuid="0741be26-d4ba-4389-a3e4-dec2df92e3bb"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[流向：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="82" width="71" height="15" uuid="fcb0e827-3fc4-455a-b9c9-93bb7ef4ae52"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[提/还柜地点：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="96" width="37" height="15" uuid="e14547f3-a30c-4fde-a2ee-a3122f64cced"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[备注：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="71" y="54" width="72" height="15" uuid="32e943ad-1add-4f08-ade5-7d0ed0c158cc"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1 ）码头费]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="367" y="54" width="100" height="15" uuid="63cf4cd1-202b-4e5b-a358-f4d6fc5f3d8a">
+					<printWhenExpression><![CDATA[!$F{payDesc}.equals( "1" )&&!$F{payDesc}.equals( "2" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payDescName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="71" y="82" width="450" height="15" uuid="99f2ec3c-a877-4168-95fa-750c915331f3"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["pickup".equals( $P{printType} )?$F{pickupDepotName}:$F{returnDepotName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="37" y="96" width="535" height="37" uuid="59793ab8-a844-4fba-8b35-3b3bb3a34000"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="39" y="68" width="100" height="15" uuid="ede14bdb-898d-4a63-8fd5-d1e2501fbbe5"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locationCode}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="129">
+			<image>
+				<reportElement x="176" y="29" width="130" height="89" uuid="6b9a3fe6-7dec-43c9-b61a-9a7adf873c00">
+					<printWhenExpression><![CDATA["Y".equals($P{signature})]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{SYSTEM_PATH}+"/jsp/release/seal.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="0" width="54" height="15" uuid="bcf108de-0558-4fff-aae7-79eead0670ef"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[应收款项：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="104" y="0" width="15" height="15" uuid="c6ef34c7-5c79-45f4-ae3d-2f5dcbc6f144"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[元]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="21" width="120" height="15" uuid="70404b6f-5c5d-4693-a8a5-cf8320901fed"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1 ）办理提柜时请联系：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="22" y="35" width="550" height="15" uuid="5db9a9d8-0c0b-43a5-93da-fe9e6bba6d90"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[地址：黄埔区海员路 2 号旧外运大楼 1 楼 7 号窗]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="49" width="572" height="15" uuid="d7551016-e9f3-4b29-8bea-3f775c5b6673"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2 ）请于放柜三天内提柜，逾期此文作废；如发现坏柜，请及时通知我司，否则一切后果自负]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="63" width="572" height="15" uuid="d20b584e-b080-423f-9e3c-80ef4cca6b64"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3 ）若因客户提供错误柜号/封条号给我司或码头所产生的费用及责任由客户承担，我司将对此免责。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="232" y="87" width="52" height="15" uuid="0d5ca369-bb58-46e1-9bad-a45dd3ab4497"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[放箱人：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="388" y="87" width="60" height="15" uuid="94769636-5464-4fa7-b992-305e617f4937"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[打印人：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="104" width="54" height="15" uuid="30ca1e73-fb6a-4de7-a727-7eef4435abfd"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[打印日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="389" y="104" width="60" height="15" uuid="d0412ec2-d7c4-4301-aa4f-826830cfa653"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[放箱日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="177" y="104" width="109" height="15" uuid="3b017925-259a-4029-96f9-9c95bc2711a3"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[本放柜纸有效日期至：]]></text>
+			</staticText>
+			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="true">
+				<reportElement style="PdfField" x="53" y="104" width="125" height="15" uuid="edaf235d-e8e2-42df-b8d1-2d54687e4631"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="53" y="0" width="49" height="15" uuid="a4daec4e-fb1a-47b6-9b4d-13b470df3f4c"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{releasedFee}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="283" y="87" width="106" height="15" uuid="c7cd6b52-c88f-47a1-9cc3-08701e9e0b78"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{releasePerson}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="PdfField" x="226" y="21" width="29" height="15" uuid="be807f96-2ac5-4846-9df7-2703b4b51391"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TEL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="348" y="21" width="29" height="15" uuid="588ccdc4-68ad-4213-b3bb-811bc3ef5a28"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FAX:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="254" y="21" width="94" height="15" uuid="0e22f1ad-448d-4aa6-9f95-117270686d2c"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{releaseTel1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="377" y="21" width="100" height="15" uuid="d669044a-1ee8-45a2-adb9-3f4f9f4167f9"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{releaseTel2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="448" y="87" width="124" height="15" uuid="6b8d5a8c-34e6-42a0-a395-575d4df9ee71"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{printPerson}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="284" y="104" width="106" height="15" uuid="8446665c-2d12-4de6-882a-a6bbe6f73aa4"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{validityDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement style="PdfField" x="448" y="104" width="124" height="15" uuid="e24a3f2e-332d-48fa-9850-37fa68debbd8"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{releaseDateString}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="119" y="21" width="107" height="15" uuid="ae308778-516c-4c45-ac93-08eeffc435cb"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["".equals( $F{releasePerson2} )?$F{releasePerson1}:$F{releasePerson1}
++" / "+$F{releasePerson2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_COUNT} > 1]]></printWhenExpression>
+			<textField>
+				<reportElement x="420" y="24" width="80" height="15" uuid="ccf31488-f103-4bae-a938-043b9842498c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="500" y="24" width="40" height="15" uuid="996f817a-bd32-4705-96fb-e8a2a85f12d0"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

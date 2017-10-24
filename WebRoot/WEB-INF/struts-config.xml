@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" 
+"http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="uploadForm"
+			type="com.sinotrans.gd.wlp.system.entity.UploadForm"></form-bean>
+		
+		<form-bean name="printTemplateForm"
+			type="com.sinotrans.gd.wlp.system.entity.PrintTemplateForm"></form-bean>
+		
+	</form-beans>
+	<!--  全局跳转 -->
+	<global-forwards></global-forwards>
+	<action-mappings>
+		<action path="/index"
+			type="com.sinotrans.gd.wlp.system.action.SystemIndexAction">
+			<forward name="portal" path="/wlp_index.jsp"></forward>
+		</action>
+		<action path="/changeLanguage"
+			type="com.sinotrans.gd.wlp.system.action.ChangeLanguageAction">
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+		<action path="/upload" type="com.sinotrans.gd.wlp.system.action.UploadAction"
+			name="uploadForm">
+			<forward name="upload" path="/jsp/components/importFile.jsp" />
+		</action>
+		<action path="/uploadInitCheckOut" type="com.sinotrans.gd.wlp.system.action.InitCheckOutUploadAction" name="uploadForm">
+			<forward name="uploadInitCheckOut" path="/jsp/inbound/initCheckOut.jsp" />
+		</action>
+		<action path="/uploadExcel" type="com.sinotrans.gd.wlp.feeder.common.action.UploadExcelAction" name="uploadForm">
+			<forward name="uploadExcel" path="/jsp/feeder/upLoad/importFile_zz.jsp" />
+			<forward name="buLiaoExcel" path="/jsp/feeder/booking/additemimportFile_.jsp" />
+			<forward name="yourSelfExcel" path="/jsp/feeder/billing/feedExcel.jsp" />
+			<forward name="importTemplateExcel" path="/jsp/feeder/booking/importTemplate.jsp" />
+			<forward name="heyueExcel" path="/jsp/feeder/booking/contractImport_.jsp" />
+			<forward name="importTemplatePortExcel" path="/jsp/feeder/booking/importTemplatePort.jsp" />
+			<forward name="importTemplateForeignExcel" path="/jsp/feeder/booking/importTemplateForeign.jsp" />
+			<forward name="importTemplateDirectExcel" path="/jsp/feeder/booking/importTemplateDirect.jsp" />
+			<forward name="importTemplateWuZhouExcel" path="/jsp/feeder/booking/importTemplateWuZhou.jsp" />
+			<forward name="zhongGuFeeder" path="/jsp/feeder/billing/zhongGuFeeder.jsp" />
+			<forward name="importTemplateLiWenExcel" path="/jsp/feeder/booking/importTemplateLiWen.jsp" />
+		</action>
+		
+		<action path="/*_*_*_*" type="com.sinotrans.gd.wlp.{1}.{2}.action.{3}Action"  name="uploadForm">
+			<forward name="baseForward" path="/jsp/{1}/{3}/{3}_{4}.jsp"></forward>
+			<forward name="base2Forward" path="/jsp/{1}/{3}_{4}.jsp"></forward>
+		</action>
+		<action path="/*_*_*"  type="com.sinotrans.gd.wlp.feeder.{1}.action.{2}Action" name="uploadForm">
+			<forward name="baseForward" path="/jsp/feeder/{2}/{2}_{3}.jsp" ></forward>
+		</action>
+		
+		<action path="/printTemplateAction" type="com.sinotrans.gd.wlp.system.action.PrintTemplateAction"
+			name="printTemplateForm">
+			<forward name="printTemplateList" path="/jsp/system/printTemplateList.jsp" />
+		</action>
+		
+		<action path="/printTemplateFileAction" type="com.sinotrans.gd.wlp.system.action.PrintTemplateFileAction"
+			name="printTemplateForm">
+		</action>
+		
+		<action path="/systemNewsAction"
+			type="com.sinotrans.gd.wlp.system.action.SystemNewsAction">
+			<forward name="portalIndex" path="/portal.jsp"></forward>
+		</action>	
+		<action path="/showNewsAction"
+			type="com.sinotrans.gd.wlp.system.action.ShowNewsAction">
+			<forward name="showNews" path="/jsp/news/news1.jsp"></forward>
+		</action>	
+		
+		<action path="/downLoadAction" type="com.sinotrans.gd.wlp.warehouse.action.DownLoadAction">
+			<forward name="download" path="/jsp/warehouse/tab_basWarehouse.jsp" />
+		</action>
+		<action path="/sysNewsDownFileAction" type="com.sinotrans.gd.wlp.system.action.SysNewsDownFileAction">
+			<forward name="downLoadFile" path="/jsp/news/news1.jsp" />
+		</action>
+		<action path="/systemDownFileAction" type="com.sinotrans.gd.wlp.feeder.common.action.SystemDownFileAction">
+		</action>
+		
+
+		<action path="/exprotForContrant" type="com.sinotrans.gd.wlp.feeder.contract.servlet.JdbcExportAction" >
+			<forward name="success" path="/wlp_index.jsp" />
+		</action>
+	</action-mappings>
+	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor">
+	</controller>
+	<message-resources parameter="common" key="wlp.common" />
+	<message-resources parameter="system" key="wlp.system" />
+	<message-resources parameter="allfields" key="wlp.allfields" />
+	<message-resources parameter="basicdata" key="wlp.basicdata" />
+</struts-config>

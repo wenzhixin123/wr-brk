@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BarMenuPermissionQuery">
+		<![CDATA[
+
+select SMI.MENU_ITEM_URL,SMI.MENU_ITEM_SEQ,SMI.MENU_ITEM_CODE,SMI.MENU_ITEM_NAME,SMI.MENU_ITEM_NAME_CN
+          from sys_menu_item smi
+         where smi.sys_menu_group_uuid =
+               (select smg.sys_menu_group_uuid
+                  from SYS_MENU_GROUP smg
+                 where smg.menu_grp_name = :menuName
+                   and status =:status) 
+           and smi.office_code =:officeCode
+           and smi.status =:status
+           and smi.sys_menu_item_uuid in
+               (select srmi.sys_menu_item_uuid
+                  from sys_role_menu_item srmi
+                 where srmi.sys_role_uuid in
+                       (select sru.sys_role_uuid
+                          from sys_role_user sru
+                         where sru.user_uuid =
+                               (select su.user_uuid
+                                  from sys_user su
+                                 where su.user_code =:userCode)))
+ORDER BY SMI.MENU_ITEM_SEQ
+		]]>
+	</sql-query>
+</hibernate-mapping>

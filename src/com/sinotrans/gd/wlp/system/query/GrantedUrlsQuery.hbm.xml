@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="GrantedUrlsQuery">
+		<![CDATA[
+
+select mi.menu_item_url, mi.menu_item_action
+  from sys_role_user ru, sys_role_menu_item rmi, sys_menu_item mi
+ where ru.sys_role_uuid = rmi.sys_role_uuid
+   and rmi.sys_menu_item_uuid = mi.sys_menu_item_uuid
+   and mi.status = 'Active'
+   and ru.user_uuid = :userUuid
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

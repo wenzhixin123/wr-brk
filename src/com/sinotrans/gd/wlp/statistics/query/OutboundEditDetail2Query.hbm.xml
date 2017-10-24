@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="OutboundEditDetail2Query">
+		<![CDATA[
+
+select distinct
+        date_format(RH.PRODUCTION_DATE,'YYYY-MM-DD') AS PRODUCTION_DATE,
+		lo.flow,
+		lo.order_no,
+		lo.Project_Code,
+		lo.cargo_consignee_desc,
+		lo.cargo_consignee_code,
+		lo.cargo_control_desc,
+		lo.cargo_control_code,
+		lo.control_word,
+		(select MAX(bp.project_name) from bas_project bp where bp.project_code=lo.project_code  and bp.status='Active') as projectName,
+		lod.logistics_order_detail_uuid as in_logistics_order_detail_uuid,
+		lod.logistics_order_no as in_logistics_order_no,
+		lod.bill_no,
+		lod.seq_no,
+		lod.goods_desc,
+		lod.model,
+		lod.spec,
+		lod.Length_Unit_Code,
+		lod.LENGTH,
+		lod.WIDTH,
+		lod.HEIGHT,
+		(select max(rs.length) from REMAIN_SINWORK rs where rs.IN_LOGISTICS_ORDER_DETAIL_UUID=rh.IN_LOGISTICS_ORDER_DETAIL_UUID and rs.office_code=rh.office_code and  rh.package_no=rs.package_no  ) as RS_LENGTH,
+		(select max(rs.WIDTH) from REMAIN_SINWORK rs where rs.IN_LOGISTICS_ORDER_DETAIL_UUID=rh.IN_LOGISTICS_ORDER_DETAIL_UUID and rs.office_code=rh.office_code and  rh.package_no=rs.package_no  ) as RS_WIDTH,
+		(select max(rs.HEIGHT) from REMAIN_SINWORK rs where rs.IN_LOGISTICS_ORDER_DETAIL_UUID=rh.IN_LOGISTICS_ORDER_DETAIL_UUID and rs.office_code=rh.office_code and  rh.package_no=rs.package_no  ) as RS_HEIGHT,
+		rh.goods_kind,
+		rh.GOODS_NATURE,
+		lod.DANGER_CODE,
+		rh.package_no,
+		lod.PACKAGE_TYPE,
+		lod.volume_unit_code,
+		lod.volume_unit_desc,
+		lod.weight_unit_code,
+		lod.weight_unit_desc,
+		lod.unit_price,
+		lod.currency_code,
+		lod.currency_desc,
+		lod.qty_unit_code,
+		lod.qty_unit_desc,
+		lod.total_price,
+		lod.Length_Unit_Desc,
+		lod.remark,
+		lod.ext_item_code,
+		lod.create_time,
+		lod.aux2,
+		lod.aux1,
+		lod.aux5,
+		lo.urgent_order_no,
+		(select max(ik.item_kind_name)  
+		from item_kind ik 
+		where ik.item_kind_code=rh.goods_kind ) as kind_desc,
+		rh.remain_hold_uuid,
+		rh.item_code,
+		rh.item_seqno,
+		rh.batch_no,
+		rh.marks_number,
+		rh.barcode,
+		rh.instock_unit_code as unit_code,
+		rh.instock_unit_desc as unit_desc,
+		rh.instock_second_unit_code as second_unit_code,
+		rh.instock_second_unit_desc as second_unit_desc,
+		rh.instock_third_unit_code as third_unit_code,
+		rh.instock_third_unit_desc as third_unit_desc,
+		rh.remain_third_qty as third_qty,
+		rh.remain_qty,
+		rh.remain_qty  as qty,
+		rh.remain_second_qty  as second_qty,
+		rh.remain_gross_weight  as gross_weight,
+		rh.remain_net_weight as net_weight,
+		rh.remain_volume  as volume,
+		(SELECT max(BC.CUSTOMER_NAME) FROM BAS_CUSTOMER BC WHERE BC.CUSTOMER_CODE = LO.TARGET_CUSTOMER_CODE ) TARGET_CUSTOMER_NAME,
+		'0' AS REMAIN_QTY_HOLD_QTY_SUM,
+		/*(RH.REMAIN_QTY - RH.HOLD_QTY - PKG_REMAIN_HOLD.GET_HOLDQTY2(RH.REMAIN_HOLD_UUID, RH.OFFICE_CODE)) AS REMAIN_QTY_HOLD_QTY_SUM,*/
+		rh.remain_second_qty - rh.hold_second_qty as  remain_second_qty_hold_sum,
+          (select max(RS.LOT_CODE) from Remain_Sinwork RS WHERE RS.IN_LOGISTICS_ORDER_DETAIL_UUID = RH.IN_LOGISTICS_ORDER_DETAIL_UUID ) as TARGET_LOT_CODE 
+    from logistics_order lo,logistics_order_detail lod,remain_hold rh
+	where lo.logistics_order_uuid=lod.logistics_order_uuid
+		and lod.logistics_order_detail_uuid=rh.in_logistics_order_detail_uuid
+		and IFNULL(rh.remain_qty, 0) > 0
+   		and IFNULL(rh.remain_qty, 0) - IFNULL(rh.hold_qty, 0) > 0
+   		/*AND (RH.REMAIN_QTY - RH.HOLD_QTY - PKG_REMAIN_HOLD.GET_HOLDQTY2(RH.REMAIN_HOLD_UUID, RH.OFFICE_CODE)) > 0*/
+		<<and lo.cargo_consignee_code=:cargoConsigneeCode>>
+		<<and lo.logistics_order_no=:logisticsOrderNo>>
+		<<and lo.transaction_type = :transactionType>>
+		<<and lo.order_no=:orderNo>>
+		<<and lo.cut_off_date >= :orderDateStart>>
+		<<and lo.cut_off_date < :orderDateEnd+1>>
+		<<and rh.batch_no=:batchNo>>
+		<<and rh.barcode=:barcode>>
+		<<and RH.PACKAGE_NO=:packageNo>>
+		<<and rh.item_code  like '%' || :itemCode || '%'>>
+		<<and rh.marks_number=:marksNumber>>
+		<<and lo.project_code= :projectCode>>
+		<<and lod.model like '' || :model || '%'>>
+		<<and lod.model =:modelSP >>
+		<<and lod.spec=:spec>>
+		<<and lo.delivery_type=:deliveryType>>
+		<<and lod.goods_desc like '%' || :goodsDesc || '%' >>
+		<<and lo.flow=:flow >>
+		<<and IFNULL(rh.goods_nature,' ') not in(:goodsNature)>>
+		<<and rh.goods_nature = :goodsNatureSD>>
+		<<and LO.TARGET_CUSTOMER_CODE = :targetCustomerCode>>
+		<<and IFNULL(lo.cargo_control_code,' ') <> :agentConsigneeCode>>
+		<<and IFNULL(lo.cargo_control_code,' ') = IFNULL(:cargoControlCode,' ')>>
+		<<AND lo.agent_consignee_code in (:inAgentConsingneeCode)>>
+		<<AND lo.CARGO_CONTROL_CODE in (:inCargoControlCode)>>
+		<<and substr(lo.control_word,14,1)=:cw14>>
+		<<and exists (select 'x' from bas_loc_area bla,bas_lot_stock bls,bas_warehouse bw,REMAIN_SINWORK RS where bw.warehouse_code =:warehouse and bla.bas_warehouse_uuid=bw.bas_warehouse_uuid  and bla.bas_loc_area_uuid = bls.bas_loc_area_uuid and bls.lot_code=rs.lot_code and RH.IN_LOGISTICS_ORDER_DETAIL_UUID = RS.IN_LOGISTICS_ORDER_DETAIL_UUID  and bls.office_code=rs.office_code )>>
+		<<and rh.in_logistics_order_detail_uuid in(select rs.in_logistics_order_detail_uuid  from barcode_work bw, remain_sinwork rs where rs.barcode = bw.barcode  and bw.order_no = :urgentOrderNo  and bw.office_code = :officeCode)>>
+		<<AND EXISTS (SELECT '*' FROM BAS_LOC_AREA BLA, BAS_LOT_STOCK BLS, REMAIN_SINWORK RS WHERE BLA.LOC_AREA_CODE = :locAreaCode AND BLA.BAS_LOC_AREA_UUID = BLS.BAS_LOC_AREA_UUID AND BLS.LOT_CODE = RS.LOT_CODE AND BLS.OFFICE_CODE = RS.OFFICE_CODE AND RH.IN_LOGISTICS_ORDER_DETAIL_UUID = RS.IN_LOGISTICS_ORDER_DETAIL_UUID AND RH.OFFICE_CODE = RS.OFFICE_CODE)>>
+		<<AND EXISTS (SELECT '*' FROM BAS_LOC_AREA   BLA, BAS_LOT_STOCK  BLS, REMAIN_SINWORK RS, BAS_WAREHOUSE  BW WHERE BW.WAREHOUSE_CODE = :warehouseCode AND BLA.BAS_LOC_AREA_UUID = BLS.BAS_LOC_AREA_UUID AND BW.BAS_WAREHOUSE_UUID = BLA.BAS_WAREHOUSE_UUID AND BW.OFFICE_CODE = RS.OFFICE_CODE AND BLS.LOT_CODE = RS.LOT_CODE AND BLS.OFFICE_CODE = RS.OFFICE_CODE AND RH.IN_LOGISTICS_ORDER_DETAIL_UUID = RS.IN_LOGISTICS_ORDER_DETAIL_UUID AND RH.OFFICE_CODE = RS.OFFICE_CODE)>>
+		<<AND EXISTS (SELECT '*' FROM REMAIN_SINWORK RS WHERE RS.LOT_CODE = :lotCode AND RH.IN_LOGISTICS_ORDER_DETAIL_UUID = RS.IN_LOGISTICS_ORDER_DETAIL_UUID AND RS.OFFICE_CODE = RH.OFFICE_CODE)>>
+		and rh.office_code=:officeCode
+		<<AND LO.CONTRACT_NO like '%' || :contractNo || '%'>>
+		and ##CONDITIONS##	      
+	order by lod.logistics_order_no asc,rh.package_no asc
+		]]>
+	</sql-query>
+</hibernate-mapping>

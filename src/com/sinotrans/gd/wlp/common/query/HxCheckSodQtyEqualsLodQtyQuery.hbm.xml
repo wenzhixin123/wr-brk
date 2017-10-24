@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="HxCheckSodQtyEqualsLodQtyQuery">
+		<![CDATA[
+
+   select t.* from (select
+         (sod.qty - (select IFNULL(sum(lod.qty),0)
+                      from logistics_order_detail lod
+                     where lod.submit_order_detail_uuid =
+                           sod.submit_order_detail_uuid
+                           and lod.transaction_status in('Pending','Active'))) as new_qty,
+                 (select IFNULL(sum(lod.qty),0)
+                      from logistics_order_detail lod
+                     where lod.submit_order_detail_uuid =
+                           sod.submit_order_detail_uuid
+                           and lod.transaction_status in('Pending','Active')) as order_qty,           
+                   (select max(so.order_no)
+                  from submit_order so
+                 where so.submit_order_uuid = sod.submit_order_uuid
+                    ) as order_no,
+                   (select max(so.delivery_date)
+                  from submit_order so
+                 where so.submit_order_uuid = sod.submit_order_uuid
+                   ) as delivery_date,
+                   (select max(da.aux1)
+                  from default_aux da
+                 where da.order_uuid = sod.submit_order_uuid
+                   ) as da_Aux1_Batch_No,
+                            sod.*
+          from submit_order_detail sod
+         where sod.transaction_status in('Pending','Active')
+         << and sod.submit_order_detail_uuid =:submitOrderDetailUuid >>
+         << and (select (select dp1.parameter_name from DEFAULT_PARAMETER dp1 where dp1.office_code=:officeCode and dp1.parameter_type='YCL_STOREHOUSE_GROUP' and dp1.aux2 = (select dp2.parameter_value from DEFAULT_PARAMETER dp2 where dp2.office_code=:officeCode and dp2.parameter_type='YCL_GROUP_AREA' and dp2.aux2 = (select bla.bas_loc_area_uuid from  bas_loc_area bla where bla.loc_area_code = dp.aux9 and bla.office_code=:officeCode and rownum=1))) as dp_parameter_name from default_parameter dp where dp.parameter_value=sod.item_code and dp.office_code=:officeCode and rownum=1) =:dpParameterName>>
+         and sod.submit_order_uuid in(:submitOrderUuid)
+ 		 	and sod.office_code=:officeCode
+         )T
+         where t.new_qty>0
+         
+		]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,337 @@
+package com.sinotrans.gd.wlp.common.model;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.sinotrans.framework.core.model.BaseModelClass;
+
+/**
+ * Model class for ReqTask
+ */
+@Entity
+@Table(name = "req_task")
+@org.hibernate.annotations.Entity(dynamicInsert = true, dynamicUpdate = true)
+public class ReqTaskModel extends BaseModelClass {
+
+	private static final long serialVersionUID = 1L;
+
+	public static final String MODEL_NAME = "ReqTask";
+
+	public static final class FieldNames {
+		/**
+		 * 请求时间
+		 */
+		public static final String reqTime = "reqTime";
+		/**
+		 * 请求编号
+		 */
+		public static final String reqCode = "reqCode";
+		/**
+		 * 客户端编号
+		 */
+		public static final String clientCode = "clientCode";
+		/**
+		 * tokenCode
+		 */
+		public static final String tokenCode = "tokenCode";
+		/**
+		 * interfaceName
+		 */
+		public static final String interfaceName = "interfaceName";
+		/**
+		 * taskTyp
+		 */
+		public static final String taskTyp = "taskTyp";
+		/**
+		 * userCallCode
+		 */
+		public static final String userCallCode = "userCallCode";
+		/**
+		 * podCode
+		 */
+		public static final String podCode = "podCode";
+		/**
+		 * podDir
+		 */
+		public static final String podDir = "podDir";
+		/**
+		 * priority
+		 */
+		public static final String priority = "priority";
+		/**
+		 * taskCode
+		 */
+		public static final String taskCode = "taskCode";
+		/**
+		 * robotCode
+		 */
+		public static final String robotCode = "robotCode";
+		/**
+		 * data
+		 */
+		public static final String data = "data";
+		/**
+		 * 任务状态
+		 */
+		public static final String taskStatus = "taskStatus";
+	}
+
+	//请求时间
+	private Date reqTime;
+	//请求编号
+	private String reqCode;
+	//客户端编号
+	private String clientCode;
+	//tokenCode
+	private String tokenCode;
+	//interfaceName
+	private String interfaceName;
+	//taskTyp
+	private String taskTyp;
+	//userCallCode
+	private String userCallCode;
+	//podCode
+	private String podCode;
+	//podDir
+	private String podDir;
+	//priority
+	private String priority;
+	//taskCode
+	private String taskCode;
+	//robotCode
+	private String robotCode;
+	//data
+	private String data;
+	//任务状态
+	private Integer taskStatus;
+
+	/**
+	 * Get 请求时间
+	 */
+	@Column(name = "req_time")
+	@Id
+	public Date getReqTime() {
+		return reqTime;
+	}
+
+	/**
+	 * Set 请求时间
+	 */
+	public void setReqTime(Date reqTime) {
+		this.reqTime = reqTime;
+		addValidField(FieldNames.reqTime);
+	}
+
+	/**
+	 * Get 请求编号
+	 */
+	@Column(name = "req_code")
+	public String getReqCode() {
+		return reqCode;
+	}
+
+	/**
+	 * Set 请求编号
+	 */
+	public void setReqCode(String reqCode) {
+		this.reqCode = reqCode;
+		addValidField(FieldNames.reqCode);
+	}
+
+	/**
+	 * Get 客户端编号
+	 */
+	@Column(name = "client_code")
+	public String getClientCode() {
+		return clientCode;
+	}
+
+	/**
+	 * Set 客户端编号
+	 */
+	public void setClientCode(String clientCode) {
+		this.clientCode = clientCode;
+		addValidField(FieldNames.clientCode);
+	}
+
+	/**
+	 * Get tokenCode
+	 */
+	@Column(name = "token_code")
+	public String getTokenCode() {
+		return tokenCode;
+	}
+
+	/**
+	 * Set tokenCode
+	 */
+	public void setTokenCode(String tokenCode) {
+		this.tokenCode = tokenCode;
+		addValidField(FieldNames.tokenCode);
+	}
+
+	/**
+	 * Get interfaceName
+	 */
+	@Column(name = "interface_name")
+	public String getInterfaceName() {
+		return interfaceName;
+	}
+
+	/**
+	 * Set interfaceName
+	 */
+	public void setInterfaceName(String interfaceName) {
+		this.interfaceName = interfaceName;
+		addValidField(FieldNames.interfaceName);
+	}
+
+	/**
+	 * Get taskTyp
+	 */
+	@Column(name = "task_typ")
+	public String getTaskTyp() {
+		return taskTyp;
+	}
+
+	/**
+	 * Set taskTyp
+	 */
+	public void setTaskTyp(String taskTyp) {
+		this.taskTyp = taskTyp;
+		addValidField(FieldNames.taskTyp);
+	}
+
+	/**
+	 * Get userCallCode
+	 */
+	@Column(name = "user_call_code")
+	public String getUserCallCode() {
+		return userCallCode;
+	}
+
+	/**
+	 * Set userCallCode
+	 */
+	public void setUserCallCode(String userCallCode) {
+		this.userCallCode = userCallCode;
+		addValidField(FieldNames.userCallCode);
+	}
+
+	/**
+	 * Get podCode
+	 */
+	@Column(name = "pod_code")
+	public String getPodCode() {
+		return podCode;
+	}
+
+	/**
+	 * Set podCode
+	 */
+	public void setPodCode(String podCode) {
+		this.podCode = podCode;
+		addValidField(FieldNames.podCode);
+	}
+
+	/**
+	 * Get podDir
+	 */
+	@Column(name = "pod_dir")
+	public String getPodDir() {
+		return podDir;
+	}
+
+	/**
+	 * Set podDir
+	 */
+	public void setPodDir(String podDir) {
+		this.podDir = podDir;
+		addValidField(FieldNames.podDir);
+	}
+
+	/**
+	 * Get priority
+	 */
+	@Column(name = "priority")
+	public String getPriority() {
+		return priority;
+	}
+
+	/**
+	 * Set priority
+	 */
+	public void setPriority(String priority) {
+		this.priority = priority;
+		addValidField(FieldNames.priority);
+	}
+
+	/**
+	 * Get taskCode
+	 */
+	@Column(name = "task_code")
+	public String getTaskCode() {
+		return taskCode;
+	}
+
+	/**
+	 * Set taskCode
+	 */
+	public void setTaskCode(String taskCode) {
+		this.taskCode = taskCode;
+		addValidField(FieldNames.taskCode);
+	}
+
+	/**
+	 * Get robotCode
+	 */
+	@Column(name = "robot_code")
+	public String getRobotCode() {
+		return robotCode;
+	}
+
+	/**
+	 * Set robotCode
+	 */
+	public void setRobotCode(String robotCode) {
+		this.robotCode = robotCode;
+		addValidField(FieldNames.robotCode);
+	}
+
+	/**
+	 * Get data
+	 */
+	@Column(name = "data")
+	public String getData() {
+		return data;
+	}
+
+	/**
+	 * Set data
+	 */
+	public void setData(String data) {
+		this.data = data;
+		addValidField(FieldNames.data);
+	}
+
+	/**
+	 * Get 任务状态
+	 */
+	@Column(name = "task_status")
+	public Integer getTaskStatus() {
+		return taskStatus;
+	}
+
+	/**
+	 * Set 任务状态
+	 */
+	public void setTaskStatus(Integer taskStatus) {
+		this.taskStatus = taskStatus;
+		addValidField(FieldNames.taskStatus);
+	}
+
+}

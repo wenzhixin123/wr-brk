@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="PrintReportTemplateQuery">
+		<![CDATA[
+
+select 
+    r.report_template_uuid,
+    r.template_code,
+    r.template_type,
+    r.template_category,
+    r.template_name,
+    r.template_name_en,
+    r.file_name,
+    r.file_version,
+    r.remark,
+    r.status,
+    r.creator,
+    r.create_time,
+    r.modifier
+from report_template r
+where 1=1
+<<and r.template_name like '%'||:templateName||'%'>>
+<<and r.file_name=:fileName>>
+<<and r.template_type=:templateType>>
+and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

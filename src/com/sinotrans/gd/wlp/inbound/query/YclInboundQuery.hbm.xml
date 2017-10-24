@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="YclInboundQuery">
+		<![CDATA[
+
+SELECT DISTINCT SO.SUBMIT_ORDER_UUID,
+       SO.TRANSACTION_STATUS,
+       SO.SUBMIT_ORDER_NO,
+       SO.ORDER_NO,
+       SO.CONTRACT_NO,
+       SO.AGENT_CONSIGNEE_CODE,
+       SO.AGENT_CONSIGNEE_DESC,
+       SO.DELIVERY_TYPE,
+       SO.DELIVERY_DATE,
+       SO.SUBMIT_DATE,
+       SO.UNLOAD_PORT,
+       SO.FLOW,
+       SO.REMARK,
+       SO.CONFIG_CODE,
+       SO.CARGO_CONSIGNEE_CODE,
+       SO.CARGO_CONSIGNEE_DESC,
+       SO.PROJECT_CODE,
+       SO.TRANSACTION_TYPE,
+       SO.OFFICE_CODE,
+       SO.REC_VER,
+       SO.CREATOR,
+       SO.CREATE_TIME,
+       SO.MODIFIER,
+       SO.MODIFY_TIME,
+       SO.CONTROL_WORD,
+       SO.AUX3,
+       SO.TEL_NO,
+       SO.FUNCTIONARY,
+       SO.AUX1,
+       SO.AUX2,
+       (SELECT max(SODD.BILL_NO) FROM SUBMIT_ORDER_DETAIL SODD WHERE SO.SUBMIT_ORDER_UUID=SODD.SUBMIT_ORDER_UUID 
+       ) AS BILL_NO,
+       (SELECT SUM(SODD.QTY) FROM SUBMIT_ORDER_DETAIL SODD WHERE SO.SUBMIT_ORDER_UUID=SODD.SUBMIT_ORDER_UUID 
+       ) AS QTY,
+      (SELECT max(SODD.ITEM_CODE) FROM SUBMIT_ORDER_DETAIL SODD WHERE SO.SUBMIT_ORDER_UUID=SODD.SUBMIT_ORDER_UUID 
+       ) AS ITEM_CODE              
+FROM SUBMIT_ORDER SO LEFT JOIN SUBMIT_ORDER_DETAIL SOD ON(SO.SUBMIT_ORDER_UUID=SOD.SUBMIT_ORDER_UUID)
+WHERE 1=1
+   <<AND SOD.BILL_NO=:billNo>>
+   <<AND SOD.ITEM_CODE LIKE '%' || :itemCode || '%'>>
+   <<AND SO.ORDER_NO LIKE '%'|| :orderNo ||'%'>>
+   <<AND SUBSTR(SO.CONTROL_WORD,8,1)=:ct>>
+   <<AND SO.TRANSACTION_STATUS=:transactionStatus>>
+   <<AND SO.CARGO_CONSIGNEE_CODE = :cargoConsigneeDesc>>
+   <<AND SO.SUBMIT_ORDER_NO = :submitOrderNo >>
+   AND SO.TRANSACTION_TYPE = :transactionType
+   AND SO.OFFICE_CODE = :officeCode
+   <<AND SO.SUBMIT_DATE>=:dateBegin>>
+   <<AND SO.DELIVERY_TYPE = :deliveryType>>
+   ORDER BY SO.SUBMIT_ORDER_NO DESC
+		]]>
+	</sql-query>
+</hibernate-mapping>

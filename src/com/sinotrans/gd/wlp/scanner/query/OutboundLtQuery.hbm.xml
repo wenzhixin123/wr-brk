@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="OutboundLtQuery">
+		<![CDATA[
+
+SELECT LOD.LOGISTICS_ORDER_UUID, 
+       LOD.LOGISTICS_ORDER_NO,
+       LT.LOCATION_TASK_UUID,
+       LT.LOGISTICS_ORDER_DETAIL_UUID,
+       LT.IN_LOGISTICS_ORDER_DETAIL_UUID,
+       LT.IN_STOCK_WORK_UUID,
+       LT.LOC_TASK_NO,
+       LT.LOC_TASK_DATE,
+       LT.LOC_TASK_TYPE,
+       LT.LOC_TASK_DESC,
+       LT.BATCH_NO,
+       LT.ITEM_CODE,
+       LT.ITEM_SEQNO,
+       LT.EXT_ITEM_CODE,
+       LT.GOODS_DESC,
+       LT.MARKS_NUMBER,
+       LT.MODEL,
+       LT.SPEC,
+       LT.LENGTH_UNIT_CODE,
+       LT.LENGTH_UNIT_DESC,
+       LT.LENGTH,
+       LT.WIDTH,
+       LT.HEIGHT,
+       LT.QTY,
+       LT.UNIT_CODE,
+       LT.UNIT_DESC,
+       LT.SECOND_QTY,
+       LT.SECOND_UNIT_CODE,
+       LT.SECOND_UNIT_DESC,
+       LT.THIRD_QTY,
+       LT.THIRD_UNIT_CODE,
+       LT.THIRD_UNIT_DESC,
+       LT.WEIGHT_UNIT_CODE,
+       LT.WEIGHT_UNIT_DESC,
+       LT.GROSS_WEIGHT,
+       LT.NET_WEIGHT,
+       LT.VOLUME_UNIT_CODE,
+       LT.VOLUME_UNIT_DESC,
+       LT.VOLUME,
+       LT.CONTROL_WORD,
+       LT.LAST_LOCATION_TASK_UUID,
+       LT.STATUS,
+       LT.GOODS_KIND,
+       LT.GOODS_NATURE,
+       LT.DANGER_CODE,
+       LT.PACKAGE_NO,
+       LT.PACKAGE_TYPE,
+       LT.SOURCE_LOT_CODE,
+       LT.TARGET_LOT_CODE,
+       LT.BARCODE,
+       LT.PANEL_NO,
+       LT.WRH_WORKER,
+       LT.WRH_CUST,
+       LT.REMARK,
+       LT.AUX1,
+       LT.AUX2,
+       LT.AUX3,
+       LT.AUX4,
+       LT.AUX5,
+       LT.OFFICE_CODE,
+       LT.CREATOR,
+       LT.CREATE_TIME,
+       LT.MODIFIER,
+       LT.MODIFY_TIME,
+       LT.OTHER_PK_UUID,
+       LT.PRODUCTION_DATE
+  FROM LOCATION_TASK LT, LOGISTICS_ORDER_DETAIL LOD
+ WHERE LOD.LOGISTICS_ORDER_DETAIL_UUID = LT.LOGISTICS_ORDER_DETAIL_UUID
+   AND LOD.OFFICE_CODE = :officeCode
+   AND LOD.TRANSACTION_STATUS = 'Active'
+   AND LOD.TRANSACTION_TYPE = 'SOT'
+   AND LT.OFFICE_CODE = :officeCode
+   AND LT.LOC_TASK_TYPE = 'OUTV'
+   AND LT.QTY - (SELECT IFNULL(SUM(LTT.QTY), 0)
+                   FROM LOCATION_TASK LTT
+                  WHERE LTT.LOGISTICS_ORDER_DETAIL_UUID = LOD.LOGISTICS_ORDER_DETAIL_UUID
+                    AND LTT.LAST_LOCATION_TASK_UUID = LT.LOCATION_TASK_UUID
+                    AND LTT.OFFICE_CODE = :officeCode
+                    AND LTT.LOC_TASK_TYPE = 'CANV') > 0
+ <<AND LT.BARCODE = :barcode>>
+ <<AND LOD.LOGISTICS_ORDER_NO = :logisticsOrderNo>>
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

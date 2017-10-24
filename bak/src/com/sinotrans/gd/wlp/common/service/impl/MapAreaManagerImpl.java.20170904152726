@@ -1,0 +1,51 @@
+package com.sinotrans.gd.wlp.common.service.impl;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.sinotrans.framework.core.service.impl.BaseManagerImpl;
+import com.sinotrans.gd.wlp.common.model.MapAreaModel;
+import com.sinotrans.gd.wlp.common.service.MapAreaManager;
+
+@Service
+public class MapAreaManagerImpl extends BaseManagerImpl implements MapAreaManager {
+
+	public MapAreaModel get(String id) {
+		return this.dao.get(MapAreaModel.class, id);
+	}
+
+	public List<MapAreaModel> getAll() {
+		return this.dao.getAll(MapAreaModel.class);
+	}
+
+	public List<MapAreaModel> findByExample(MapAreaModel example) {
+		return this.dao.findByExample(example);
+	}
+
+	public MapAreaModel save(MapAreaModel model) {
+		return this.dao.save(model);
+	}
+
+	public List<MapAreaModel> saveAll(Collection<MapAreaModel> models) {
+		return this.dao.saveAll(models);
+	}
+
+	public void remove(MapAreaModel model) {
+		this.dao.remove(model);
+	}
+
+	public void removeAll(Collection<MapAreaModel> models) {
+		this.dao.removeAll(models);
+	}
+
+	public void removeByPk(String id) {
+		this.dao.removeByPk(MapAreaModel.class, id);
+	}
+
+	public void removeAllByPk(Collection<String> ids) {
+		this.dao.removeAllByPk(MapAreaModel.class, ids);
+	}
+
+}

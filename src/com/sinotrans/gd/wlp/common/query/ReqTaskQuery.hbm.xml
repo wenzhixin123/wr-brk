@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="ReqTaskQuery">
+		<![CDATA[
+
+SELECT
+	RT.req_task_id,
+	RT.task_code,
+	(case 
+		RT.task_status
+	when 0 then '发送异常'
+	when 1 then '已创建'
+	when 2 then '正在执行'
+	when 3 then '正在发送'
+	when 4 then '正在取消'
+	when 5 then '取消完成'
+	when 6 then '正在重发'
+	when 9 then '已结束'
+	when 10 then '被打断'
+	else ''
+	end) task_status,
+	RT.req_time,
+	RT.task_typ,
+	RT.pod_code,
+	(case 
+		RT.pod_dir
+	WHEN '180' then '左'
+	WHEN '0' then '右'
+	WHEN '90' then '上'
+	WHEN '-90' then '下'
+	end) pod_dir,
+	RT.priority,
+	RT.client_code,
+	RT.token_code,
+	RT.robot_code,
+	RT.user_call_code,
+	RT.user_call_code_path,
+	RT.current_call_code
+FROM
+	req_task RT
+where 0=0
+ORDER BY RT.req_time ASC
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

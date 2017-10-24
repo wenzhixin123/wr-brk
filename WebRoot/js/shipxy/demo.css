@@ -1,0 +1,110 @@
+﻿* { margin: 0; padding: 0; }
+html, body{height: 100%;overflow: hidden;}
+body{ color:#333;background:#fff;height: 100%;overflow: hidden;}
+body,td,p,button,input,select,textarea,select{ font-size: 12px;font-family:Arial;}
+p {color: #6b6b6b; margin: 1em 0; font: normal 12px/25px arial;}
+ul {list-style: none;}
+img{ border: none;}
+table { border-collapse: collapse; border-spacing: 0; }
+textarea{ font:normal 13px/20px arial;}
+a {	text-decoration: none;	color: #0066A7; cursor:pointer; }
+a:hover{ text-decoration: underline; color:#35639f;}
+/*---- 头部 ----*/
+#header{position: relative;height: 60px;}
+#logo{display:block;position:absolute;left:62px;top:7px;}
+#taber{position:absolute;left:265px;top:37px;}
+#taber a{display:inline-block;width: 50px;height:22px;line-height:24px;padding:0 10px;overflow:hidden;
+border:1px solid #aaa;border-bottom-width:0;border-radius:12px 0 0 0;-webkit-border-radius:12px 0 0 0;-moz-border-radius:12px 0 0 0;
+text-align: center;background: #EDF7FF;color: #AAA;}
+#taber a.on{border: 1px solid #0066A7;background:#E3E6FF;border-bottom:1px solid #EDF7FF;color: black;}
+#taber a:hover{ text-decoration:none; color:red; background:#E3AAFF;}
+/*---- 左侧列表 ----*/
+#lister{display: block;float: left;width: 265px;border-top: 0px solid #eee;}
+#listbox{padding: 0px 5px 7px 5px;}
+#listbox h5 a{display: block;color: #095DC8;height: 22px;line-height: 24px;overflow: hidden;text-indent: 20px;font-size:12px;
+overflow: hidden;font-weight:normal;background: url(img/minus.gif) no-repeat 3px 4px;}
+#listbox h5 a.on{background-color: #EBF2FA;background-image: url(img/plus.gif);}
+#listbox h5 a:hover{background-color: #def;text-decoration: none;}
+#listbox ul{margin: 0 0px 0 15px;padding-top: 5px;display:none;}
+#listbox ul.on{display:block;}
+#listbox ul li{cursor: pointer;height: 24px;overflow: hidden;}
+#listbox ul li a{display: block;height: 22px;line-height: 22px;overflow: hidden;padding-left: 5px;font-size:12px;}
+#listbox ul li a:hover{background-color: #def;text-decoration: none;font-size:12px;}
+#listbox ul li a.sel{ background-color:#E3E6FF;}
+#listbox .title{background: #D4EAFF url(img/blueTitle.gif) no-repeat;line-height: 26px;color: white;
+text-indent: 0px;font-weight: bold; text-align:center;}
+/*---- flash地图 ----*/
+#mainer{position:relative;display: block;float: left;height: 100%;}
+#mapDiv{background: #EFF5FF;width:100%;height:100%;}
+/*--- shadow ---*/
+.ds-h div{width:100%;}
+.ds-v div{height:100%;}
+.ds-h div,.ds-v div ,#mapDiv{left:0;top:0;position:absolute;background:#000;overflow:hidden;}
+#mapDiv{width:100%;height:100%;background:#fff; }
+.ap1{ opacity:.1;filter:alpha(opacity=10);}
+.ap2{ opacity:.08;filter:alpha(opacity=8);}
+.ap3{ opacity:.06;filter:alpha(opacity=6);}
+.ap4{ opacity:.04;filter:alpha(opacity=4);}
+.ap5{ opacity:.02;filter:alpha(opacity=2);}
+#mainer .v1{width:1px;} 
+#mainer .v2{width:2px;}   
+#mainer .v3{width:3px;}
+#mainer .v4{width:4px;} 
+#mainer .v5{width:5px;}   
+#mainer .h1{height:1px;}
+#mainer .h2{height:2px;}
+#mainer .h3{height:3px;}  
+#mainer .h4{height:4px;}  
+#mainer .h5{height:5px;}
+/*--- 代码区域 ---*/
+#coder{position:absolute;left:0;top:0;width:100%;height:100%; border-top:1px solid #ccc;}
+#codeFrame{position:absolute;left:0;top:26px;width:100%;height:100%;}
+#codeToolbar{position:absolute;left:0;top:0;width:100%;height:25px;background:#EDF7FF;border-bottom:1px solid #ccc;
+line-height:25px;text-indent:15px; box-shadow: 2px 2px 4px #bbb;-webkit-box-shadow: 2px 2px 4px #bbb;-moz-box-shadow: 2px 2px 4px #bbb;}
+#codeToolbar a{margin-right:10px;color:blue; font-weight:bold;}
+#codeToolbar a:hover{color:red;}
+#codeToolbar a.copyAnchorHover{ color:red; text-decoration:underline;}
+/*--- 窗口 ---*/
+.content{ padding:5px;}
+.content p{ position:relative; width:100%; padding:2px 0; margin:0;}
+.content em { color: #666;}
+.content input.radio{ margin:0 0.5em 0 0; width:auto;}
+.content .radio-label{ margin-right:1.5em;}
+.content .btnLink{ clear:both;text-align:right;}
+.content .btnLink a{ background:url(img/btnBg.gif) no-repeat left top; width:57px;height:22px;line-height:21px;line-height:22px;
+line-height:22px;display:inline-block;text-align:center;color:#393939;margin-right:8px;outline:none;}
+.content .btnLink a:hover {background:url(img/btnBg.gif) no-repeat left -27px;text-decoration:none; height:22px;}
+.content fieldset{ margin:4px 0; padding: 6px 4px;border: 1px solid #CCC;}
+.content fieldset legend{ font-weight: bold; color:black;}
+.content fieldset fieldset legend {padding-left: 7px; font-weight:normal;}
+.content fieldset fieldset legend .radio-label{margin-right:0;}
+.content fieldset input{ width: 65px; margin:1px 20px 1px 0;}
+.content .fontDiv{ margin-left:12px;}
+.content .area{ position:relative; width:410px;}
+.content .getData{ position:absolute; bottom:2px; right:5px;}
+#page20_imageUrl,#page20_textValue,#page20_htmlTextValue,#page21_textValue,#page21_htmlTextValue,#page22_textValue,#page22_htmlTextValue{width:280px; margin:1px 0;}
+/*--- 表格 ---*/
+.dataTable{ width:410px; margin:0 auto; text-align:center; border-collapse:collapse; border:1px solid #666; table-layout:fixed; white-space:nowrap;}
+.dataTable th,.dataTable td{ padding:1px 3px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+.dataTable tr{ cursor:pointer;}
+.dataTable caption{ font-size:1.2em; font-weight:bold; margin:1em 0 0.5em 0;}
+.dataTable thead{ border-top:1px solid #a5a5a5; border-bottom:1px solid #a5a5a5; background-color:#ccc;}
+.dataTable .odd{ background-color:#edf5ff;}
+.dataTable tr:hover{ background-color:#3d80df; color:#fff;}
+.dataTable thead tr:hover{ background-color:transparent; color:inherit;}
+/*--- 查询轨迹的提示消息 ---*/
+.trackMsg{width:100%;color:red;text-align:center;padding-top:3px;clear:both;}
+/*--- 船舶数据表格 ---*/
+.xinfo{margin-bottom:5px;height:auto;width: 100%;}
+.xinfo .l{width:75px;}
+.xinfo .o,.xinfo .m,.xinfo .ro{ height:19px; line-height: 19px; text-overflow:ellipsis; overflow:hidden; white-space:pre;}
+.xinfo .o{width:100px;}
+.xinfo .m{width:146px; height:19px; line-height:19px;}
+.xinfo .ll{width:42px;}
+.xinfo .ro{width:100px;}
+/*--- 批量船舶数据 id列表和数据结果表格---*/
+.results{ margin-top:6px; width:100%;}
+.results ul{ width:80px;border:1px solid #AAA;height:180px;overflow:auto; margin-right:5px;}
+.results table{margin:0 auto; width:320px; height:190px; border-collapse:collapse; table-layout:fixed; white-space:pre;}
+
+#page23_result{ height:180px; overflow-y:auto; overflow-x:hidden;}

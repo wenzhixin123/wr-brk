@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean class="com.sinotrans.framework.core.aop.AccessLogServiceAspect">
+		<property name="order" value="0" />
+	</bean>
+	
+	<!-- Enable @Transactional support -->
+	<tx:annotation-driven order="50" />
+
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..))" order="100" />
+	</aop:config>
+
+	<tx:advice id="txAdvice">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Throwable" />
+		</tx:attributes>
+	</tx:advice>
+
+	
+	<!-- 自动保存office_code -->
+	<bean class="com.sinotrans.gd.wlp.common.aop.SaveOfficeCodeDaoAspect">
+		<property name="order" value="0" />
+	</bean>
+
+	<bean class="com.sinotrans.framework.core.aop.SqlLogDaoAspect">
+		<property name="order" value="100" />
+	</bean>
+
+</beans>

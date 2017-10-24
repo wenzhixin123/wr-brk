@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+/* CSS Document */
+body,a,b,p,h1,h2,h3,h4,h5,div,span,strong,em,i,ul,ol,li,dl,dd,dt,img {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-size: 12px;
+	font-family: Arial;
+	color: #402e13;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a img {
+	border: none;
+}
+
+i,em {
+	font-style: normal;
+}
+
+.fl {
+	float: left;
+	display: inline;
+}
+
+.fr {
+	float: right;
+	display: inline;
+}
+
+.head {
+	background: url(../images/newindex/head_bg.jpg) repeat-x left top;
+	height: 49px;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.head .logo {
+	background: url(../images/newindex/logo.jpg) no-repeat left top;
+	display: block;
+	height: 48px;
+	width: 330px;
+	position: absolute;
+}
+
+.head .logo i {
+	display: none;
+}
+
+.head .logo .name {
+	position: absolute;
+	left: 335px;
+	top: 10px;
+	font-size: 23px;
+	color: #004b89;
+	width: 200px;
+	font-family: "Bodoni MT Black";
+	font-weight: bold;
+}
+
+.head .return {
+	display: block;
+	height: 48px;
+	width: 472px;
+	margin-left: 20px;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+.head .info {
+	background: url(../images/newindex/info_bg.jpg) no-repeat left top;
+	text-align: center;
+	width: 350px;
+	height: 29px;
+	_height: 35px;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	padding-top: 8px;
+}
+
+.head .info a {
+	color: #402e13;
+}
+
+.head .info a:hover {
+	color: #000;
+}
+
+.indexMenu {
+	clear: both;
+}
+
+.indexMenu li {
+	float: left;
+	display: inline;
+	background: url(../images/newindex/item_bg.jpg) no-repeat right center;
+	padding: 0px 6px;
+}
+
+.indexMenu li a {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	color: #1957a2;
+	font-size: 13px;
+	padding-right: 15px;
+	font-weight: bold;
+	float: left;
+	_line-height: 39px;
+}
+
+.indexMenu li a i {
+	display: inline;
+	float: left;
+	height: 36px;
+	width: 10px;
+	margin-right: 5px;
+}
+
+.indexMenu li.active a,.indexMenu li a:hover {
+	background: url(../images/newindex/menu_r.jpg) no-repeat right bottom;
+	color: #fff;
+	line-height: 39px;
+	_line-height: 36px;
+}
+
+.indexMenu li.active a i,.indexMenu li a:hover i {
+	background: url(../images/newindex/menu_l.jpg) no-repeat left bottom;
+}
+
+table thead tr th {
+	text-align: center;
+}
+.clicked{
+	background:#FBEC88
+}
+.mouseOverColor{
+	background:sandybrown
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="fieldDefinition" abstract="true"
+			class="com.sinotrans.framework.common.support.FieldDefinition">
+	</bean>
+
+	<bean id="fieldListDefinition" abstract="true"
+			class="com.sinotrans.framework.common.support.FieldListDefinition">
+	</bean>
+
+	<bean id="selectCodeDefinition" abstract="true"
+			class="com.sinotrans.framework.common.support.SelectCodeDefinition">
+	</bean>
+
+	<bean id="queryField" abstract="true"
+			class="com.sinotrans.framework.common.support.QueryField">
+	</bean>
+
+	<bean id="selectCode.SystemCodeTemplate" parent="selectCodeDefinition" scope="prototype">
+		<property name="queryType" value="CodeDefQuery" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="codeType" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="$codeType" />
+				</bean>
+<!--				<bean parent="queryField">-->
+<!--					<property name="fieldName" value="officeCode" />-->
+<!--					<property name="fieldType" value="session" />-->
+<!--					<property name="fieldStringValue" value="officeCode" />-->
+<!--				</bean>-->
+			</list>
+		</property>
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="en" value="displayValueEn" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="systemCodeTypesSelectSql" class="java.lang.String">
+		<constructor-arg>
+			<value>select distinct t.type_code as code_type from bas_code_type t order by t.type_code</value>
+		</constructor-arg>
+	</bean>
+
+</beans>

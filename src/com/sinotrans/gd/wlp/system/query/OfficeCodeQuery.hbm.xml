@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="OfficeCodeQuery">
+		<![CDATA[
+
+SELECT LEVEL, T.*
+  FROM sys_office T
+ START WITH T.office_Code =:officeCode
+CONNECT BY T.pre_office_uuid = PRIOR T.office_uuid
+  and ##CONDITIONS##
+		]]>
+	</sql-query>
+</hibernate-mapping>

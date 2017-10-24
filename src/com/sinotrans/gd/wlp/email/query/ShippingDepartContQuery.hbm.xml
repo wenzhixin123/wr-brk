@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="ShippingDepartContQuery">
+		<![CDATA[
+
+select 
+coninfo.tractor_no as containerNo,
+bill.SHIPPING_ORDER_NO as shippingOrderNo,
+ves.vessel_name as vesselName,
+substr(man.voyage_no,5) as voyageNo,
+man.DATE_DEPARTURE as dateDepart
+from dcs_container_info coninfo 
+left join dcs_bill_lading bill on bill.bill_lading_id = coninfo.bill_lading_id
+left join dcs_manifest man on man.port_manifest_id = bill.port_manifest_id
+left join bas_vessel ves on ves.vessel_code = subStr(man.vessel_code,2)
+left join (select cont.tractor_no as containerNo,
+                  max(cont.create_time) as createTime
+                  from dcs_container_info cont
+                  left join dcs_bill_lading b on b.bill_lading_id = cont.bill_lading_id
+                  where subStr(cont.INFO_CONTROL_WORD,20,1)<>'Y'
+                  and (subStr(b.bill_lading_no,1,4)='VES_' or subStr(b.bill_lading_no,1,6)='VESNO_')
+                  and cont.tractor_no is not null
+                  <<and cont.CREATE_TIME between :workDateFrom and :workDateTo >>
+                  group by cont.tractor_no) contGroup on contGroup.containerNo = coninfo.tractor_no 
+where subStr(man.manifest_control_word,20,1)<>'Y'
+and subStr(bill.BILL_CONTROL_WORD,20,1)<>'Y'
+and subStr(coninfo.INFO_CONTROL_WORD,20,1)<>'Y'
+and subStr(man.PORT_MANIFEST_NO,1,15)='VIRTUAL_MAN_VES'
+and contGroup.containerNo = coninfo.tractor_no 
+and contGroup.createTime = coninfo.create_time
+order by coninfo.tractor_no
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

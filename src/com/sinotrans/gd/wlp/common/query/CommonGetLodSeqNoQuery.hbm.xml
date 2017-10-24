@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CommonGetLodSeqNoQuery">
+		<![CDATA[
+
+SELECT IFNULL(MAX(LOD.SEQ_NO),0) AS SEQ_NO
+  FROM LOGISTICS_ORDER_DETAIL LOD
+ WHERE LOD.LOGISTICS_ORDER_UUID = :logisticsOrderUuid 
+ <<AND SUBSTR(LOD.CONTROL_WORD, 1, 1) = :word>>
+		]]>
+	</sql-query>
+</hibernate-mapping>

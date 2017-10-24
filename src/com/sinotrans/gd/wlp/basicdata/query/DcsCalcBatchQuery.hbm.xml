@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="DcsCalcBatchQuery">
+		<![CDATA[
+
+ SELECT  IFNULL( stat_count.notsend_count, 0) as notsend_count,
+batch.CALC_BATCH_ID, batch.CALC_DATA_TYPE, batch.CALC_DATA_SOURCE,
+   batch.CALC_BATCH_NO,batch. LOGISTICS_ORDER_NO, batch.CALC_ORDER_NO,
+   batch.ACCOUNTING_CUSTOMER_CODE, batch.ACCOUNTING_CUSTOMER_DESC, batch.CONTROL_WORD, batch.CONTROL_WORD as ope_type,
+   batch.SUBMIT_ARAP_TIME,batch. OFFICE_CODE, batch.REC_VER,
+   batch.CREATOR,batch. CREATE_TIME, batch.MODIFIER,
+   batch.MODIFY_TIME
+FROM DCS_CALC_BATCH batch,
+
+(SELECT count(detail.CALC_detail_ID) notsend_count,detail.CALC_BATCH_ID
+ 
+FROM DCS_CALC_detail detail
+where 1=1 
+ 
+ and substr( detail.control_word,1,1)!='S'
+ group by detail.CALC_BATCH_ID)  stat_count
+where 1=1
+and batch.CALC_DATA_TYPE='LOGISTIC'
+and stat_count.calc_batch_id(+)=batch.calc_batch_id
+<<and batch.logistics_order_no = :logisticsOrderNo>>
+<<and batch.create_time between :dateFrom and :dateTo+1>>
+ 
+<<and exists (select * from DCS_CALC_detail detail where detail.job_no=:localOrderNo  and DETAIL.CALC_BATCH_ID =BATCH.CALC_BATCH_ID ) >>
+<<  and BATCH.CREATOR=:creator>>
+<<and  substr( batch.control_word,1,1) = :status>>
+<<and   exists (select batch.CALC_BATCH_ID from DCS_LOGISTICS_ORDER  r where  LOGISTICS_ORDER_NO = batch.LOGISTICS_ORDER_NO and AGENT_CONSIGNEE_CODE=:agentConsigneeCode )>>
+order by batch.create_time desc
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

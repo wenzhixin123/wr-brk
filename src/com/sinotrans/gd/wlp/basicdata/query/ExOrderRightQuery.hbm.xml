@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="ExOrderRightQuery">
+		<![CDATA[
+
+select 
+dlo.*,
+(select customer_name from bas_customer where customer_code = dlo.agent_consignee_code) as agent_consignee_name,
+(select customer_name from bas_customer where customer_code = dlo.cntr_admin_code) as cntr_admin_name
+from dcs_logistics_order dlo
+where 1=1
+<<and dlo.transaction_type=:transactionType>>
+<<and dlo.agent_consignee_code=:agentConsigneeCode>>
+<<and dlo.pickup_depot=:pickupDepot>>
+<<and dlo.cntr_admin_code=:cntrAdminCode>>
+<<and dlo.delivery_type=:deliveryType>>
+<<and dlo.project_code=:projectCode>>
+<<and dlo.create_time>=:createTime>>
+and ##CONDITIONS##
+order by agent_consignee_name,cntr_admin_name
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

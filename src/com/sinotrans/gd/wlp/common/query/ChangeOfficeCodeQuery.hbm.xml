@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="ChangeOfficeCodeQuery">
+		<![CDATA[
+
+SELECT BCD.*
+  FROM BAS_CODE_TYPE BCT, BAS_CODE_DEF BCD
+ WHERE BCT.TYPE_CODE = :socConfig
+   AND BCT.BAS_CODE_TYPE_UUID = BCD.BAS_CODE_TYPE_UUID
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

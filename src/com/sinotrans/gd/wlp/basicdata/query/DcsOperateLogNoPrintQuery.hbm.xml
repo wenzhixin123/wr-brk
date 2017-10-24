@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="DcsOperateLogNoPrintQuery">
+		<![CDATA[
+
+select l.*
+  from  DCS_OPERATE_LOG l
+ where 1=1 and l.OPEATION_TYPE <>'print' and l.OPEATION_TYPE <>'ADD' and l.OPEATION_TYPE <>'DEL'
+and l.OPEATION_TYPE <>'SEND' and l.OPEATION_TYPE <>'MANIFEST_FILE'
+<<and l.LOG_UUID =:logUuid>>
+<<and l.DATA_SOURCE_UUID like  '%'||:dataSourceUuid || '%'>>
+<<and l.DATE_SOURCE_ENTITY  like  '%'||:dateSourceEntity || '%'>>
+<<and l.BUSINESS_REF_NO   like '%'|| :businessRefNo || '%'>>
+<<and l.OPEATION_TYPE  =:opeationType >>
+ ORDER BY l.CREATE_TIME DESC
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

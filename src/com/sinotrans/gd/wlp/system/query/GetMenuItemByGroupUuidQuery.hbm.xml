@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="GetMenuItemByGroupUuidQuery">
+		<![CDATA[
+
+select *
+  from sys_menu_item smi
+ where smi.sys_menu_group_uuid = :sysMenuGroupUuid
+   and smi.office_code = :officeCode
+   and smi.status= :status
+   and smi.sys_menu_item_uuid in
+       (select srmi.sys_menu_item_uuid
+          from sys_role_menu_item srmi
+         where srmi.sys_role_uuid in
+               (select sru.sys_role_uuid
+                  from sys_role_user sru
+                 where sru.user_uuid =
+                       (select su.user_uuid
+                          from sys_user su
+                         where su.user_code = :userCode)))
+    order by smi.menu_item_seq
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

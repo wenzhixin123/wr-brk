@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BasOrderNoQuery">
+		<![CDATA[
+
+select distinct bon.bas_order_no_uuid,bon.order_no,bon.order_type,bon.order_desc,bon.remark,bon.status,bon.office_code
+  from bas_order_no bon
+where 
+bon.office_code = :officeCode
+<<and bon.order_no = :orderNo>>
+and not exists (select '*'
+          from logistics_order lo
+         where lo.urgent_order_no = bon.order_no)
+ and ##CONDITIONS##
+ order by bon.order_no
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

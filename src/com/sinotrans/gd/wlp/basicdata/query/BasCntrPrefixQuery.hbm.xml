@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BasCntrPrefixQuery">
+		<![CDATA[
+
+SELECT bcd.bas_code_def_uuid AS ID, bcd.status as STATUS, bcd.code_value as PREFIX,bcd.remark as CNTR_ADMIN_CODE
+FROM bas_code_type  bct , bas_code_def  bcd 
+WHERE bct.BAS_CODE_TYPE_UUID = bcd.BAS_CODE_TYPE_UUID 
+AND bct.type_code='CNTR_ADMIN_RELEASE_NO_PREFIX' 
+<< and bcd.remark = :cntrAdminCode>>
+<< and bcd.status = :status>>
+
+   and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

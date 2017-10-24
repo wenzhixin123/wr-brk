@@ -1,0 +1,29 @@
+package com.sinotrans.gd.wlp.common.service;
+
+import java.util.Collection;
+import java.util.List;
+
+import com.sinotrans.framework.core.service.BaseManager;
+import com.sinotrans.gd.wlp.common.model.ReqTaskModel;
+
+public interface ReqTaskManager extends BaseManager {
+
+	ReqTaskModel get(Date id);
+
+	List<ReqTaskModel> getAll();
+
+	List<ReqTaskModel> findByExample(ReqTaskModel example);
+
+	ReqTaskModel save(ReqTaskModel model);
+
+	List<ReqTaskModel> saveAll(Collection<ReqTaskModel> models);
+
+	void remove(ReqTaskModel model);
+
+	void removeAll(Collection<ReqTaskModel> models);
+
+	void removeByPk(Date id);
+
+	void removeAllByPk(Collection<Date> ids);
+
+}

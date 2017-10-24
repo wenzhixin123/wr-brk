@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+
+	<bean id="selectCode.ALL_USERS" parent="selectCodeDefinition">
+		<property name="queryType" value="SysUserModel" />
+		<property name="orderBy" value="userName" />
+		<property name="keyFieldName" value="userCode" />
+		<property name="labelFieldName" value="userName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.ALL_DEPTS" parent="selectCodeDefinition">
+		<property name="queryType" value="SysOfficeModel" />
+		<property name="orderBy" value="officeName" />
+		<property name="keyFieldName" value="officeUuid" />
+		<property name="labelFieldName" value="officeName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_PROVINCE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasProvinceModel" />
+		<property name="orderBy" value="provinceName" />
+		<property name="keyFieldName" value="provinceCode" />
+		<property name="labelFieldName" value="provinceName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="provinceName" />
+				<entry key="en_US" value="provinceNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_ITEM_KIND" parent="selectCodeDefinition">
+		<property name="queryType" value="ItemKindModel" />
+		<property name="orderBy" value="itemKindName" />
+		<property name="keyFieldName" value="itemKindCode" />
+		<property name="labelFieldName" value="itemKindName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="itemKindName" />
+				<entry key="en_US" value="itemKindNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- key和我value都是code小心使用 -->
+	<bean id="selectCode.CODE_DESC" parent="selectCodeDefinition">
+		<property name="queryType" value="ItemMasterModel" />
+		<property name="orderBy" value="itemCode" />
+		<property name="keyFieldName" value="itemCode" />
+		<property name="labelFieldName" value="itemCode" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.BAS_LOC_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasLocTypeModel" />
+		<property name="orderBy" value="locTypeName" />
+		<property name="keyFieldName" value="locTypeCode" />
+		<property name="labelFieldName" value="locTypeName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="locTypeName" />
+				<entry key="en_US" value="locTypeNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="selectCode.ALL_ITEM_NATURE" parent="selectCodeDefinition">
+		<property name="queryType" value="ItemNatureModel" />
+		<property name="orderBy" value="itemNatureName" />
+		<property name="keyFieldName" value="itemNatureCode" />
+		<property name="labelFieldName" value="itemNatureName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="itemNatureName" />
+				<entry key="en_US" value="itemNatureNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="selectCode.ALL_PARAMETERS" parent="selectCodeDefinition">
+		<property name="queryType" value="DcsParametersModel" />
+		<property name="orderBy" value="parameterName" />
+		<property name="keyFieldName" value="parameterValue" />
+		<property name="labelFieldName" value="parameterName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="parameterName" />
+				<entry key="en_US" value="parameterName" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_CITY" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCityModel" />
+		<property name="orderBy" value="cityName" />
+		<property name="keyFieldName" value="cityCode" />
+		<property name="labelFieldName" value="cityName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="cityName" />
+				<entry key="en_US" value="cityNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_AREA" parent="selectCodeDefinition">
+		<property name="queryType" value="BasAreaModel" />
+		<property name="orderBy" value="areaName" />
+		<property name="keyFieldName" value="areaCode" />
+		<property name="labelFieldName" value="areaName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="areaName" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_WORKTYPES" parent="selectCodeDefinition">
+		<property name="queryType" value="DcsParametersModel" />
+		<property name="orderBy" value="parameterName" />
+		<property name="keyFieldName" value="parameterName" />
+		<property name="labelFieldName" value="parameterName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="parameterName" />
+				<entry key="en_US" value="parameterName" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="parameterType" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="JOBCONDITION" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_COUNTRY" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCountryModel" />
+		<property name="orderBy" value="countryName" />
+		<property name="keyFieldName" value="countryCode" />
+		<property name="labelFieldName" value="countryName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="countryName" />
+				<entry key="en_US" value="countryNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_LINER" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%05%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!--  收货人 -->
+	<bean id="selectCode.ALL_CONSIGNEE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%09%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 运输车队 -->
+	<bean id="selectCode.ALL_TRUCK_FLEET" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%13%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+<!-- 付货人 -->
+	<bean id="selectCode.ALL_CONSIGNOR" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%08%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 办事处 -->
+	<bean id="selectCode.ALL_OFFICE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%01%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 贸易公司 -->
+	<bean id="selectCode.ALL_TRADE_COMPANY" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%11%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 国际中转代理 -->
+	<bean id="selectCode.ALL_TRANSFER_AGENT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 机械作业单位 -->
+	<bean id="selectCode.ALL_MACHINERY_UNIT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%03%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 控箱公司 -->
+	<bean id="selectCode.ALL_CNTR_ADMIN" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%06%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 船公司 -->
+	<bean id="selectCode.ALL_CARRIAGE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%04%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+ <!-- 货代 -->
+	<bean id="selectCode.ALL_SHIPPER" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%07%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+<!-- 工厂 -->
+    <bean id="selectCode.ALL_FACTORY" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="customerType" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="%10%" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 委托人 -->
+	<bean id="selectCode.ALL_AGENT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerName" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="customerName" />
+				<entry key="en_US" value="customerNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	 
+	<bean id="selectCode.ALL_CODEDEF" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 货名 -->
+	<bean id="selectCode.GOODS_NAME" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="displayValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="BAS_CODE_TYPE_UUID" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="67ba15d4-8518-4131-9924-ab580df09d63" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 计费货类 -->
+	<bean id="selectCode.GOODS_KIND" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="displayValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="BAS_CODE_TYPE_UUID" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="fe45b786-2c52-4a34-b69f-930ee4b297a0" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 付款情况 -->
+	<bean id="selectCode.PAY_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="displayValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="BAS_CODE_TYPE_UUID" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="66d57fd4-9563-4a86-beaf-52cc85346cc5" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 付款情况 -->
+	<bean id="selectCode.PAY_TYPE4" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="displayValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="BAS_CODE_TYPE_UUID" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="b2b04c68-9ec3-4846-bf2a-c75fef2a0427" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 进口作业项目 -->
+	<bean id="selectCode.IMP_DELIVERY_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="displayValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="BAS_CODE_TYPE_UUID" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="61bd1eb2-c67d-45a1-83ea-d64cb6ac9b52" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="CODE_VALUE" />
+					<property name="operator" value="in" />
+					<property name="fieldType" value="String[]" />
+					<property name="fieldStringValue" value="CFE,CFN,CIO" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 备注-->
+	<bean id="selectCode.ALL_REMARK" parent="selectCodeDefinition">
+		<property name="queryType" value="DcsParametersModel" />
+		<property name="orderBy" value="parameterValue" />
+		<property name="keyFieldName" value="parameterValue" />
+		<property name="labelFieldName" value="parameterValue" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="parameterValue" />
+				<entry key="en_US" value="parameterValue" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+<!-- 				<bean parent="queryField"> -->
+<!-- 					<property name="fieldName" value="creator" /> -->
+<!-- 					<property name="operator" value="=" /> -->
+<!-- 					<property name="fieldStringValue" value="userId" /> -->
+<!-- 					<property name="fieldType" value="session" /> -->
+<!-- 				</bean> -->
+				<bean parent="queryField">
+					<property name="fieldName" value="parameterName" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="REMARK" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="parameterType" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="REMARK" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 王长江 备用 dcsMappingInfo.jsp -->
+<!--	<bean id="selectCode.LOCAL_INFO_DESC" parent="selectCodeDefinition">-->
+<!--		<property name="queryType" value="localInfoDescQueryDataSource" />-->
+<!--		<property name="keyFieldName" value="localInfoCode" />-->
+<!--		<property name="labelFieldName" value="localInfoDesc" />-->
+<!--	</bean>-->
+	
+	
+	
+	
+	
+	<bean id="selectCode.ALL_CODETYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeTypeModel" />
+		<property name="orderBy" value="typeCode" />
+		<property name="keyFieldName" value="typeCode" />
+		<property name="labelFieldName" value="typeName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="selectCode.ALL_CURRENCY" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCurrencyModel" />
+		<property name="orderBy" value="currencyCode" />
+		<property name="keyFieldName" value="currencyCode" />
+		<property name="labelFieldName" value="currencyName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="selectCode.ALL_CUSTOMER" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCustomerModel" />
+		<property name="orderBy" value="customerCode" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.CURRENT_WAREHOUSE_LOCAREA" parent="selectCodeDefinition">
+		<property name="queryType" value="BasLocAreaModel" />
+		<property name="orderBy" value="locAreaCode" />
+		<property name="keyFieldName" value="locAreaCode" />
+		<property name="labelFieldName" value="locAreaName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.CURRENT_WAREHOUSE_LOTSTOCK" parent="selectCodeDefinition">
+			<property name="queryType" value="BasLotStockModel" />
+			<property name="orderBy" value="lotCode" />
+			<property name="keyFieldName" value="lotCode" />
+			<property name="labelFieldName" value="lotName" />
+			<property name="queryFields">
+				<list>
+					<bean parent="queryField">
+						<property name="fieldName" value="status" />
+						<property name="operator" value="=" />
+						<property name="fieldValue" value="Active" />
+					</bean>
+					<bean parent="queryField">
+						<property name="fieldName" value="officeCode" />
+						<property name="operator" value="=" />
+						<property name="fieldStringValue" value="officeCode" />
+						<property name="fieldType" value="session" />
+					</bean>
+				</list>
+			</property>
+		</bean>
+	<bean id="selectCode.ALL_SITE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasSiteModel" />
+		<property name="orderBy" value="siteCode" />
+		<property name="keyFieldName" value="siteCode" />
+		<property name="labelFieldName" value="siteName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="selectCode.ALL_CTR_TYPE" parent="selectCodeDefinition">
+			<property name="queryType" value="BasCtrTypeModel" />
+			<property name="orderBy" value="typeCode" />
+			<property name="keyFieldName" value="typeCode" />
+			<property name="labelFieldName" value="typeCode" />
+			<property name="queryFields">
+				<list>
+					<bean parent="queryField">
+						<property name="fieldName" value="status" />
+						<property name="operator" value="=" />
+						<property name="fieldValue" value="Active" />
+					</bean>
+				</list>
+			</property>
+		</bean>
+
+	<bean id="selectCode.ALL_DANGER" parent="selectCodeDefinition">
+			<property name="queryType" value="BasDangerModel" />
+			<property name="orderBy" value="unCode" />
+			<property name="keyFieldName" value="unCode" />
+			<property name="labelFieldName" value="unCode" />
+			<property name="queryFields">
+				<list>
+					<bean parent="queryField">
+						<property name="fieldName" value="status" />
+						<property name="operator" value="=" />
+						<property name="fieldValue" value="Active" />
+					</bean>
+				</list>
+			</property>
+		</bean>
+		
+	<bean id="selectCode.ALL_WRAPPER_FOR_UUID" parent="selectCodeDefinition">
+		<property name="queryType" value="BasWrapperModel" />
+		<property name="orderBy" value="wrapperCode" />
+		<property name="keyFieldName" value="basWrapperUuid" />
+		<property name="labelFieldName" value="wrapperName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_WRAPPER_FOR_CODE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasWrapperModel" />
+		<property name="orderBy" value="wrapperCode" />
+		<property name="keyFieldName" value="wrapperCode" />
+		<property name="labelFieldName" value="wrapperName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ALL_PROJECT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasProjectModel" />
+		<property name="orderBy" value="projectCode" />
+		<property name="keyFieldName" value="projectCode" />
+		<property name="labelFieldName" value="projectName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="selectCode.ALL_UNIT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasUnitModel" />
+		<property name="orderBy" value="unitCode" />
+		<property name="keyFieldName" value="unitName" />
+		<property name="labelFieldName" value="unitName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.THIS_OFFICE_CODE" parent="selectCodeDefinition">
+		<property name="queryType" value="ecInboundQueryDataSource" />
+		<property name="orderBy" value="officeCode" />
+		<property name="keyFieldName" value="officeCode" />
+		<property name="labelFieldName" value="officeName" />
+	</bean>
+	<bean id="selectCode.SALE_DELIVERY_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="saleDeliveryTypeQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.TRANSACTION_STATUS" parent="selectCodeDefinition">
+		<property name="queryType" value="transactionStatusQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.IN_DELIVERY_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="inDeliveryTypeQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.ORDER_TRANSACTION_STATUS" parent="selectCodeDefinition">
+		<property name="queryType" value="orderTransactionStatusQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.SYSTEM_RETURN_STATUS" parent="selectCodeDefinition">
+		<property name="queryType" value="systemReturnStatusQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.EC_BASE_INFO_STATUS" parent="selectCodeDefinition">
+		<property name="queryType" value="baseInfoStatusQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.EC_EDI_DATA_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="ediDataTypeQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.EC_ORDER_APPROVAL_STATUS" parent="selectCodeDefinition">
+		<property name="queryType" value="orderApprovalStatusQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.EC_CUSTOMER_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="customerTypeQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	<bean id="selectCode.ALL_EXPRESS" parent="selectCodeDefinition">
+		<property name="queryType" value="customer4ExpressQueryDataSource" />
+		<property name="orderBy" value="customerCode" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+	</bean>
+	<bean id="selectCode.ALL_ENTRUST" parent="selectCodeDefinition">
+		<property name="queryType" value="customer4EntrustQueryDataSource" />
+		<property name="orderBy" value="customerCode" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+	</bean>
+	<bean id="selectCode.ALL_SUPPLIERS" parent="selectCodeDefinition">
+		<property name="queryType" value="customer4SuppliersQueryDataSource" />
+		<property name="orderBy" value="customerCode" />
+		<property name="keyFieldName" value="customerCode" />
+		<property name="labelFieldName" value="customerName" />
+	</bean>
+	<bean id="selectCode.ALL_ITEM" parent="selectCodeDefinition">
+		<property name="queryType" value="ItemMasterModel" />
+		<property name="orderBy" value="itemCode" />
+		<property name="keyFieldName" value="itemCode" />
+		<property name="labelFieldName" value="itemName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="officeCode" />
+					<property name="operator" value="=" />
+					<property name="fieldStringValue" value="officeCode" />
+					<property name="fieldType" value="session" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="selectCode.ITEM_NATURE_CODE" parent="selectCodeDefinition">
+		<property name="queryType" value="ecQualityQueryDataSource" />
+		<property name="orderBy" value="itemNatureCode" />
+		<property name="keyFieldName" value="itemNatureCode" />
+		<property name="labelFieldName" value="itemNatureName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 拣货策略 -->
+	<bean id="selectCode.PICK_CONFIG" parent="selectCodeDefinition">
+		<property name="queryType" value="configSelectCodeDataSource" />
+		<property name="keyFieldName" value="locPlanConfigUuid" />
+		<property name="labelFieldName" value="configName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="configType" />
+					<property name="fieldValue" value="PICK" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.PICK_CONFIG_CODE" parent="selectCodeDefinition">
+		<property name="queryType" value="configSelectCodeDataSource" />
+		<property name="keyFieldName" value="configCode" />
+		<property name="labelFieldName" value="configName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="configType" />
+					<property name="fieldValue" value="PICK" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 出库策略 -->
+	<bean id="selectCode.OUT_CONFIG" parent="selectCodeDefinition">
+		<property name="queryType" value="configSelectCodeDataSource" />
+		<property name="keyFieldName" value="configCode" />
+		<property name="labelFieldName" value="configName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="configType" />
+					<property name="fieldValue" value="OUTV" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 
+		**************************HUB 项目配置项 **************************
+	 -->
+	 
+	<bean id="selectCode.HUB_CONTROL_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="controlTypeQueryDataSource" />
+		<property name="orderBy" value="codeValue" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+	</bean>
+	 
+	 <!-- 
+		**************************HUB 项目配置项**************************
+	 -->
+	 
+	 <bean id="selectCode.ALL_VESSEL" parent="selectCodeDefinition">
+		<property name="queryType" value="BasVesselModel" />
+		<property name="orderBy" value="vesselName" />
+		<property name="keyFieldName" value="vesselCode" />
+		<property name="labelFieldName" value="vesselName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="vesselName" />
+				<entry key="en_US" value="vesselNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="vesselControlWord" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="0___________________" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	 <bean id="selectCode.ALL_VESSEL_EN" parent="selectCodeDefinition">
+		<property name="queryType" value="BasVesselModel" />
+		<property name="orderBy" value="vesselNameEn" />
+		<property name="keyFieldName" value="vesselCode" />
+		<property name="labelFieldName" value="vesselNameEn" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="vesselControlWord" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="0___________________" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.ALL_VESSEL_OCEAN" parent="selectCodeDefinition">
+		<property name="queryType" value="BasVesselModel" />
+		<property name="orderBy" value="vesselName" />
+		<property name="keyFieldName" value="vesselCode" />
+		<property name="labelFieldName" value="vesselName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="vesselName" />
+				<entry key="en_US" value="vesselNameEn" />
+			</map>
+		</property>
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="vesselControlWord" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="1___________________" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	 <bean id="selectCode.ALL_PORT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portName" />
+		<property name="keyFieldName" value="portCode" />
+		<property name="labelFieldName" value="portName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+	 <property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="1_________" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	<bean id="selectCode.ALL_PORT_NAME" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portName" />
+		<property name="keyFieldName" value="portName" />
+		<property name="labelFieldName" value="portName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+	 <property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="1_________" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	<bean id="selectCode.ALL_FORCAST_PORT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portName" />
+		<property name="keyFieldName" value="portCode" />
+		<property name="labelFieldName" value="portName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+	 	<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="____1_____" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	<bean id="selectCode.ALL_POINT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portName" />
+		<property name="keyFieldName" value="portCode" />
+		<property name="labelFieldName" value="portName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+	 <property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="_1________" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	
+	<bean id="selectCode.ALL_POINT_EN" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portNameEn" />
+		<property name="keyFieldName" value="portCode" />
+		<property name="labelFieldName" value="portNameEn" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+	 <property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="_1________" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	
+	<bean id="selectCode.ALL_POINT_NAME" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portName" />
+		<property name="keyFieldName" value="portName" />
+		<property name="labelFieldName" value="portName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+	 <property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="_1________" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	
+	 <bean id="selectCode.ALL_DEPOT" parent="selectCodeDefinition">
+		<property name="queryType" value="BasPortModel" />
+		<property name="orderBy" value="portName" />
+		<property name="keyFieldName" value="portCode" />
+		<property name="labelFieldName" value="portName" />
+		<property name="localedLabelFieldNames">
+			<map>
+				<entry key="zh_CN" value="portName" />
+				<entry key="en_US" value="portNameEn" />
+			</map>
+		</property>
+		 <property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="portKinds" />
+					<property name="operator" value="like" />
+					<property name="fieldValue" value="__1_______" />
+				</bean>
+			</list>
+		</property> 
+	</bean>
+	
+    <bean id="selectCode.CALC_ITEM" parent="selectCodeDefinition">
+		<property name="queryType" value="DcsCalcItemModel" />
+		<property name="orderBy" value="calcItemCode" />
+		<property name="keyFieldName" value="calcItemCode" />
+		<property name="labelFieldName" value="calcItemName" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.ALL_PACKAGE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasUnitModel" />
+		<property name="orderBy" value="customsUnitCode" />
+		<property name="keyFieldName" value="customsUnitCode" />
+		<property name="labelFieldName" value="customsUnitCode" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="selectCode.RECOGNITION_TRF_TYPE" parent="selectCodeDefinition">
+		<property name="queryType" value="BasCodeDefModel" />
+		<property name="orderBy" value="codeNumber" />
+		<property name="keyFieldName" value="codeValue" />
+		<property name="labelFieldName" value="displayValue" />
+		<property name="queryFields">
+			<list>
+				<bean parent="queryField">
+					<property name="fieldName" value="status" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="Active" />
+				</bean>
+				<bean parent="queryField">
+					<property name="fieldName" value="BAS_CODE_TYPE_UUID" />
+					<property name="operator" value="=" />
+					<property name="fieldValue" value="a5a81086-e678-4889-b610-70b8ffaee565" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BasReleaseExcelTemplateQuery">
+		<![CDATA[
+
+SELECT type.bas_code_type_uuid as typeId, 
+bcd.bas_code_def_uuid as defId,
+bcd.status as status, /*状态*/
+bcd.create_time as createTime,/*创建时间*/
+bcd.display_value as templateName,/*模板名称*/
+bcd.remark as remark,/*编码对应关系*/
+bcd.office_code as linerCode /*船公司代码*/
+FROM bas_code_type type, bas_code_def bcd 
+WHERE type.bas_code_type_uuid=bcd.bas_code_type_uuid 
+and type.type_code = 'EXCEL_IMPORT_TEMPLATE_TYPE' 
+<< and bcd.display_value like '%' || :templateName || '%'>>/*模板名称*/
+<< and bcd.create_time >= :createTime>>/*创建时间开始*/
+<< and bcd.create_time <= :endTime>>/*创建时间结束*/
+<< and bcd.office_code = :linerCode>>/*船公司代码*/
+   and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

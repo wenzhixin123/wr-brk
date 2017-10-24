@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="smartPortService" class="com.sinotrans.framework.core.support.servlet.Http">
+	    <!-- 生产环境 <property name="servletUrl" value="http://172.28.13.192:7002/SmartPortService/JsonFacadeServlet"/> -->
+		<!-- 测试环境 <property name="servletUrl" value="http://172.28.7.12:7002/SmartPort_sit/JsonFacadeServlet"/> -->
+		   <property name="servletUrl" value="http://172.28.13.192:7002/SmartPortService/JsonFacadeServlet"/>
+	</bean>
+	
+	<bean id="arapService" class="com.sinotrans.framework.core.support.servlet.Http">
+	    <!-- 生产环境 <property name="servletUrl" value="http://172.28.13.13:7003/arap/JsonFacadeNoViaServlet"/>   -->
+		<!-- 测试环境 <property name="servletUrl" value="http://172.28.7.13:7002/arap/JsonFacadeNoViaServlet"/>  -->
+		   <property name="servletUrl" value="http://172.28.13.13:7003/arap/JsonFacadeNoViaServlet"/>
+	</bean>
+	
+	<bean id="arapDomain" class="com.sinotrans.framework.core.support.servlet.Http">
+	    <!-- 生产环境 <property name="servletUrl" value="172.28.13.13"/>   -->
+		<!-- 测试环境 <property name="servletUrl" value="172.28.7.13"/>  -->
+		    <property name="servletUrl" value="172.28.13.13"/>  
+	</bean>
+	
+	<bean id="arapRootAddress" class="com.sinotrans.framework.core.support.servlet.Http">
+	    <!-- 生产环境 <property name="servletUrl" value="http://172.28.13.13:7003/arap/"/>   -->
+		<!-- 测试环境 <property name="servletUrl" value="http://172.28.7.13:7002/arap/"/>  -->
+		   <property name="servletUrl" value="http://172.28.13.13:7003/arap/"/>
+	</bean>
+	
+	<bean id="arapTicketSvc" class="com.sinotrans.framework.core.support.servlet.Http">
+	    <!-- 生产环境 <property name="servletUrl" value="http://172.28.13.47:8080/uia/ws-http-json/auth/getticket.svc"/>   -->
+		<!-- 测试环境 <property name="servletUrl" value="http://172.28.7.184:8080/uia/ws-http-json/auth/getticket.svc"/>  -->
+		    <property name="servletUrl" value="http://172.28.13.47:8080/uia/ws-http-json/auth/getticket.svc"/>
+	</bean>
+	
+	<bean id="arapMemberSvc" class="com.sinotrans.framework.core.support.servlet.Http">
+	    <!-- 生产环境 <property name="servletUrl" value="http://172.28.13.47:8080/uia/ws-http-json/org/member.svc"/>   -->
+		<!-- 测试环境 <property name="servletUrl" value="http://172.28.7.184:8080/uia/ws-http-json/org/member.svc"/>  -->
+		   <property name="servletUrl" value="http://172.28.13.47:8080/uia/ws-http-json/org/member.svc"/> 
+	</bean>
+	
+		<bean id="arapBasicDataService" class="com.sinotrans.framework.core.support.servlet.Http">
+		<!-- 正式场 <property name="servletUrl" value="http://172.28.13.13:7003/arap/BasicDataServlet"/> -->
+		<property name="servletUrl" value="http://172.28.13.13:7003/arap/BasicDataServlet"/>
+		<!-- 测试场 <property name="servletUrl" value="http://172.28.7.13:7002/arap/BasicDataServlet"/> -->
+		<!-- <property name="servletUrl" value="http://172.28.129.106:8080/arap/BasicDataServlet"/> -->
+		<!-- 本地调试 <property name="servletUrl" value="http://172.28.129.106:8080/arap/BasicDataServlet"/> -->
+		<!--  <property name="servletUrl" value="http://172.28.129.106:8080/arap/BasicDataServlet"/> -->
+	</bean>
+	
+</beans>
+

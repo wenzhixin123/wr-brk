@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="FuzzySearchCustomerQuery">
+		<![CDATA[
+
+SELECT BC.BAS_CUSTOMER_UUID,
+       BC.CUSTOMER_CODE,
+       BC.CUSTOMER_NAME,
+       BC.CUSTOMER_NAME_EN,
+       BC.STATUS
+  FROM BAS_CUSTOMER BC
+ WHERE 0=0
+   <<AND BC.OFFICE_CODE =:officeCode>>
+   << AND (UPPER(BC.CUSTOMER_CODE) LIKE UPPER('%' || :key || '%') OR BC.CUSTOMER_NAME LIKE '%' || :key || '%'  OR UPPER(BC.CUSTOMER_NAME_EN) LIKE UPPER('%' || :key || '%')) >>
+   << AND UPPER(BC.CUSTOMER_CODE) = :customerCode >>
+   AND BC.STATUS = 'Active'
+   AND ##CONDITIONS##
+		]]>
+	</sql-query>
+</hibernate-mapping>

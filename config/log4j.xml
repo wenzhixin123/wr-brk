@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yy/MM/dd HH:mm:ss} %p [%t] %c{1}.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+	<appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- 测试及正式环境 -->
+		<!-- <param name="File" value="/u01/wls/middleware/logs/wlp/log/log.txt" /> -->
+		<param name="File" value="/u01/wls/logs/wlpsoft/wlp_exp.log" />
+		<param name="Encoding" value="UTF-8" />
+		<!-- 本地环境 -->
+		<!-- <param name="File" value="D:/log/wlp_exp.log" /> -->
+
+		<!--日志过滤门槛，记录warn以上级别日志 -->
+		<param name="Threshold" value="WARN" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yy/MM/dd HH:mm:ss} %c{1}.%M(%L) | %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">  
+	            <param name="LevelMax" value="WARN" />  
+	            <param name="LevelMin" value="WARN" />  
+        	</filter>
+	</appender>
+	
+	<appender name="dcs_info" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- 测试及正式环境 -->
+		<!-- <param name="File" value="/u01/wls/middleware/logs/wlp/log/log.txt" /> -->
+		<param name="File" value="/u01/wls/logs/wlpsoft/wlp_exp_dcs_info.log" />
+		<param name="Encoding" value="UTF-8" />
+		<!--日志过滤门槛，记录info以上级别日志 -->
+		<param name="Threshold" value="INFO" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yy/MM/dd HH:mm:ss} %c{1}.%M(%L) | %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">  
+            <param name="LevelMax" value="INFO" />  
+            <param name="LevelMin" value="INFO" />  
+        </filter>  
+	</appender>
+	
+	<appender name="info" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- 测试及正式环境 -->
+		<!-- <param name="File" value="/u01/wls/middleware/logs/wlp/log/log.txt" /> -->
+		<param name="File" value="/u01/wls/logs/wlpsoft/wlp_exp_info.log" />
+		<param name="Encoding" value="UTF-8" />
+		<!-- 本地环境 -->
+		<!-- <param name="File" value="D:/log/wlp_exp.log" /> -->
+
+		<!--日志过滤门槛，记录info以上级别日志 -->
+		<param name="Threshold" value="INFO" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yy/MM/dd HH:mm:ss} %c{1}.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- 测试及正式环境 -->
+		<param name="File" value="/u01/wls/logs/wlpsoft/wlp_exp_error.log" />
+		<param name="Encoding" value="UTF-8" />
+		<!-- 本地环境 -->
+		<!-- <param name="File" value="D:/log/wlp_exp_error.log" /> -->
+
+		<param name="Threshold" value="ERROR" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yy/MM/dd HH:mm:ss} %c{1}.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+
+	<!-- <logger name="com.sinotrans"> -->
+	<!-- <level value="DEBUG"/> -->
+	<!-- </logger> -->
+	<!-- -->
+	<logger name="com.sinotrans.framework">
+		<level value="INFO" />
+	</logger>
+	
+	<logger name="com.sinotrans.gd.wlp.dcs.service.impl">
+		<level value="INFO" />
+		<appender-ref ref="dcs_info" />
+	</logger>	
+	<logger name="com.sinotrans.gd.wlp.openapi">
+		<level value="INFO" />
+		<appender-ref ref="info" />
+	</logger>
+	<logger name="com.sinotrans.gd.extservice">
+		<level value="INFO" />
+		<appender-ref ref="info" />
+	</logger>
+	<logger name="com.sinotrans.gd">
+		<level value="INFO" />
+		<appender-ref ref="info"/>
+	</logger>
+	
+	<root>
+		<!-- 正式环境 -->
+		<!--<level value="WARN"/>
+		<appender-ref ref="file" />-->
+
+		<!-- 测试环境 -->
+		  <level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>

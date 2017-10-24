@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CodeTypeByCodeValueQuery">
+		<![CDATA[
+
+select
+bct.bas_code_type_uuid basCodeTypeUuid,
+max(bct.type_code) typeCode,
+max(bct.type_name) typeName,
+max(bct.status) status,
+max(bct.control_word) controlWord,
+max(bct.create_time) create_time
+from bas_code_type bct
+left join bas_code_def bcd on bcd.BAS_CODE_TYPE_UUID = bct.BAS_CODE_TYPE_UUID
+where bct.status = 'Active'
+<<and bct.type_name like :typeName>>
+<<and bcd.status = :status>>
+<<and bct.TYPE_CODE like :typeCode>>
+<<and bcd.modifiable = :modifiable>>
+<<and bct.office_code = :officeCode>>
+and ##CONDITIONS##
+group by bct.bas_code_type_uuid
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

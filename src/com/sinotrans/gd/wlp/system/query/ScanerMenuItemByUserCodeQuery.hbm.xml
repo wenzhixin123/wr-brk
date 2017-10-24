@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="ScanerMenuItemByUserCodeQuery">
+		<![CDATA[
+
+select smi.sys_menu_item_uuid,
+       smi.sys_menu_group_uuid,
+       smi.menu_item_name,
+       smi.menu_item_name_cn,
+       smi.menu_item_url,
+       smi.menu_item_seq,
+       smi.status
+  from sys_role_menu_item srmi, sys_menu_item smi
+ where srmi.sys_role_uuid in
+       (select sru.sys_role_uuid
+          from sys_user su, sys_role_user sru
+         where su.user_uuid = sru.user_uuid
+           and su.user_code = :userCode
+           and su.office_code = :officeCode
+         group by sru.sys_role_uuid)
+   and srmi.sys_menu_item_uuid = smi.sys_menu_item_uuid
+   and smi.sys_menu_group_uuid in
+       (select smg.sys_menu_group_uuid
+          from sys_menu_group smg
+         where smg.menu_grp_name = :menuGrpName)
+ group by smi.sys_menu_item_uuid,
+          smi.sys_menu_group_uuid,
+          smi.menu_item_name,
+          smi.menu_item_name_cn,
+          smi.menu_item_url,
+          smi.menu_item_seq,
+          smi.status
+having smi.status = :status
+   and instr(smi.menu_item_url, 'bar_menu.jsp') = 0
+ order by smi.menu_item_seq
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

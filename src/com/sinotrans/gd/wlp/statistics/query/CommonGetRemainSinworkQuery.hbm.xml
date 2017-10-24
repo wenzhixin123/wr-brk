@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CommonGetRemainSinworkQuery">
+		<![CDATA[
+
+SELECT DISTINCT LOD.LOGISTICS_ORDER_DETAIL_UUID AS IN_LOGISTICS_ORDER_DETAIL_UUID,
+                LOD.LOGISTICS_ORDER_NO          AS IN_LOGISTICS_ORDER_NO,
+                LOD.BILL_NO,
+                LOD.SEQ_NO,
+                --LOD.GOODS_DESC,
+                LOD.MODEL,
+                LOD.SPEC,
+                LOD.LENGTH_UNIT_CODE,
+                LOD.LENGTH,
+                LOD.WIDTH,
+                LOD.HEIGHT,
+                LOD.GOODS_KIND,
+                LOD.GOODS_NATURE,
+                LOD.DANGER_CODE,
+                --LOD.PACKAGE_NO,
+                LOD.PACKAGE_TYPE,
+                LOD.VOLUME_UNIT_CODE,
+                LOD.VOLUME_UNIT_DESC,
+                LOD.WEIGHT_UNIT_CODE,
+                LOD.WEIGHT_UNIT_DESC,
+                LOD.UNIT_PRICE,
+                LOD.CURRENCY_CODE,
+                LOD.CURRENCY_DESC,
+                LOD.QTY_UNIT_CODE,
+                LOD.QTY_UNIT_DESC,
+                LOD.TOTAL_PRICE,
+                LOD.LENGTH_UNIT_DESC,
+                SOD.SUBMIT_ORDER_DETAIL_UUID,
+                SOD.QTY,
+                (SELECT RH.REMAIN_HOLD_UUID
+                   FROM REMAIN_HOLD RH
+                  WHERE RH.IN_LOGISTICS_ORDER_DETAIL_UUID =
+                        RS.IN_LOGISTICS_ORDER_DETAIL_UUID
+                    AND ROWNUM = 1) AS REMAIN_HOLD_UUID,
+                (SELECT RH.INSTOCK_QTY
+                   FROM REMAIN_HOLD RH
+                  WHERE RH.IN_LOGISTICS_ORDER_DETAIL_UUID =
+                        RS.IN_LOGISTICS_ORDER_DETAIL_UUID
+                    AND ROWNUM = 1) AS INSTOCK_QTY,
+                (SELECT RH.INSTOCK_GROSS_WEIGHT
+                   FROM REMAIN_HOLD RH
+                  WHERE RH.IN_LOGISTICS_ORDER_DETAIL_UUID =
+                        RS.IN_LOGISTICS_ORDER_DETAIL_UUID
+                    AND ROWNUM = 1) AS INSTOCK_GROSS_WEIGHT,
+                (SELECT RH.INSTOCK_NET_WEIGHT
+                   FROM REMAIN_HOLD RH
+                  WHERE RH.IN_LOGISTICS_ORDER_DETAIL_UUID =
+                        RS.IN_LOGISTICS_ORDER_DETAIL_UUID
+                    AND ROWNUM = 1) AS INSTOCK_NET_WEIGHT,
+                (SELECT RH.INSTOCK_VOLUME
+                   FROM REMAIN_HOLD RH
+                  WHERE RH.IN_LOGISTICS_ORDER_DETAIL_UUID =
+                        RS.IN_LOGISTICS_ORDER_DETAIL_UUID
+                    AND ROWNUM = 1) AS INSTOCK_VOLUME,
+                RS.CREATE_TIME,
+                RS.IN_STOCK_WORK_UUID,
+                RS.REMAIN_SECOND_QTY,
+                RS.REMAIN_GROSS_WEIGHT,
+                RS.REMAIN_NET_WEIGHT,
+                RS.REMAIN_VOLUME,
+                RS.PACKAGE_NO,
+                RS.BATCH_NO,
+                RS.ITEM_CODE,
+                RS.ITEM_SEQNO,
+                RS.EXT_ITEM_CODE,
+                RS.GOODS_DESC,
+                RS.MARKS_NUMBER,
+                RS.PANEL_NO,
+                RS.BARCODE,
+                RS.REMAIN_QTY,
+                RS.LOT_CODE,
+                RS.PRODUCTION_DATE,
+                LOD.QTY AS LOD_QTY
+  FROM LOGISTICS_ORDER        LO,
+       LOGISTICS_ORDER_DETAIL LOD,
+       REMAIN_SINWORK         RS,
+       SUBMIT_ORDER           SO,
+       SUBMIT_ORDER_DETAIL    SOD
+ WHERE SO.SUBMIT_ORDER_UUID = SOD.SUBMIT_ORDER_UUID
+   AND LO.LOGISTICS_ORDER_UUID = LOD.LOGISTICS_ORDER_UUID
+   AND LOD.LOGISTICS_ORDER_DETAIL_UUID =RS.IN_LOGISTICS_ORDER_DETAIL_UUID
+   AND (RS.REMAIN_QTY > 0 OR RS.REMAIN_SECOND_QTY > 0)
+   AND RS.OFFICE_CODE = :officeCode
+   AND SOD.SUBMIT_ORDER_DETAIL_UUID IN(:submitOrderDetailUuid)
+   AND ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

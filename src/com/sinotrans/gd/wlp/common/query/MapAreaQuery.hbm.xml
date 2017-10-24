@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="MapAreaQuery">
+		<![CDATA[
+
+SELECT
+		map.map_area_id,
+		map.area_code,
+		map.cooX,
+		map.cooY,
+		(CASE 
+				map.data_typ
+			WHEN '11' THEN '充电桩'
+			WHEN '10' THEN '工作台'
+			WHEN '1' THEN '储位'
+		END) data_typ,
+		(CASE 
+				map.direction
+			WHEN '180' THEN '左'
+			WHEN '0' THEN '右'
+			WHEN '90' THEN '上'
+			WHEN '-90' THEN '下'
+		END) direction,
+		map.map_data_code,
+		map.user_call_code
+FROM
+	map_area map
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

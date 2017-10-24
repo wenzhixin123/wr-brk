@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="BasPanelByOtherQuery">
+		<![CDATA[
+
+select * from bas_panel bp 
+where  bp.office_code =:officeCode
+   <<and substr(bp.control_word,4,1) = :printStatus>>
+   <<and bp.panel_package_no =:panelPackageNo>>
+   <<and bp.panel_package_desc =:panelPackageDesc>>
+   <<and bp.customer_name =:customerName>>
+   <<and bp.status =:status>>
+
+     order by bp.panel_package_no desc
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

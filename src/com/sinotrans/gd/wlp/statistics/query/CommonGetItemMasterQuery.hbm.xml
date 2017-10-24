@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CommonGetItemMasterQuery">
+		<![CDATA[
+
+select IFNULL(imc.unit_qty, 0) as unit_qty,
+       IFNULL(im.volume, 0) as volume,
+       IFNULL(im.gross_weight, 0) as gross_weight,
+       IFNULL(im.net_weight, 0) as net_weight
+  from item_master im, ITEM_MASTER_CONVERSION imc
+ where imc.item_master_uuid = im.item_master_uuid
+   and im.customer_code = :loAgentConsigneeCode
+   and im.item_code = :lodItemCode
+   and imc.status = 'Active'
+   and im.status = 'Active'
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

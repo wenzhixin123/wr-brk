@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CodeDefBySpecialCodeTypeQuery">
+		<![CDATA[
+
+select bcd.* 
+  from bas_code_def bcd ,bas_code_type bct
+where
+  bcd.office_code = :officeCode
+  and bcd.bas_code_type_uuid = bct.bas_code_type_uuid
+  <<and bcd.code_value = :codeValue>>
+  << and bcd.bas_code_type_uuid = :basCodeTypeUuid>>
+ << and bcd.status = :status>>
+ << and bcd.modifiable = :modifiable>>
+ << and bcd.code_number = :codeNumber>>
+   and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

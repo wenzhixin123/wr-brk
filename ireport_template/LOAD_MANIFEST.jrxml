@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DcsLoadManifestPrintEntity" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b8897bcc-fc7a-4615-822e-6119ad33688d">
+	<property name="ireport.zoom" value="1.3310000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="PdfField" fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="Identity-H"/>
+	<style name="Barcode" hAlign="Center">
+		<paragraph leftIndent="1" rightIndent="1"/>
+	</style>
+	<style name="table">
+		<box>
+			<topPen lineWidth="0.75"/>
+			<leftPen lineWidth="0.75"/>
+			<bottomPen lineWidth="0.75"/>
+			<rightPen lineWidth="0.75"/>
+		</box>
+	</style>
+	<subDataset name="billLadingList" uuid="5a8df8b0-184c-4ceb-b25b-674af9ac7df2">
+		<field name="agentDestinationCode" class="java.lang.String"/>
+		<field name="agentDestinationDesc" class="java.lang.String"/>
+		<field name="agentTranshipCode" class="java.lang.String"/>
+		<field name="agentTranshipDesc" class="java.lang.String"/>
+		<field name="audit" class="java.lang.String"/>
+		<field name="billControlWord" class="java.lang.String"/>
+		<field name="billDocumentNo" class="java.lang.String"/>
+		<field name="billFee" class="java.lang.Long"/>
+		<field name="billLadingId" class="java.lang.String"/>
+		<field name="billLadingNo" class="java.lang.String"/>
+		<field name="billMasterNo" class="java.lang.String"/>
+		<field name="businessType" class="java.lang.String"/>
+		<field name="cargoType" class="java.lang.String"/>
+		<field name="carriageCode" class="java.lang.String"/>
+		<field name="carriageControllor" class="java.lang.String"/>
+		<field name="chargeStatus" class="java.lang.String"/>
+		<field name="cntrAdminCode" class="java.lang.String"/>
+		<field name="cntrOwnerCode" class="java.lang.String"/>
+		<field name="colType" class="java.lang.String"/>
+		<field name="commitStatus" class="java.lang.String"/>
+		<field name="consigneeCode" class="java.lang.String"/>
+		<field name="consigneeDesc" class="java.lang.String"/>
+		<field name="containerInfos" class="java.util.List"/>
+		<field name="containerSize" class="java.lang.Integer"/>
+		<field name="contentCodeFactory" class="java.lang.String"/>
+		<field name="contentCodeTrade" class="java.lang.String"/>
+		<field name="contentCodeValue" class="java.lang.String"/>
+		<field name="countFee" class="java.lang.String"/>
+		<field name="createTime" class="java.util.Date"/>
+		<field name="creator" class="java.lang.String"/>
+		<field name="customsClPort" class="java.lang.String"/>
+		<field name="customsClearenceNo" class="java.lang.String"/>
+		<field name="customsDate" class="java.util.Date"/>
+		<field name="customsSerialNo" class="java.lang.String"/>
+		<field name="dangerParameter" class="java.lang.String"/>
+		<field name="dbLimit" class="java.util.Date"/>
+		<field name="declearOperatorCode" class="java.lang.String"/>
+		<field name="depotBillLadingRefNo" class="java.lang.String"/>
+		<field name="feeStatus" class="java.lang.String"/>
+		<field name="finalDestinationCode" class="java.lang.String"/>
+		<field name="finalDestinationDesc" class="java.lang.String"/>
+		<field name="genPortNo" class="java.lang.String"/>
+		<field name="goodsKind" class="java.lang.String"/>
+		<field name="goodsPackageKinds" class="java.lang.String"/>
+		<field name="goodsSummarizedName" class="java.lang.String"/>
+		<field name="goodsTotalCbm" class="java.lang.Double"/>
+		<field name="goodsTotalNetwt" class="java.lang.Double"/>
+		<field name="goodsTotalPackage" class="java.lang.Long"/>
+		<field name="goodsTotalWeight" class="java.lang.Double"/>
+		<field name="hasInOtherVessel" class="java.lang.String"/>
+		<field name="holdStatus" class="java.lang.String"/>
+		<field name="hsCode" class="java.lang.String"/>
+		<field name="isAllow" class="java.lang.String"/>
+		<field name="isInSingle" class="java.lang.String"/>
+		<field name="isVerified" class="java.lang.String"/>
+		<field name="lockStatus" class="java.lang.String"/>
+		<field name="marksNumber" class="java.lang.String"/>
+		<field name="message" class="java.lang.String"/>
+		<field name="modifier" class="java.lang.String"/>
+		<field name="modifyTime" class="java.util.Date"/>
+		<field name="movementType" class="java.lang.String"/>
+		<field name="notifyPartyCode" class="java.lang.String"/>
+		<field name="notifyPartyDesc" class="java.lang.String"/>
+		<field name="oceanVesselName" class="java.lang.String"/>
+		<field name="oceanVesselVoyage" class="java.lang.String"/>
+		<field name="officeCode" class="java.lang.String"/>
+		<field name="operateType" class="java.lang.String"/>
+		<field name="orderBills" class="java.util.List"/>
+		<field name="paymentCode" class="java.lang.String"/>
+		<field name="paymentType" class="java.lang.String"/>
+		<field name="portAreaCode" class="java.lang.String"/>
+		<field name="portDischargeCode" class="java.lang.String"/>
+		<field name="portDischargeDesc" class="java.lang.String"/>
+		<field name="portLoadingCode" class="java.lang.String"/>
+		<field name="portLoadingDesc" class="java.lang.String"/>
+		<field name="portManifestId" class="java.lang.String"/>
+		<field name="portPaperNo" class="java.lang.String"/>
+		<field name="portTranshipCode" class="java.lang.String"/>
+		<field name="portTranshipDesc" class="java.lang.String"/>
+		<field name="preCarriageCode" class="java.lang.String"/>
+		<field name="preCarriageDesc" class="java.lang.String"/>
+		<field name="principalAgentCode" class="java.lang.String"/>
+		<field name="principalDate" class="java.util.Date"/>
+		<field name="prrmaryKeyName" class="java.lang.String"/>
+		<field name="realVesselCode" class="java.lang.String"/>
+		<field name="realVesselName" class="java.lang.String"/>
+		<field name="realVoyaga" class="java.lang.String"/>
+		<field name="recVer" class="java.lang.Long"/>
+		<field name="remark" class="java.lang.String"/>
+		<field name="rowState" class="java.lang.String"/>
+		<field name="sendToCustom" class="java.lang.String"/>
+		<field name="seqNo" class="java.lang.Double"/>
+		<field name="shipperCode" class="java.lang.String"/>
+		<field name="shipperDesc" class="java.lang.String"/>
+		<field name="shippingDateLimit" class="java.util.Date"/>
+		<field name="shippingOrderNo" class="java.lang.String"/>
+		<field name="status1" class="java.lang.String"/>
+		<field name="status2" class="java.lang.String"/>
+		<field name="status3" class="java.lang.String"/>
+		<field name="transferTruck" class="java.lang.String"/>
+		<field name="userType" class="java.lang.String"/>
+		<field name="vesselCode" class="java.lang.String"/>
+		<field name="vesselNameEn" class="java.lang.String"/>
+		<field name="voyageNo" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="dcsCustomOrderList" uuid="2386edc6-b2b0-467b-b224-738e0bf80e43">
+		<parameter name="numOf20E" class="java.lang.String"/>
+		<parameter name="numOf20F" class="java.lang.String"/>
+		<parameter name="numOf40E" class="java.lang.String"/>
+		<parameter name="numOf40F" class="java.lang.String"/>
+		<field name="agentDestinationCode" class="java.lang.String"/>
+		<field name="agentDestinationDesc" class="java.lang.String"/>
+		<field name="agentTranshipCode" class="java.lang.String"/>
+		<field name="agentTranshipDesc" class="java.lang.String"/>
+		<field name="audit" class="java.lang.String"/>
+		<field name="billControlWord" class="java.lang.String"/>
+		<field name="billDocumentNo" class="java.lang.String"/>
+		<field name="billFee" class="java.lang.Long"/>
+		<field name="billLadingId" class="java.lang.String"/>
+		<field name="billLadingNo" class="java.lang.String"/>
+		<field name="billMasterNo" class="java.lang.String"/>
+		<field name="businessType" class="java.lang.String"/>
+		<field name="cargoType" class="java.lang.String"/>
+		<field name="carriageCode" class="java.lang.String"/>
+		<field name="carriageControllor" class="java.lang.String"/>
+		<field name="chargeStatus" class="java.lang.String"/>
+		<field name="cntrAdminCode" class="java.lang.String"/>
+		<field name="cntrOwnerCode" class="java.lang.String"/>
+		<field name="colType" class="java.lang.String"/>
+		<field name="commitStatus" class="java.lang.String"/>
+		<field name="consigneeCode" class="java.lang.String"/>
+		<field name="consigneeDesc" class="java.lang.String"/>
+		<field name="containerInfos" class="java.util.List"/>
+		<field name="containerSize" class="java.lang.Integer"/>
+		<field name="contentCodeFactory" class="java.lang.String"/>
+		<field name="contentCodeTrade" class="java.lang.String"/>
+		<field name="contentCodeValue" class="java.lang.String"/>
+		<field name="countFee" class="java.lang.String"/>
+		<field name="createTime" class="java.util.Date"/>
+		<field name="creator" class="java.lang.String"/>
+		<field name="customsClPort" class="java.lang.String"/>
+		<field name="customsClearenceNo" class="java.lang.String"/>
+		<field name="customsDate" class="java.util.Date"/>
+		<field name="customsNo" class="java.lang.String"/>
+		<field name="customsSerialNo" class="java.lang.String"/>
+		<field name="dangerParameter" class="java.lang.String"/>
+		<field name="dbLimit" class="java.util.Date"/>
+		<field name="declearOperatorCode" class="java.lang.String"/>
+		<field name="depotBillLadingRefNo" class="java.lang.String"/>
+		<field name="feeStatus" class="java.lang.String"/>
+		<field name="finalDestinationCode" class="java.lang.String"/>
+		<field name="finalDestinationDesc" class="java.lang.String"/>
+		<field name="genPortNo" class="java.lang.String"/>
+		<field name="goodsKind" class="java.lang.String"/>
+		<field name="goodsPackageKinds" class="java.lang.String"/>
+		<field name="goodsSummarizedName" class="java.lang.String"/>
+		<field name="goodsTotalCbm" class="java.lang.Double"/>
+		<field name="goodsTotalNetwt" class="java.lang.Double"/>
+		<field name="goodsTotalPackage" class="java.lang.Long"/>
+		<field name="goodsTotalWeight" class="java.lang.Double"/>
+		<field name="hasInOtherVessel" class="java.lang.String"/>
+		<field name="holdStatus" class="java.lang.String"/>
+		<field name="hsCode" class="java.lang.String"/>
+		<field name="isAllow" class="java.lang.String"/>
+		<field name="isInSingle" class="java.lang.String"/>
+		<field name="isVerified" class="java.lang.String"/>
+		<field name="lockStatus" class="java.lang.String"/>
+		<field name="marksNumber" class="java.lang.String"/>
+		<field name="message" class="java.lang.String"/>
+		<field name="modifier" class="java.lang.String"/>
+		<field name="modifyTime" class="java.util.Date"/>
+		<field name="movementType" class="java.lang.String"/>
+		<field name="notifyPartyCode" class="java.lang.String"/>
+		<field name="notifyPartyDesc" class="java.lang.String"/>
+		<field name="oceanVesselName" class="java.lang.String"/>
+		<field name="oceanVesselVoyage" class="java.lang.String"/>
+		<field name="officeCode" class="java.lang.String"/>
+		<field name="operateType" class="java.lang.String"/>
+		<field name="orderBills" class="java.util.List"/>
+		<field name="paymentCode" class="java.lang.String"/>
+		<field name="paymentType" class="java.lang.String"/>
+		<field name="portAreaCode" class="java.lang.String"/>
+		<field name="portDischargeCode" class="java.lang.String"/>
+		<field name="portDischargeDesc" class="java.lang.String"/>
+		<field name="portLoadingCode" class="java.lang.String"/>
+		<field name="portLoadingDesc" class="java.lang.String"/>
+		<field name="portManifestId" class="java.lang.String"/>
+		<field name="portPaperNo" class="java.lang.String"/>
+		<field name="portTranshipCode" class="java.lang.String"/>
+		<field name="portTranshipDesc" class="java.lang.String"/>
+		<field name="preCarriageCode" class="java.lang.String"/>
+		<field name="preCarriageDesc" class="java.lang.String"/>
+		<field name="principalAgentCode" class="java.lang.String"/>
+		<field name="principalDate" class="java.util.Date"/>
+		<field name="prrmaryKeyName" class="java.lang.String"/>
+		<field name="realVesselCode" class="java.lang.String"/>
+		<field name="realVesselName" class="java.lang.String"/>
+		<field name="realVoyaga" class="java.lang.String"/>
+		<field name="recVer" class="java.lang.Long"/>
+		<field name="remark" class="java.lang.String"/>
+		<field name="rowState" class="java.lang.String"/>
+		<field name="sendToCustom" class="java.lang.String"/>
+		<field name="seqNo" class="java.lang.Double"/>
+		<field name="shipperCode" class="java.lang.String"/>
+		<field name="shipperDesc" class="java.lang.String"/>
+		<field name="shippingDateLimit" class="java.util.Date"/>
+		<field name="shippingOrderNo" class="java.lang.String"/>
+		<field name="status1" class="java.lang.String"/>
+		<field name="status2" class="java.lang.String"/>
+		<field name="status3" class="java.lang.String"/>
+		<field name="transferTruck" class="java.lang.String"/>
+		<field name="userType" class="java.lang.String"/>
+		<field name="vesselCode" class="java.lang.String"/>
+		<field name="vesselNameEn" class="java.lang.String"/>
+		<field name="voyageNo" class="java.lang.String"/>
+		<field name="remarks" class="java.lang.String"/>
+		<field name="customsOrderUuid" class="java.lang.String"/>
+		<variable name="numOfBill" class="java.lang.Integer" calculation="Count">
+			<variableExpression><![CDATA[$F{billLadingNo}]]></variableExpression>
+		</variable>
+		<variable name="totalPackage" class="java.lang.Integer" calculation="Sum">
+			<variableExpression><![CDATA[$F{goodsTotalPackage}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+		<variable name="totalWeight" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{goodsTotalWeight}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="containerInfos" uuid="f0b81ad2-1ddc-445b-bcfe-b049a8455a84">
+		<field name="containerNo" class="java.lang.String"/>
+		<field name="containerType" class="java.lang.String"/>
+	</subDataset>
+	<field name="billLadingList" class="java.util.List"/>
+	<field name="createTime" class="java.util.Date"/>
+	<field name="creator" class="java.lang.String"/>
+	<field name="customsDate" class="java.util.Date"/>
+	<field name="customsLicenseNo" class="java.lang.String"/>
+	<field name="customsManifestNo" class="java.lang.String"/>
+	<field name="dateArrival" class="java.util.Date"/>
+	<field name="dateDeparture" class="java.util.Date"/>
+	<field name="dcsCustomOrderList" class="java.util.List"/>
+	<field name="feederManifestType" class="java.lang.String"/>
+	<field name="flowType" class="java.lang.String"/>
+	<field name="impType" class="java.lang.String"/>
+	<field name="isWeight" class="java.lang.String"/>
+	<field name="lineType" class="java.lang.String"/>
+	<field name="linerCode" class="java.lang.String"/>
+	<field name="linerManifestNo" class="java.lang.String"/>
+	<field name="linerName" class="java.lang.String"/>
+	<field name="manifestControlWord" class="java.lang.String"/>
+	<field name="manifestStatus" class="java.lang.String"/>
+	<field name="manifestType" class="java.lang.String"/>
+	<field name="modifier" class="java.lang.String"/>
+	<field name="modifyTime" class="java.util.Date"/>
+	<field name="officeCode" class="java.lang.String"/>
+	<field name="paymentType" class="java.lang.String"/>
+	<field name="portAreaCode" class="java.lang.String"/>
+	<field name="portArrival" class="java.lang.String"/>
+	<field name="portDeparture" class="java.lang.String"/>
+	<field name="portManifestId" class="java.lang.String"/>
+	<field name="portManifestNo" class="java.lang.String"/>
+	<field name="portTransport" class="java.lang.String"/>
+	<field name="prrmaryKeyName" class="java.lang.String"/>
+	<field name="recVer" class="java.lang.Long"/>
+	<field name="rowState" class="java.lang.String"/>
+	<field name="unloadDate" class="java.util.Date"/>
+	<field name="vesselCode" class="java.lang.String"/>
+	<field name="vesselForecastId" class="java.lang.String"/>
+	<field name="vesselName" class="java.lang.String"/>
+	<field name="voyageNo" class="java.lang.String"/>
+	<field name="workBeginDate" class="java.util.Date"/>
+	<field name="workDesc" class="java.lang.String"/>
+	<field name="workFinishedDate" class="java.util.Date"/>
+	<field name="workQk" class="java.lang.String"/>
+	<field name="workType" class="java.lang.String"/>
+	<field name="numOf20E" class="java.lang.Integer"/>
+	<field name="numOf20F" class="java.lang.Integer"/>
+	<field name="numOf40E" class="java.lang.Integer"/>
+	<field name="numOf40F" class="java.lang.Integer"/>
+	<variable name="DS_billLadingList" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
+		<variableExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{billLadingList})]]></variableExpression>
+		<initialValueExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(null)]]></initialValueExpression>
+	</variable>
+	<variable name="DS_dcsCustomOrderList" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
+		<variableExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dcsCustomOrderList})]]></variableExpression>
+		<initialValueExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(null)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="90">
+			<staticText>
+				<reportElement style="PdfField" x="0" y="70" width="360" height="20" uuid="98b6a1ad-f160-430a-b3ff-cc2514628cdd"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[报关单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="360" y="70" width="111" height="20" uuid="e3af83f4-7293-452b-878a-30d012b2afaf"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[集装箱]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="471" y="70" width="99" height="20" uuid="c5660355-898f-409d-b018-d5db4c187ebe"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[备注]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement style="Barcode" x="0" y="0" width="180" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4956797c-bab4-4179-bc40-f587e9beb591"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39 (Extended)" drawText="false" checksumRequired="false" barWidth="0" barHeight="28">
+					<jr:codeExpression><![CDATA[$F{customsLicenseNo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="0" y="30" width="180" height="17" uuid="0e4efe48-3c1d-4c6f-969e-e3a49af1bbf6"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("＊" + $F{customsLicenseNo} + "＊").replaceAll(""," ")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="392" y="30" width="180" height="17" uuid="7a0a6798-ef90-49fe-aee7-07d9a2331a76"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("＊" + $F{voyageNo} + "＊").replaceAll(""," ")]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement style="Barcode" x="392" y="0" width="180" height="30" isRemoveLineWhenBlank="true" uuid="a98bdaf0-407c-4db2-b512-0c3ba1a2d434"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false" barWidth="0" barHeight="28">
+					<jr:codeExpression><![CDATA[$F{voyageNo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="48" width="35" height="20" uuid="8d91432f-91e8-40df-b7f8-a7a6d0cfa053"/>
+				<text><![CDATA[船名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="220" y="48" width="35" height="20" uuid="163abb0f-ccdb-454a-83eb-fc091d9c79b5"/>
+				<text><![CDATA[航次：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="422" y="48" width="52" height="20" uuid="1b45bd99-2f1b-4f36-aab6-6af0b78ecced"/>
+				<text><![CDATA[离港日期：]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="255" y="48" width="100" height="20" uuid="f52a220f-2bab-4dcd-a2aa-0f14ca29352e"/>
+				<textFieldExpression><![CDATA[$F{voyageNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="35" y="48" width="100" height="20" uuid="c8bcbf96-9006-4617-88be-ebd54f384249"/>
+				<textFieldExpression><![CDATA[$F{vesselName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement style="PdfField" x="474" y="48" width="98" height="20" uuid="6900940e-cd81-4213-9940-9b2f9418b7a7"/>
+				<textFieldExpression><![CDATA[$F{dateDeparture}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="570" height="100" isRemoveLineWhenBlank="true" uuid="e570c9f3-f00e-4add-9aeb-5e98d15c69f1"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dcsCustomOrderList" uuid="82c00e0d-cc1e-4811-9be6-24a1eeb2c5c5">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dcsCustomOrderList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="100" width="570">
+						<textField isBlankWhenNull="true">
+							<reportElement style="PdfField" positionType="FixRelativeToBottom" x="260" y="80" width="100" height="20" isRemoveLineWhenBlank="true" uuid="40508df1-81d0-4b32-bec3-d44cb21b1c8f"/>
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{goodsTotalWeight}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement style="PdfField" positionType="FixRelativeToBottom" x="160" y="80" width="100" height="20" isRemoveLineWhenBlank="true" uuid="a16b6ce8-cb35-41d2-bcea-8ec117d2c554"/>
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{goodsTotalPackage}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement style="PdfField" positionType="FixRelativeToBottom" x="0" y="80" width="160" height="20" isRemoveLineWhenBlank="true" uuid="bcdc3b30-d06c-4699-b668-0aba3e981d0a"/>
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{billLadingNo}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="false">
+							<reportElement style="PdfField" x="0" y="45" width="361" height="15" isRemoveLineWhenBlank="true" uuid="ca53aeb3-3b7e-4157-9ca5-b3410f786052">
+								<printWhenExpression><![CDATA[$F{customsNo} != null && !$F{customsNo}.equals( "" )]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Center" verticalAlignment="Top"/>
+							<textFieldExpression><![CDATA[("＊" + $F{customsNo} + "＊").replaceAll(""," ")]]></textFieldExpression>
+						</textField>
+						<componentElement>
+							<reportElement style="Barcode" x="80" y="16" width="200" height="29" isRemoveLineWhenBlank="true" uuid="ae3c6946-35a3-4216-a905-d651838fa2e2">
+								<printWhenExpression><![CDATA[$F{customsNo} != null && !$F{customsNo}.equals( "" )]]></printWhenExpression>
+							</reportElement>
+							<jr:barbecue type="Code39" drawText="false" checksumRequired="false" barHeight="60">
+								<jr:codeExpression><![CDATA[$F{customsNo}]]></jr:codeExpression>
+							</jr:barbecue>
+						</componentElement>
+						<componentElement>
+							<reportElement x="361" y="0" width="110" height="100" isRemoveLineWhenBlank="true" uuid="ab72ee16-62a8-468a-8f09-2e19c96ae19d"/>
+							<jr:list printOrder="Vertical" ignoreWidth="true">
+								<datasetRun subDataset="containerInfos" uuid="3f753dd5-5a09-4aa5-8af7-583b004adb04">
+									<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{containerInfos})]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="15" width="110">
+									<textField>
+										<reportElement style="PdfField" stretchType="RelativeToBandHeight" x="0" y="0" width="110" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="3e91acfb-348e-4e6b-af5c-26a1b3525fe5"/>
+										<textElement>
+											<paragraph leftIndent="5"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{containerNo} + "/" + $F{containerType}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<rectangle>
+							<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="360" y="0" width="111" height="100" isRemoveLineWhenBlank="true" uuid="05aa8c25-cc00-49da-85ef-87ce985a92df"/>
+							<graphicElement>
+								<pen lineWidth="0.75"/>
+							</graphicElement>
+						</rectangle>
+						<rectangle>
+							<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="471" y="0" width="99" height="100" isRemoveLineWhenBlank="true" uuid="414543e9-2cb5-48dc-bf89-bf2c96539da4"/>
+							<graphicElement>
+								<pen lineWidth="0.75"/>
+							</graphicElement>
+						</rectangle>
+						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+							<reportElement style="PdfField" x="471" y="0" width="99" height="100" isRemoveLineWhenBlank="true" uuid="89417b4c-8863-4b69-97a4-6456fc9c8f6c"/>
+							<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+							<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement style="PdfField" positionType="FixRelativeToBottom" x="160" y="60" width="100" height="20" isRemoveLineWhenBlank="true" uuid="56421e08-ce36-41b8-9e01-c9edbb59c8e5"/>
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<text><![CDATA[件数]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="PdfField" positionType="FixRelativeToBottom" x="0" y="60" width="160" height="20" isRemoveLineWhenBlank="true" uuid="5174a491-a236-4e6d-bff4-678d22b4ade1"/>
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<text><![CDATA[提单号]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="PdfField" positionType="FixRelativeToBottom" x="260" y="60" width="100" height="20" isRemoveLineWhenBlank="true" uuid="d91663b9-5bdc-4734-8746-488337cdab7a"/>
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<text><![CDATA[重量]]></text>
+						</staticText>
+						<rectangle>
+							<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="360" height="60" isRemoveLineWhenBlank="true" uuid="bc292c88-96e8-4365-8d4b-50820e9a86c6"/>
+							<graphicElement>
+								<pen lineWidth="0.75"/>
+							</graphicElement>
+						</rectangle>
+						<textField>
+							<reportElement style="PdfField" x="0" y="0" width="360" height="16" isRemoveLineWhenBlank="true" uuid="a27c6965-4691-4b15-b839-20a278223a28"/>
+							<textElement textAlignment="Center" verticalAlignment="Top"/>
+							<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="9" y="0" width="62" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a0eb1c93-59dc-4cfd-8154-6928a5b4eb8e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["第 "+$V{PAGE_NUMBER}+" 页, "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="71" y="0" width="89" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9a958825-1b34-4e0b-b182-bd39d744060a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["共 " + $V{PAGE_NUMBER}+" 页"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="40">
+			<componentElement>
+				<reportElement key="table" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="0" width="570" height="40" uuid="20aa3d16-2a94-4cdb-a618-9c23c7b91dab"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="dcsCustomOrderList" uuid="dc46a464-9cc9-4679-a8c5-fca4289293cf">
+						<datasetParameter name="numOf20E">
+							<datasetParameterExpression><![CDATA[$F{numOf20E}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="numOf20F">
+							<datasetParameterExpression><![CDATA[$F{numOf20F}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="numOf40E">
+							<datasetParameterExpression><![CDATA[$F{numOf40E}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="numOf40F">
+							<datasetParameterExpression><![CDATA[$F{numOf40F}]]></datasetParameterExpression>
+						</datasetParameter>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dcsCustomOrderList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="570" uuid="ec877676-d945-493a-81f6-db8dc1206c0b">
+						<jr:tableFooter height="40" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.75"/>
+								<leftPen lineWidth="0.75"/>
+								<bottomPen lineWidth="0.75"/>
+								<rightPen lineWidth="0.75"/>
+							</box>
+							<staticText>
+								<reportElement style="PdfField" x="468" y="0" width="40" height="20" uuid="c7a90028-9e76-4072-8708-ff8025f68e7f"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[总重量：]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="PdfField" x="468" y="20" width="40" height="20" uuid="d1cb76aa-db37-4a7a-8e84-7e64a2d8fb85"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[40重：]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="508" y="0" width="60" height="20" uuid="4d6966da-3320-4b6c-94b2-0fa4fa1191a5"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{totalWeight}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="508" y="20" width="60" height="20" uuid="48dd0296-748f-483e-a27d-2dd5bac452e5"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{numOf40F}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement style="PdfField" x="168" y="0" width="140" height="20" uuid="995210ee-a42c-4f9a-bb79-49e1dff52532"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[总提单数：]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="PdfField" x="368" y="0" width="40" height="20" uuid="a25334f1-47f9-4ac1-ad7a-a6de7ca46bb7"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[总件数：]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="PdfField" x="368" y="20" width="40" height="20" uuid="edea2b30-004f-4fec-9501-94b8cc524835"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[40吉：]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="408" y="0" width="60" height="20" uuid="c6c5eb49-644d-421a-b492-bbb55f6408ca"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{totalPackage}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="408" y="20" width="60" height="20" uuid="0e687eaf-b6eb-4cee-b3a3-07915a421a26"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{numOf40E}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement style="PdfField" x="168" y="20" width="40" height="20" uuid="b361c8b5-29b6-47ad-b1ef-79a1dcca23a6"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[20吉：]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="PdfField" x="268" y="20" width="40" height="20" uuid="c32cf363-e36a-4592-95a4-a25ae7b256c6"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[20重：]]></text>
+							</staticText>
+							<textField>
+								<reportElement style="PdfField" x="308" y="0" width="60" height="20" uuid="13ad65d6-196e-4334-8619-c7d1c7eece85"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{numOfBill}]]></textFieldExpression>
+							</textField>
+							<textField pattern="###0.##" isBlankWhenNull="true">
+								<reportElement style="PdfField" x="208" y="20" width="60" height="20" uuid="e8ed0ad2-96b4-4d49-8866-f83ceb4804fe"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{numOf20E}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement style="PdfField" x="308" y="20" width="60" height="20" uuid="03d23b10-ce3c-4870-a508-617abb86ae1d"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$P{numOf20F}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:detailCell height="0" rowSpan="1"/>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="PreManifestCntrQuery">
+		<![CDATA[
+
+select 
+d.container_no containerNo,
+max(ves.VESSEL_NAME) vesselName,
+max(ves.CUSTOMS_LICENSE_NO) customsLicenseNo,
+max(b.SHIPPING_ORDER_NO) shippingOrderNo,
+max(a.vessel_code) vesselCode,
+max(a.voyage_no) voyageNo
+from dcs_manifest a
+left join dcs_bill_lading b on  a.port_manifest_id=b.port_manifest_id <<and b.carriage_code = :carriageCode>> and subStr(b.BILL_CONTROL_WORD,20,1)<>'Y'
+left join dcs_container_info c on b.bill_lading_id=c.bill_lading_id and subStr(c.INFO_CONTROL_WORD,20,1)<>'Y'
+left join dcs_containers d on c.container_ref_id=d.container_ref_id
+left join bas_vessel ves on ves.vessel_code = a.vessel_code
+where 1=1
+and subStr(a.manifest_control_word,20,1)<>'Y'
+and (a.PORT_MANIFEST_NO is null or subStr(a.PORT_MANIFEST_NO,1,8)<>'VIRTUAL_')
+<<and b.PRINCIPAL_DATE>=:manifestDateFrom>>
+<<and b.PRINCIPAL_DATE<=:manifestDateTo>>
+and ##CONDITIONS## 
+group by a.vessel_code,
+a.voyage_no,
+d.container_no
+order by d.container_no asc
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

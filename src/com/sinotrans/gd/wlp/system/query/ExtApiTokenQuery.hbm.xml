@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="ExtApiTokenQuery">
+		<![CDATA[
+
+select 
+queryResult.userCode as userCode,
+queryResult.userName as userName,
+queryResult.customerCode as customerCode,
+(CASE WHEN substr(queryResult.clientId,-6,6)='Active' and substr(queryResult.clientSecret,-6,6)='Active' THEN 'Active'
+	  WHEN substr(queryResult.clientId,-7,7)='Pending' or substr(queryResult.clientSecret,-7,7)='Pending' THEN 'Pending'
+         Else 'Cancel' end) as status,
+substr(queryResult.clientId,0,instr(queryResult.clientId,',',1,1)-1) as clientId,
+substr(queryResult.clientSecret,0,instr(queryResult.clientSecret,',',1,1)-1) as clientSecret
+from 
+(select 
+u.user_code as userCode,
+u.user_name as userName,
+o.customer_code as customerCode,
+(select max(cd.display_value_en)||','||max(cd.status) from bas_code_def cd,bas_code_type ct  where cd.code_value= u.user_code and 
+ct.type_code = 'AUTH_CLIENT_ID' and ct.bas_code_type_uuid = cd.bas_code_type_uuid) as clientId,
+(select max(cd.display_value_en)||','||max(cd.status) from bas_code_def cd,bas_code_type ct  where cd.code_value= u.user_code and 
+ct.type_code = 'AUTH_CLIENT_SECRET' and ct.bas_code_type_uuid = cd.bas_code_type_uuid) as clientSecret
+from sys_user u,sys_office o 
+where u.office_code = o.office_code 
+<<and u.user_code = :userCode >>
+<<and o.customer_code = :customerCode>>) queryResult
+where queryResult.clientId != ',' or queryResult.clientId != ','
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

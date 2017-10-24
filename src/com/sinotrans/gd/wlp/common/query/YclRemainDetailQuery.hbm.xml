@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="YclRemainDetailQuery">
+		<![CDATA[
+select rs.in_logistics_order_detail_uuid,
+	     rs.item_code,
+       rs.goods_desc,
+       rs.ext_item_code,
+       rs.lot_code,
+       rs.barcode,
+       rs.remain_qty,
+       rs.batch_no,
+       rs.goods_kind,
+       rs.instock_unit_desc,
+       (select sum(rh.remain_qty - rh.hold_qty)
+          from remain_hold rh
+         where rh.in_logistics_order_detail_uuid =
+               rs.in_logistics_order_detail_uuid) as remain_hold_qty,
+       lo.logistics_order_no,
+       lo.order_no,
+       rs.package_no,
+       rs.production_date,
+       (select bc.customer_name from bas_customer bc 
+               where bc.customer_code=IFNULL(lod.aux5,lo.cargo_consignee_code)
+                and bc.office_code=rs.office_code) as customer_name,
+       IFNULL(lod.aux5,lo.cargo_consignee_code) as cargo_consignee_desc,
+       lo.cut_off_date,
+       rs.goods_nature,
+       lt.location_task_uuid, 
+       rs.in_stock_work_uuid,
+       rs.remain_sinwork_uuid,
+       rs.panel_no,
+       lo.cargo_control_desc
+  from logistics_order lo, logistics_order_detail lod, remain_sinwork rs,location_task lt,stock_work sw
+ where lo.logistics_order_uuid = lod.logistics_order_uuid
+   and lod.logistics_order_detail_uuid = rs.in_logistics_order_detail_uuid
+   and rs.in_stock_work_uuid=sw.stock_work_uuid
+   and lt.location_task_uuid=sw.location_task_uuid
+   and exists(select 1 from bas_loc_area bla,bas_lot_stock bls where bla.bas_loc_area_uuid=bls.bas_loc_area_uuid
+   AND bls.status = lod.transaction_status
+   and bls.lot_code=rs.lot_code
+   and bla.bas_loc_area_uuid=:basLocAreaUuid )
+   and rs.office_code=:officeCode
+   and rs.item_code=:itemCode
+    and ##CONDITIONS##
+		]]>
+	</sql-query>
+</hibernate-mapping>

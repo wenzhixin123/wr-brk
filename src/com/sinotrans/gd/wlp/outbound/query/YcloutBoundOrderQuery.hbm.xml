@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="YcloutBoundOrderQuery">
+		<![CDATA[
+select * from (
+SELECT SO.TRANSACTION_STATUS,
+       SO.SUBMIT_ORDER_UUID,
+       SO.SUBMIT_ORDER_NO,
+       SO.ORDER_NO,
+       SO.SUBMIT_DATE,
+       SO.FLOW,
+       SO.DELIVERY_TYPE,
+       SO.REMARK,
+       SO.CREATOR,
+       SO.TEL_NO,
+       SO.AUX1,
+       SO.AUX2,
+       SO.AUX3,
+       SO.WORK_DEMAND,
+       SO.CHARGE_DESC,
+       SO.TRANSACTION_TYPE,
+       SO.CARGO_CONSIGNEE_CODE,
+       SO.CARGO_CONSIGNEE_DESC,
+       SUM(SOD.QTY) AS SUMQTY,
+       (select sum(lod.qty) from logistics_order lo,logistics_order_detail lod where lo.logistics_order_uuid=lod.logistics_order_uuid and lo.submit_order_uuid=so.submit_order_uuid and lod.transaction_status!='Cancel') as order_Qty,
+       (select max(lpc.config_name) from loc_plan_config lpc where lpc.config_code=so.config_code and lpc.office_code=so.office_code  ) as config_Name,
+        so.delivery_date,
+        so.unload_port
+  FROM SUBMIT_ORDER SO left join SUBMIT_ORDER_DETAIL SOD
+ on (SO.SUBMIT_ORDER_UUID = SOD.SUBMIT_ORDER_UUID)
+ where 1=1
+   AND SO.TRANSACTION_TYPE IN ('SOT', 'BUY', 'ADJ')
+   AND SO.OFFICE_CODE = :officeCode
+   <<AND SO.SUBMIT_ORDER_NO LIKE '%'||:submitOrderNo  ||'%'>>
+   	<<AND SO.SUBMIT_DATE>=:dateBegin>>
+   <<AND SO.SUBMIT_DATE<:dateEnd+1>> 
+   <<AND SO.ORDER_NO in (:orderNo)>>
+   <<AND SO.PROJECT_CODE=:projectCode>>
+   <<AND SO.CARGO_CONSIGNEE_CODE=:cargoConsigneeDesc>>  
+   <<AND SO.DELIVERY_TYPE=:deliveryType>>
+   <<AND SOD.SPEC=:spec>>
+   <<AND SOD.BILL_NO=:billNo>>   
+   <<AND SOD.ITEM_CODE LIKE '%' || :itemCode || '%'>>     
+   <<and so.transaction_status=:transactionStatus>>
+   << and  so.order_no like '%' ||:orderNoLike || '%' >>
+   <<and decode((select sol.submit_order_log_uuid from submit_order_log sol where sol.submit_order_uuid=so.submit_order_uuid and sol.transaction_type='ProofreadAlready' and rownum=1) , NULL, '否', '是')=:kitting >>
+   	<<AND SO.DELIVERY_DATE>=:deliveryDateBegin>>
+   <<AND SO.DELIVERY_DATE<:deliveryDateEnd+1>> 
+   << and so.work_demand =:workDemandTypeCode>>
+  GROUP BY SO.TRANSACTION_STATUS,
+          SO.SUBMIT_ORDER_UUID,
+          SO.SUBMIT_ORDER_NO,
+          SO.ORDER_NO,
+          SO.SUBMIT_DATE,
+          SO.FLOW,
+          SO.TEL_NO,
+          SO.CREATOR,
+          SO.TRANSACTION_TYPE,
+          SO.AUX1,
+          SO.AUX2,
+          SO.AUX3,
+          SO.WORK_DEMAND,
+          SO.CHARGE_DESC,
+          SO.DELIVERY_TYPE,
+          SO.CARGO_CONSIGNEE_CODE,
+       	  SO.CARGO_CONSIGNEE_DESC,
+          SO.REMARK,
+          so.config_code,
+          so.delivery_date,
+          so.unload_port,
+          SO.OFFICE_CODE
+ ORDER BY SO.SUBMIT_ORDER_NO DESC
+ ) t where 0=0 
+  and ##CONDITIONS##
+		]]>
+	</sql-query>
+</hibernate-mapping>

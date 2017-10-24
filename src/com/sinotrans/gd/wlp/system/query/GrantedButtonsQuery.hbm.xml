@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="GrantedButtonsQuery">
+		<![CDATA[
+
+select vb.btn_code
+  from sys_view_button      vb,
+       sys_menu_item        mi,
+       sys_role_menu_button rmb,
+       sys_role_menu_item   rmi,
+       sys_role_user        ru,
+       sys_user             u
+ where vb.sys_menu_item_uuid = mi.sys_menu_item_uuid
+   and vb.sys_view_button_uuid = rmb.sys_view_button_uuid
+   and rmb.sys_role_menu_item_uuid = rmi.sys_role_menu_item_uuid
+   and rmi.sys_role_uuid = ru.sys_role_uuid
+   and ru.user_uuid = u.user_uuid
+   and u.user_code = :userCode
+   and :url like '%' || mi.menu_item_url || '%'
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

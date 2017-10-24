@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="NewManifestBillQuery">
+		<![CDATA[
+
+select
+cons.container_no as containerNo,
+max(bill.SHIPPING_ORDER_NO) as shippingOrderNo,
+max(ves.vessel_name) as vesselName,
+max(manbill.aux1) as billLadingNo,
+max(manbill.aux2) as portAreaCode,
+manbill.aux3 as vesselCode,
+manbill.aux4 as voyageNo,
+max(manbill.CURRENT_MODIFY_TIME) as sendTime
+from dcs_operate_log manBill
+left join (select newManbill.aux1 as billLadingNo,
+                  max(newManbill.CURRENT_MODIFY_TIME) as sendTime
+                  from dcs_operate_log newManbill
+                  where newManbill.OPEATION_TYPE = 'SEND'
+                  <<and newManbill.CURRENT_MODIFY_TIME>=:sendDateFrom>>
+                  <<and newManbill.CURRENT_MODIFY_TIME<=:sendDateTo>>
+                  and (newManbill.business_ref_no != 'NO_MANIFESTNO' and newManbill.business_ref_no is not null)
+                  and (newManbill.aux3 is not null or newManbill.aux4 is not null)
+                  group by newManbill.aux1) groupBill on groupBill.billLadingNo = manBill.aux1
+left join dcs_bill_lading bill on bill.bill_lading_no = manBill.aux1
+                               and subStr(bill.BILL_CONTROL_WORD,20,1)<>'Y'
+left join dcs_container_info contInfo on contInfo.bill_lading_id = bill.bill_lading_id
+                                      and subStr(contInfo.INFO_CONTROL_WORD,20,1)<>'Y'
+left join dcs_containers cons on cons.container_ref_id = contInfo.container_ref_id
+left join dcs_manifest man on man.vessel_code = manBill.aux3 and man.voyage_no = manbill.aux4
+                           and subStr(man.manifest_control_word,20,1)<>'Y'
+left join bas_vessel ves on ves.vessel_code = manbill.aux3
+where 1=1
+<<and man.liner_code = :carriageCode >>
+and manBill.OPEATION_TYPE = 'SEND'
+and groupBill.billLadingNo = manBill.aux1
+and groupBill.sendTime = manBill.CURRENT_MODIFY_TIME
+and ##CONDITIONS## 
+group by cons.container_no,
+bill.SHIPPING_ORDER_NO,
+manbill.aux3,
+manbill.aux4
+order by cons.container_no asc
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

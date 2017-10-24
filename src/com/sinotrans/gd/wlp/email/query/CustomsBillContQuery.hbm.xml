@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="CustomsBillContQuery">
+		<![CDATA[
+
+select
+info.container_no as containerNo,
+bill.bill_lading_no as billLadingNo,
+max(t.create_time) as workDate
+from CUSTOMS_ORDER t
+left join  dcs_bill_lading bill on t.bill_lading_no = bill.bill_lading_no and not (bill.bill_control_word like '%Y')
+  and t.port_area_code= bill.port_area_code
+left join (select bill_lading_id, liner_code liner_code, CNTR_ADMIN_CODE,container_no,ADDITION_CONTROL
+     from dcs_container_info, dcs_containers  where not (dcs_container_info.info_control_word like '%Y')
+     and dcs_container_info.container_ref_id=dcs_containers.container_ref_id
+     ) info on bill.bill_lading_id = info.bill_lading_id
+where 1=1
+and (t.carriage_code != 'LOAD_MANIFEST_CLEARENCE' and t.CUSTOMS_NO != 'NO_CUSTOMSNO')
+and t.bill_lading_no is not null
+<<and t.CREATE_TIME between :workDateFrom and :workDateTo >>
+<<and t.carriage_code =:carriageCode>>
+and ##CONDITIONS##
+group by info.container_no,bill.bill_lading_no
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

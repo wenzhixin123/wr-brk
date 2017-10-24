@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="YclSubByUuidQuery">
+		<![CDATA[
+
+select sod.submit_order_detail_uuid,
+	   so.order_no,
+       sod.submit_order_uuid,
+       sod.submit_order_no,
+       sod.item_code,
+       sod.bill_no,
+       sod.batch_no,
+       sod.create_time,
+       sod.marks_number,
+       case
+         when substr(sod.control_word, 7, 1) = '1' then
+          '是'
+         else
+          '否'
+       end as control_word,
+       sod.aux2,
+       sod.transaction_status,
+       sod.aux1,
+       sod.aux5,
+       substr(sod.aux3,3,2) aux3,
+       sod.goods_desc,
+       sod.qty,
+       sod.qty_unit_desc,
+       sod.qty_unit_code,
+       sod.ext_item_code,
+       sod.remark,
+       sod.spec,
+       sod.MODEL,
+                (select sum(lod.qty) from logistics_order_detail lod where lod.submit_order_detail_uuid=sod.submit_order_detail_uuid and lod.transaction_status!='Cancel') as order_Qty,
+              (select sum(lod.confirmed_qty) from logistics_order_detail lod where lod.submit_order_detail_uuid=sod.submit_order_detail_uuid and lod.transaction_status!='Cancel') as confirmed_qty
+  from submit_order_detail sod, submit_order so
+  where so.submit_order_uuid = sod.submit_order_uuid
+  and sod.submit_order_uuid = :submitOrderUuid
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

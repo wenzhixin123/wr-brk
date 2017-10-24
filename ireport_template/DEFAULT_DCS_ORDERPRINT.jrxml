@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DcsLogisticsOrderEntity" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61fefd0a-eac1-49a7-b2f8-412a85b0e777">
+	<property name="ireport.zoom" value="3.536921536500006"/>
+	<property name="ireport.x" value="1406"/>
+	<property name="ireport.y" value="586"/>
+	<style name="PdfField" fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="Identity-H"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="conditions" uuid="0ec21658-0672-4b76-8343-c6e198fa1622">
+		<field name="cntrAdminCode" class="java.lang.String"/>
+		<field name="cntrCapacity" class="java.lang.Long"/>
+		<field name="cntrDamagedEnable" class="java.lang.String"/>
+		<field name="cntrFifo" class="java.lang.String"/>
+		<field name="cntrIsoCode" class="java.lang.String"/>
+		<field name="cntrMaxWeight" class="java.lang.Long"/>
+		<field name="cntrOwnerCode" class="java.lang.String"/>
+		<field name="containerMaterial" class="java.lang.String"/>
+		<field name="containerNo" class="java.lang.String"/>
+		<field name="containerType" class="java.lang.String"/>
+		<field name="controlWord" class="java.lang.String"/>
+		<field name="createTime" class="java.util.Date"/>
+		<field name="creator" class="java.lang.String"/>
+		<field name="logisticsOrderId" class="java.lang.String"/>
+		<field name="modifier" class="java.lang.String"/>
+		<field name="modifyTime" class="java.util.Date"/>
+		<field name="officeCode" class="java.lang.String"/>
+		<field name="pickupCntrCount" class="java.lang.Long"/>
+		<field name="prrmaryKeyName" class="java.lang.String"/>
+		<field name="recVer" class="java.lang.Long"/>
+		<field name="rowState" class="java.lang.String"/>
+		<field name="usedConditionId" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="箱明细信息表" uuid="011c2b2a-1d59-4fef-8ef1-21d703d54f54">
+		<parameter name="DWR" class="java.lang.Object"/>
+		<field name="assigncontainer" class="java.lang.String"/>
+		<field name="billLadingId" class="java.lang.String"/>
+		<field name="billNo" class="java.lang.String"/>
+		<field name="billcountInCntr" class="java.lang.String"/>
+		<field name="boxStatus" class="java.lang.String"/>
+		<field name="cntrAdminCode" class="java.lang.String"/>
+		<field name="cntrAdminName" class="java.lang.String"/>
+		<field name="cntrArrivalTime" class="java.util.Date"/>
+		<field name="cntrOwnerCode" class="java.lang.String"/>
+		<field name="cntrfifo" class="java.lang.String"/>
+		<field name="containerInfoId" class="java.lang.String"/>
+		<field name="containerNo" class="java.lang.String"/>
+		<field name="containerRefId" class="java.lang.String"/>
+		<field name="containerType" class="java.lang.String"/>
+		<field name="createTime" class="java.util.Date"/>
+		<field name="creator" class="java.lang.String"/>
+		<field name="currentPilePlace" class="java.lang.String"/>
+		<field name="customsClearance" class="java.lang.String"/>
+		<field name="customsSealNo" class="java.lang.String"/>
+		<field name="dateWork" class="java.util.Date"/>
+		<field name="depotDcsContaineInforId" class="java.lang.String"/>
+		<field name="descWork" class="java.lang.String"/>
+		<field name="expiryDate" class="java.util.Date"/>
+		<field name="exportarea" class="java.lang.String"/>
+		<field name="goodsDesc" class="java.lang.String"/>
+		<field name="goodsQtys" class="java.lang.Long"/>
+		<field name="grossWeight" class="java.lang.Double"/>
+		<field name="grossWeightL" class="java.lang.Double"/>
+		<field name="hasWorkSheet" class="java.lang.String"/>
+		<field name="haul" class="java.lang.String"/>
+		<field name="inSpot" class="java.lang.String"/>
+		<field name="inType" class="java.lang.String"/>
+		<field name="infoControlWord" class="java.lang.String"/>
+		<field name="inspectionChecked" class="java.lang.String"/>
+		<field name="inspectionClearance" class="java.lang.String"/>
+		<field name="isBroken" class="java.lang.String"/>
+		<field name="isDanger" class="java.lang.String"/>
+		<field name="isHold" class="java.lang.String"/>
+		<field name="isLCL" class="java.lang.String"/>
+		<field name="isNextJob" class="java.lang.String"/>
+		<field name="isTransFlag" class="java.lang.String"/>
+		<field name="kindsPackage" class="java.lang.String"/>
+		<field name="linerCode" class="java.lang.String"/>
+		<field name="logisticsOrderId" class="java.lang.String"/>
+		<field name="logisticsOrderNo" class="java.lang.String"/>
+		<field name="modifier" class="java.lang.String"/>
+		<field name="modifyTime" class="java.util.Date"/>
+		<field name="netWeight" class="java.lang.Double"/>
+		<field name="nowStatus" class="java.lang.String"/>
+		<field name="oceanVesselName" class="java.lang.String"/>
+		<field name="oceanVesselVoyaga" class="java.lang.String"/>
+		<field name="officeCode" class="java.lang.String"/>
+		<field name="pickupCntrStatus" class="java.lang.String"/>
+		<field name="pickupDepot" class="java.lang.String"/>
+		<field name="portFinalArrivalCode" class="java.lang.String"/>
+		<field name="portFinalArrivalDesc" class="java.lang.String"/>
+		<field name="portTranshipCode" class="java.lang.String"/>
+		<field name="portTranshipDesc" class="java.lang.String"/>
+		<field name="preBillLadingNo" class="java.lang.String"/>
+		<field name="prrmaryKeyName" class="java.lang.String"/>
+		<field name="qty" class="java.lang.Double"/>
+		<field name="recVer" class="java.lang.Long"/>
+		<field name="refrigeration" class="java.lang.String"/>
+		<field name="returnAdminCode" class="java.lang.String"/>
+		<field name="returnedCntrStatus" class="java.lang.String"/>
+		<field name="returnedDepot" class="java.lang.String"/>
+		<field name="rowState" class="java.lang.String"/>
+		<field name="sealNo" class="java.lang.String"/>
+		<field name="seqNo" class="java.lang.Long"/>
+		<field name="shippingOrderNo" class="java.lang.String"/>
+		<field name="sourceTarget" class="java.lang.String"/>
+		<field name="subSealNo" class="java.lang.String"/>
+		<field name="terminalDischargeCode" class="java.lang.String"/>
+		<field name="terminalDischargeDesc" class="java.lang.String"/>
+		<field name="terminalLoadingCode" class="java.lang.String"/>
+		<field name="terminalLoadingDesc" class="java.lang.String"/>
+		<field name="tractorNo" class="java.lang.String"/>
+		<field name="truckFleetCode" class="java.lang.String"/>
+		<field name="truckTranshipNo" class="java.lang.String"/>
+		<field name="typeWork" class="java.lang.String"/>
+		<field name="usedConditionId" class="java.lang.String"/>
+		<field name="volume" class="java.lang.Double"/>
+		<field name="volumeL" class="java.lang.Double"/>
+		<field name="warehouse" class="java.lang.String"/>
+		<field name="workRemark" class="java.lang.String"/>
+		<field name="workSpecial" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="details" uuid="8c9f32e7-25bf-4865-9460-762f36ce5174">
+		<field name="arrangeCfsPlace" class="java.lang.String"/>
+		<field name="average" class="java.lang.String"/>
+		<field name="batchNo" class="java.lang.String"/>
+		<field name="billLadingId" class="java.lang.String"/>
+		<field name="billMovementType" class="java.lang.String"/>
+		<field name="billNo" class="java.lang.String"/>
+		<field name="classNo" class="java.lang.String"/>
+		<field name="confirmedQty" class="java.lang.Double"/>
+		<field name="createTime" class="java.util.Date"/>
+		<field name="creator" class="java.lang.String"/>
+		<field name="currencyCode" class="java.lang.String"/>
+		<field name="dangerCode" class="java.lang.String"/>
+		<field name="deliveredQty" class="java.lang.Double"/>
+		<field name="depotLogisticsDetailId" class="java.lang.String"/>
+		<field name="goodsDesc" class="java.lang.String"/>
+		<field name="goodsKind" class="java.lang.String"/>
+		<field name="goodsModel" class="java.lang.String"/>
+		<field name="goodsNature" class="java.lang.String"/>
+		<field name="goodsSpec" class="java.lang.String"/>
+		<field name="grossWeight" class="java.lang.Double"/>
+		<field name="inLogisticsDetailId" class="java.lang.String"/>
+		<field name="inLogisticsOrderNo" class="java.lang.String"/>
+		<field name="logisticsDetailId" class="java.lang.String"/>
+		<field name="logisticsDetailWord" class="java.lang.String"/>
+		<field name="logisticsOrderId" class="java.lang.String"/>
+		<field name="logisticsOrderNo" class="java.lang.String"/>
+		<field name="marksNumber" class="java.lang.String"/>
+		<field name="modifier" class="java.lang.String"/>
+		<field name="modifyTime" class="java.util.Date"/>
+		<field name="netWeight" class="java.lang.Double"/>
+		<field name="officeCode" class="java.lang.String"/>
+		<field name="packageType" class="java.lang.String"/>
+		<field name="prrmaryKeyName" class="java.lang.String"/>
+		<field name="qty" class="java.lang.Double"/>
+		<field name="qtyUnitCode" class="java.lang.String"/>
+		<field name="qtyUnitDesc" class="java.lang.String"/>
+		<field name="recVer" class="java.lang.Long"/>
+		<field name="remainHoldUuid" class="java.lang.String"/>
+		<field name="remark" class="java.lang.String"/>
+		<field name="rowState" class="java.lang.String"/>
+		<field name="seqNo" class="java.lang.Long"/>
+		<field name="sourceLotCode" class="java.lang.String"/>
+		<field name="targetLotCode" class="java.lang.String"/>
+		<field name="totalPrice" class="java.lang.Double"/>
+		<field name="trainCardNo" class="java.lang.String"/>
+		<field name="transactionStatus" class="java.lang.String"/>
+		<field name="transactionType" class="java.lang.String"/>
+		<field name="unitPrice" class="java.lang.Double"/>
+		<field name="volume" class="java.lang.Double"/>
+		<field name="volumeUnitCode" class="java.lang.String"/>
+		<field name="volumeUnitDesc" class="java.lang.String"/>
+		<field name="warehouse" class="java.lang.String"/>
+		<field name="weightUnitCode" class="java.lang.String"/>
+		<field name="weightUnitDesc" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="DWR" class="java.lang.Object">
+		<parameterDescription><![CDATA[模拟DWR]]></parameterDescription>
+	</parameter>
+	<parameter name="userInfo" class="java.lang.Object"/>
+	<field name="委托单位" class="java.lang.String">
+		<fieldDescription><![CDATA[agentConsigneeCode]]></fieldDescription>
+	</field>
+	<field name="agentConsigneeDesc" class="java.lang.String"/>
+	<field name="agentConsigneeName" class="java.lang.String"/>
+	<field name="baoshui" class="java.lang.String"/>
+	<field name="billno" class="java.lang.String"/>
+	<field name="bussinessType" class="java.lang.String"/>
+	<field name="货主工厂" class="java.lang.String">
+		<fieldDescription><![CDATA[cargoConsigneeCode]]></fieldDescription>
+	</field>
+	<field name="货主工厂描述" class="java.lang.String">
+		<fieldDescription><![CDATA[cargoConsigneeDesc]]></fieldDescription>
+	</field>
+	<field name="cargoConsigneeName" class="java.lang.String"/>
+	<field name="控货人" class="java.lang.String">
+		<fieldDescription><![CDATA[cargoControlCode]]></fieldDescription>
+	</field>
+	<field name="cmPickupWork" class="java.lang.String"/>
+	<field name="cmReturnWork" class="java.lang.String"/>
+	<field name="cntrAdminCode" class="java.lang.String"/>
+	<field name="cntrAdminName" class="java.lang.String"/>
+	<field name="computerIP" class="java.lang.String"/>
+	<field name="computerName" class="java.lang.String"/>
+	<field name="conditions" class="java.util.List"/>
+	<field name="configCode" class="java.lang.String"/>
+	<field name="箱明细信息表" class="java.util.List">
+		<fieldDescription><![CDATA[containerInfos]]></fieldDescription>
+	</field>
+	<field name="containerSize" class="java.lang.Integer"/>
+	<field name="containerno" class="java.lang.String"/>
+	<field name="合同号" class="java.lang.String">
+		<fieldDescription><![CDATA[contractNo]]></fieldDescription>
+	</field>
+	<field name="createTime" class="java.util.Date"/>
+	<field name="creator" class="java.lang.String"/>
+	<field name="cun20" class="java.lang.String"/>
+	<field name="cun40" class="java.lang.String"/>
+	<field name="cun45" class="java.lang.String"/>
+	<field name="customerRefNo" class="java.lang.String"/>
+	<field name="dangerCode" class="java.lang.String"/>
+	<field name="deliveryDesc" class="java.lang.String"/>
+	<field name="deliveryDescEx" class="java.lang.String"/>
+	<field name="deliveryType" class="java.lang.String"/>
+	<field name="deport" class="java.lang.String"/>
+	<field name="details" class="java.util.List"/>
+	<field name="fromSource" class="java.lang.String"/>
+	<field name="goodsName" class="java.lang.String"/>
+	<field name="hasChangeCcRowStatus" class="java.lang.String"/>
+	<field name="hasNextJobCont" class="java.lang.String"/>
+	<field name="isWeight" class="java.lang.String"/>
+	<field name="lockStatus" class="java.lang.String"/>
+	<field name="logisticsControlWord" class="java.lang.String"/>
+	<field name="logisticsDeliveryDate" class="java.util.Date"/>
+	<field name="logisticsFeedinDate" class="java.util.Date"/>
+	<field name="办单日" class="java.util.Date">
+		<fieldDescription><![CDATA[logisticsOrderDate]]></fieldDescription>
+	</field>
+	<field name="logisticsOrderId" class="java.lang.String"/>
+	<field name="中心委托单号" class="java.lang.String">
+		<fieldDescription><![CDATA[logisticsOrderNo]]></fieldDescription>
+	</field>
+	<field name="masterOrderId" class="java.lang.String"/>
+	<field name="modifier" class="java.lang.String"/>
+	<field name="modifyTime" class="java.util.Date"/>
+	<field name="movementType" class="java.lang.String"/>
+	<field name="oceanVesselName" class="java.lang.String"/>
+	<field name="oceanVesselVoyage" class="java.lang.String"/>
+	<field name="officeCode" class="java.lang.String"/>
+	<field name="opeator" class="java.lang.String"/>
+	<field name="orderDocumentNo" class="java.lang.String"/>
+	<field name="送货单号" class="java.lang.String">
+		<fieldDescription><![CDATA[orderNo]]></fieldDescription>
+	</field>
+	<field name="payType" class="java.lang.String"/>
+	<field name="付款人" class="java.lang.String">
+		<fieldDescription><![CDATA[payerCode]]></fieldDescription>
+	</field>
+	<field name="pickupCntrStatus" class="java.lang.String"/>
+	<field name="pickupDepot" class="java.lang.String"/>
+	<field name="planExportDate" class="java.util.Date"/>
+	<field name="委托地点码" class="java.lang.String">
+		<fieldDescription><![CDATA[portAreaCode]]></fieldDescription>
+	</field>
+	<field name="portTranshipCode" class="java.lang.String"/>
+	<field name="portTranshipDesc" class="java.lang.String"/>
+	<field name="项目代码" class="java.lang.String">
+		<fieldDescription><![CDATA[projectCode]]></fieldDescription>
+	</field>
+	<field name="prrmaryKeyName" class="java.lang.String"/>
+	<field name="recVer" class="java.lang.Long"/>
+	<field name="releasedId" class="java.lang.String"/>
+	<field name="remarks" class="java.lang.String"/>
+	<field name="returnAdminCode" class="java.lang.String"/>
+	<field name="returnCntrStatus" class="java.lang.String"/>
+	<field name="returnDepot" class="java.lang.String"/>
+	<field name="rowState" class="java.lang.String"/>
+	<field name="shippingOrderNo" class="java.lang.String"/>
+	<field name="signData" class="java.lang.String"/>
+	<field name="委托单号" class="java.lang.String">
+		<fieldDescription><![CDATA[submitOrderUuid]]></fieldDescription>
+	</field>
+	<field name="toChooseNum" class="java.lang.String"/>
+	<field name="toFixNum" class="java.lang.String"/>
+	<field name="toTarget" class="java.lang.String"/>
+	<field name="tractorNo" class="java.lang.String"/>
+	<field name="transactionStatus" class="java.lang.String"/>
+	<field name="transactionType" class="java.lang.String"/>
+	<field name="transactor" class="java.lang.String"/>
+	<field name="transactorTelNo" class="java.lang.String"/>
+	<field name="truckFleetCode" class="java.lang.String"/>
+	<field name="验证码" class="java.lang.String">
+		<fieldDescription><![CDATA[verifyCode]]></fieldDescription>
+	</field>
+	<field name="vesselCode" class="java.lang.String"/>
+	<field name="vesselName" class="java.lang.String"/>
+	<field name="voyageNo" class="java.lang.String"/>
+	<field name="workSpecial" class="java.lang.String"/>
+	<field name="cargoConsigneeCode" class="java.lang.String"/>
+	<field name="cargoConsigneeDesc" class="java.lang.String"/>
+	<variable name="DS_conditions" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
+		<variableExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{conditions})]]></variableExpression>
+		<initialValueExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(null)]]></initialValueExpression>
+	</variable>
+	<variable name="DS_箱明细信息表" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
+		<variableExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{箱明细信息表})]]></variableExpression>
+		<initialValueExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(null)]]></initialValueExpression>
+	</variable>
+	<variable name="DS_details" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource">
+		<variableExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{details})]]></variableExpression>
+		<initialValueExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource(null)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="0" y="0" width="320" height="25" uuid="7809c9bd-8b32-47c5-be77-3236310746c9"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["广东中外运"+$F{deport}+"有限公司"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="0" y="25" width="320" height="25" uuid="520f76ec-ef21-45de-8862-bb1e942c7e1d"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["集装箱作业单( "+$F{deliveryType}+" )"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="336" y="9" width="219" height="35" uuid="e2be0b6b-28c3-4ade-9678-2a3097532d93"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[($F{cmPickupWork}!=null&&$F{cmPickupWork}!=""?$F{cmPickupWork}:($F{cmReturnWork}!=null&&$F{cmReturnWork}!=""?$F{cmReturnWork}:"0"))]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</title>
+	<detail>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement style="table_TD" x="509" y="60" width="46" height="20" uuid="4de65966-4de6-4f84-8f81-8a5654fe8b5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[45']]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="71" y="0" width="267" height="20" uuid="956f40f0-051b-4278-983f-93c1b78d173e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agentConsigneeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="0" y="40" width="71" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fd2fd1df-9d7c-47a9-96c3-de4fd9152457"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[收货公司]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" x="338" y="0" width="75" height="40" forecolor="#0033FF" uuid="9c230c04-a8fe-42d3-ae95-31cc77071e24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[作业单号]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="71" y="20" width="267" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="96367281-8068-4873-8435-c84cd6a09153"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cntrAdminName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="247" y="80" width="91" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8743c39c-74da-445b-9ccc-558a19c5e389"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dangerCode}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" x="0" y="0" width="71" height="20" uuid="b8175b71-f15c-41b8-a1c2-03306932b314"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[委托单位]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="461" y="80" width="48" height="20" uuid="bc1c8018-2be7-42ab-9eb9-b060d1a95cd7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cun40}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="172" y="80" width="75" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="df1cec82-fac5-4004-8500-66045acb99c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[危品参数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="0" y="20" width="71" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d03c31c0-04b0-4874-9935-5ae87bba815d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[控箱公司]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="338" y="100" width="75" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="73e1fb92-a475-49b2-9cda-2b46a32488f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[制单员]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="338" y="40" width="75" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fe26b4db-0eae-432e-9814-684481f5cad3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[申请日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="338" y="60" width="75" height="40" forecolor="#000000" backcolor="#FFFFFF" uuid="15bc8d4d-4769-4ad0-826d-829a7f596745"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[箱计划数]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="71" y="80" width="101" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="09cde172-bd66-43db-a209-a36447de5677"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{toTarget}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="247" y="100" width="91" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3f5b7a50-396d-4a20-8e28-085dc4704bba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{voyageNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="0" y="60" width="71" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0fce8a93-74d4-4b0f-a295-b4fc93a56d8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[付款]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="71" y="60" width="267" height="20" uuid="5c14fd73-e4b8-4b57-9f76-05589628ede4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="0" y="100" width="71" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d2929ff7-765d-4013-96f7-a63937b3f3f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[船名]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="71" y="120" width="484" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fb5209ac-1a83-4af2-88ed-875a73ff529b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deliveryDescEx}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd HH:mm" isBlankWhenNull="true">
+				<reportElement style="table_TD" x="413" y="40" width="142" height="20" uuid="44acc598-3050-4715-8475-458a26ca12ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{办单日}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" x="413" y="60" width="48" height="20" uuid="cfdef635-e219-4e88-9b87-78cf16d09d87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[20']]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="509" y="80" width="46" height="20" uuid="525aebe2-30cb-4a2c-830e-800b523e0e90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cun45}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" x="461" y="60" width="48" height="20" uuid="7d9aa530-0413-4bbb-a90b-58c543551937"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[40']]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="0" y="80" width="71" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="416e01b8-bc51-4140-be74-a168a8f0a8a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[流向]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="413" y="100" width="142" height="20" uuid="9c07eed8-55a7-4825-9b15-4645655807c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creator}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="413" y="0" width="142" height="40" uuid="ce45fc84-0f01-46da-b498-afdec6c5e411"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{cmPickupWork}!=null&&$F{cmPickupWork}!=""?$F{cmPickupWork}:($F{cmReturnWork}!=null&&$F{cmReturnWork}!=""?$F{cmReturnWork}:""))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table_TD" x="413" y="80" width="48" height="20" uuid="3d7ddd7d-624f-4b82-8bf3-7b14c9bf3138"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cun20}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="172" y="100" width="75" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3f1245cd-cb86-4c13-8fb9-22ffabb29bb5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[航次]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="71" y="40" width="267" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="77fc9ea3-92e7-4d01-a244-aa25030b528e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single" firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargoConsigneeCode}==null?$F{cargoConsigneeDesc}:
+(
+    $P{DWR}==null?"":
+    $P{DWR}.call("com.sinotrans.gd.wlp.basicdata.service.BasCustomerManager.getModelByCode", $F{cargoConsigneeCode}).customerName
+)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" mode="Opaque" x="0" y="120" width="71" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="27dd6d70-a3fc-4b99-ab9f-41547cab0a27"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[作业情况]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="table_TD" mode="Opaque" x="71" y="100" width="101" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0e56c845-8edf-46ec-b598-5dec5da11460"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vesselName}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="77">
+			<componentElement>
+				<reportElement key="table" x="0" y="0" width="555" height="77" uuid="725bfe22-0ebc-4792-883f-9352d46c03a7"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="箱明细信息表" uuid="d7423363-eee5-4708-b964-5b7cfe567cb1">
+						<datasetParameter name="DWR">
+							<datasetParameterExpression><![CDATA[$P{DWR}]]></datasetParameterExpression>
+						</datasetParameter>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{箱明细信息表})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="71" uuid="5b98af54-d81d-4c21-bd75-a4a41ab217ef">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="71" height="30" uuid="c91439c0-1dba-48ec-ae3a-1ef38793830a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[集装箱号]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField>
+								<reportElement style="PdfField" x="0" y="1" width="71" height="15" uuid="a07f6d7f-c41c-4ee7-bb51-0fe6498bdb6b"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{containerNo}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="16" width="71" height="15" uuid="f10b11c5-ca2e-4c30-844b-c8f3d7325514"/>
+								<textElement textAlignment="Center">
+									<font fontName="宋体" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{DWR}==null?$F{linerCode}
+:$P{DWR}.call("com.sinotrans.gd.wlp.basicdata.service.BasCustomerManager.getModelByCode",$F{linerCode}).customerName]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="0" y="31" width="71" height="15" uuid="310e391a-6239-4848-99ce-a950234d5464"/>
+								<textElement textAlignment="Center">
+									<font fontName="宋体" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA["箱体重:"+ ($F{grossWeight}==null?"":$F{grossWeight})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="35" uuid="ce25675a-5238-4970-9f33-0e5be1f81ae1">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="35" height="30" uuid="ad3e16c9-8fb9-45c2-8d10-187ca9a8ecc7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[箱型]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField>
+								<reportElement style="PdfField" x="0" y="0" width="35" height="47" uuid="39c61be5-5440-46da-9c3e-307b69a9fb03"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isItalic="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{containerType}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="66d6ec3e-097a-4140-a52a-5534f7398b47">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="65" height="30" uuid="e2a48dbe-4c18-46a4-94f4-aa20d24686a1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[来源单号]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField pattern="yyyy-MM-dd">
+								<reportElement style="PdfField" x="0" y="31" width="65" height="15" uuid="7777de01-744d-4756-92d2-5d7e2dd747da"/>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{expiryDate}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="65" height="16" uuid="1eec11bc-a364-43ac-a2ad-f54fa32ebeac"/>
+								<textElement>
+									<font fontName="宋体" size="12"/>
+								</textElement>
+								<text><![CDATA[*]]></text>
+							</staticText>
+							<staticText>
+								<reportElement x="0" y="16" width="65" height="15" uuid="4c1121fa-e61c-489c-83a3-607d091eaeb2"/>
+								<textElement>
+									<font fontName="宋体" size="12"/>
+								</textElement>
+								<text><![CDATA[有效期：]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="82" uuid="027c878f-88e5-4df3-a156-0eb28f955e00">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="82" height="30" uuid="74abd667-f4ce-4af2-9006-a0299c18f2ac"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[提单号]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="0" y="0" width="82" height="23" uuid="e1fc85f7-1ce5-4cb2-8ca2-9ff5f4a94c37"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="宋体"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{billNo}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="23" width="82" height="23" uuid="29b20040-846b-439d-84a1-be94ae297737"/>
+								<textElement textAlignment="Center">
+									<font fontName="宋体"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{shippingOrderNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="83" uuid="bbea5840-27d7-49ec-a174-c79fc1706c81">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="83" height="30" uuid="f622c793-128f-4f41-af1d-0e7e17dbfd3c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[货物名称]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="0" y="0" width="83" height="46" uuid="2176a108-21d5-42ae-a6ad-1f0bb07bf86d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{goodsDesc}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="46" uuid="fc984ec4-3385-4be2-bb17-be0d1b893a9b">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="46" height="30" uuid="d46b3fdf-b3f4-49a2-b30f-6d01e2449199"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<text><![CDATA[货物库位
+箱堆位]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="0" y="0" width="46" height="46" uuid="74b078d8-6720-4474-a3f8-7e19834b5b6a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{currentPilePlace}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="0f461c95-d226-43ac-8522-d95d7814a708">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="30" height="30" uuid="89383d83-8280-49c7-8b7d-789d922eb00b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[件数]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="30" height="46" uuid="905f11d4-6a6a-4d8f-9593-1f4602344fb4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{qty}==null?0:$F{qty}.intValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="02838ff0-d77d-4916-96c1-b3cf51d7dd4a">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="65" height="30" uuid="2a1ee84d-869e-43d0-b194-c40733952c64"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<text><![CDATA[重量(Kgs)
+体积(方)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField>
+								<reportElement style="PdfField" x="0" y="0" width="65" height="23" uuid="6a6dcc5d-0567-49d9-95d4-3bd99eccefbe"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{grossWeightL}==null?0:$F{grossWeightL}.intValue()]]></textFieldExpression>
+							</textField>
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="23" width="65" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="cb65b018-6653-4de2-98fa-f53f521d9d1b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="宋体" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{volume}==null?0.0:$F{volume}.doubleValue()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="b1cc2832-8a5b-4d45-8e73-e23023763864">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="PdfField" x="0" y="0" width="78" height="30" uuid="3e8dcc8b-0467-4259-bd95-b5b9a39cb219"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[封号]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="47" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="PdfField" x="0" y="0" width="78" height="46" uuid="8e96b004-a080-4ca3-a02b-27a22115fa1a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{sealNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="56" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement style="PdfField" x="436" y="0" width="118" height="20" uuid="cf6be427-ea14-4908-818b-700283514dc6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{opeator}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="PdfField" x="368" y="0" width="68" height="20" uuid="81ae8123-a844-42b0-abb0-78a31d4a3d6c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[操作员：]]></text>
+			</staticText>
+			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="71" y="0" width="253" height="20" uuid="07ed4735-5f78-4c82-972a-23e30e5399f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{createTime}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="40" width="555" height="15" uuid="0033a4a2-7cf5-4cff-81b0-c822f1a1b3ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[注意:自2008年7月1日起规定重出重回、吉出重回、吉出不回、陆运吉进、陆运重进单证的有效期为自办单日起为3天 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="20" width="71" height="20" uuid="ce8cb2cd-61f1-4d08-970d-b7e2def890e3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[备注：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="PdfField" x="0" y="0" width="71" height="20" uuid="5369568c-d8a5-4b4e-ac37-a6f2accafb45"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[制单日期：]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="20" width="483" height="20" uuid="a7238241-def9-47c0-b5ab-f839f24a6dba"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="211" y="0" width="63" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f9247ddb-c6a1-418e-9684-5608b42f0421"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["第 "+$V{PAGE_NUMBER}+" 页, 共 " + $V{PAGE_NUMBER}+" 页"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="274" y="0" width="89" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b87dd73b-c013-41d3-ab25-294808130ae0"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["共 " + $V{PAGE_NUMBER}+" 页"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

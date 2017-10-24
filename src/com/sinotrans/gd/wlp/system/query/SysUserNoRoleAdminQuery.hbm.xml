@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="SysUserNoRoleAdminQuery">
+		<![CDATA[
+
+ select  su.* from SYS_USER su
+where  su.OFFICE_CODE in(:officeCode)
+<<and su.user_name like '%' || :userName || '%'>>
+<<and su.USER_TYPE=:userType>>
+<<and su.Create_Time >=:startDate>>
+<<and su.Create_Time <:endDate+1>>
+   and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<sql-query name="SystemCodeCodeDefQuery">
+		<![CDATA[
+
+SELECT CD.CODE_VALUE,
+       CD.DISPLAY_VALUE,
+       CD.DISPLAY_VALUE_EN,
+       CD.CONTROL_WORD,
+       CD.REMARK
+  FROM BAS_CODE_TYPE CT, BAS_CODE_DEF CD
+ WHERE CT.BAS_CODE_TYPE_UUID = CD.BAS_CODE_TYPE_UUID
+   <<AND CT.TYPE_CODE = :typeCode>>
+   AND CT.STATUS = :status
+   AND CD.STATUS = :status
+   <<AND CD.DISPLAY_VALUE=:typeValue>>
+   <<AND CD.CODE_VALUE=:codeValue>>
+ <<AND CD.OFFICE_CODE = :officeCode>>
+   and ##CONDITIONS##
+ ORDER BY CD.CODE_NUMBER ASC
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

@@ -1,0 +1,342 @@
+@charset "utf-8";
+
+/* CSS Document */
+body,a,b,p,h1,h2,h3,h4,h5,div,span,strong,em,i,ul,ol,li,dl,dd,dt,img {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	font-size: 12px;
+	font-family: Arial;
+	background: #d5e9f6 url(../images/index/body_bg.png) repeat-y center top;
+	color: #402e13;
+}
+td{
+	font-size: 12px;
+}
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+a {
+	color: #205F79;
+}
+ 
+a:hover {
+	color: #666666;
+}
+ 
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+ 
+a:link {
+	color: #004276;
+}
+ 
+a:visited {
+	color: #004276;
+}
+ 
+a:hover {
+	color: #BA2636;
+}
+
+
+a img {
+	border: none;
+}
+
+i,em {
+	font-style: normal;
+}
+
+.fl {
+	float: left;
+	display: inline;
+}
+
+.fr {
+	float: right;
+	display: inline;
+}
+
+.wrap {
+	width: 1000px;
+	margin: 0px auto;
+	_padding-left: 1px;
+}
+
+.head {
+	background: url(../images/head_bg.png) no-repeat center top;
+	height: 49px;
+	width: 1000px;
+}
+
+.head .return {
+	display: block;
+	height: 48px;
+	width: 472px;
+	margin-left: 20px;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+.head .info {
+	float: right;
+	display: inline;
+	margin: 5px 10px;
+	text-align: center;
+	width: 125px;
+}
+
+.head .info a {
+	color: #402e13;
+}
+
+.head .info a:hover {
+	color: #000;
+}
+
+.menu {
+	clear: both;
+	background: none;
+	margin: 0;
+	padding: -2px;
+	border: none;
+	overflow: none;
+}
+
+.menu li {
+	float: left;
+	display: inline;
+	background: url(../images/index/item_bg.jpg) no-repeat right center;
+	padding: 0px 6px;
+}
+
+.menu li a {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	color: #1957a2;
+	font-size: 13px;
+	padding-right: 15px;
+	font-weight: bold;
+	float: left;
+	_line-height: 39px;
+}
+
+.menu li a i {
+	display: inline;
+	float: left;
+	height: 36px;
+	width: 10px;
+	margin-right: 5px;
+}
+
+.menu li.active a,.menu li a:hover {
+	padding-button: -5px;
+	background: url(../images/index/menu_r.jpg) no-repeat right top;
+	color: #fff;
+	line-height: 39px;
+	_line-height: 36px;
+}
+
+.menu li.active a i,.menu li a:hover i {
+	padding-button: -5px;
+	background: url(../images/index/menu_l.jpg) no-repeat left top;
+}
+
+.main {
+	padding-top: 5px;
+	position: relative;
+	zoom: 1;
+}
+
+.sidebar {
+	background: url(../images/index/sidebar_m.png) repeat-y left top;
+	width: 171px;
+	float: left;
+}
+
+.sidebar .sidebar_t {
+	display: block;
+	height: 6px;
+	background: url(../images/index/sidebar_t.png) no-repeat left top;
+	width: 171px;
+}
+
+.sidebar .sidebar_m {
+	background: url(../images/index/sidebar_b.png) no-repeat left bottom;
+	padding-bottom: 20px;
+	min-height: 400px;
+	height: 400px !important;
+	height: 400px;
+}
+
+.sideList .sideItem {
+	display: block;
+	height: 27px;
+	width: 138px;
+	background: url(../images/index/item_up.png) no-repeat left top;
+	line-height: 27px;
+	color: #fff;
+	font-weight: bold;
+	padding-left: 12px;
+	margin: 5px 9px;
+}
+
+.subList {
+	width: 150px;
+	margin-left: 9px;
+	display: none;
+}
+
+.subList a {
+	background: url(../images/index/item_brown.png) no-repeat left bottom;
+	width: 150px;
+	display: block;
+	text-align: center;
+	padding: 4px 0px;
+	color: #402E13;
+	text-align: left;
+}
+
+.subList a:hover {
+	background: url(../images/index/item_blue.png) no-repeat left bottom;
+	color: #1957a2;
+}
+
+.subList a.last,.subList a.last:hover {
+	background: none;
+}
+
+.sideList .open {
+	background-image: url(../images/index/item_down.png);
+}
+
+.content {
+	background: url(../images/index/con_m.png) repeat-y left top;
+	width: 816px;
+	float: left;
+	margin-left: 3px;
+	display: inline;
+}
+
+.content .con_t {
+	display: block;
+	height: 6px;
+	background: url(../images/index/con_t.png) no-repeat left top;
+	width: 100%;
+}
+
+.content .con_m {
+	background: url(../images/index/con_b.png) no-repeat left bottom;
+	padding-bottom: 20px;
+	width: 100%;
+}
+
+.tabBox .hd {
+	height: 27px;
+	background: url(../images/index/tab_b.png) repeat-x left bottom;
+	width: 810px;
+	margin: 0px auto;
+}
+
+.tabList li {
+	float: left;
+	display: inline;
+	height: 27px;
+	background: url(../images/index/tab_r.png) no-repeat right top;
+	margin-left: 4px;
+	padding-right: 3px;
+}
+
+.tabList li .tabItem {
+	display: inline;
+	float: left;
+	height: 27px;
+	background: url(../images/index/tab_l.png) no-repeat left top;
+	white-space: nowrap;
+	padding-right: 10px;
+	height: 27px;
+	padding: 0px 12px;
+	line-height: 27px;
+	color: #402e13;
+}
+
+.tabList li i {
+	display: inline;
+	float: left;
+	background: url(../images/index/tab_r.png) no-repeat right top;
+	padding-right: 3px;
+	height: 27px;
+}
+
+.tabList li .tabClose {
+	display: block;
+	height: 10px;
+	width: 10px;
+	background: url(../images/index/close.gif) no-repeat left top;
+	text-indent: -9999px;
+	overflow: hidden;
+	float: right;
+	margin: 9px 5px 0px 0px;
+}
+
+.tabList .active {
+	background-image: url(../images/index/tab_m_hover.png);
+}
+
+.tabList .active .tabItem {
+	background-image: url(../images/index/tab_l_hover.png);
+}
+
+.tabList .active i {
+	background-image: url(../images/index/tab_r_hover.png);
+}
+
+.sidebarControl {
+	display: block;
+	height: 128px;
+	width: 7px;
+	background: url(../images/index/hide_open.gif) no-repeat left top;
+	position: absolute;
+	left: 169px;
+	top: 100px;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+.main_all .sidebar {
+	display: none;
+}
+
+.main_all .content {
+	width: 985px;
+	background-image: url(../images/index/con_m_all.png);
+	margin-left: 7px;
+}
+
+.main_all .content .con_t {
+	background-image: url(../images/index/con_t_all.png);
+}
+
+.main_all .content .con_m {
+	background-image: url(../images/index/con_b_all.png);
+}
+
+.main_all .sidebarControl {
+	left: 0px;
+	background-image: url(../images/index/hide_close.gif);
+}
+
+.main_all .tabBox .hd {
+	width: 979px;
+}

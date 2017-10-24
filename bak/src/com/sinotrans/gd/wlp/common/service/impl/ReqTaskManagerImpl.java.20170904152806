@@ -1,0 +1,51 @@
+package com.sinotrans.gd.wlp.common.service.impl;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.sinotrans.framework.core.service.impl.BaseManagerImpl;
+import com.sinotrans.gd.wlp.common.model.ReqTaskModel;
+import com.sinotrans.gd.wlp.common.service.ReqTaskManager;
+
+@Service
+public class ReqTaskManagerImpl extends BaseManagerImpl implements ReqTaskManager {
+
+	public ReqTaskModel get(Date id) {
+		return this.dao.get(ReqTaskModel.class, id);
+	}
+
+	public List<ReqTaskModel> getAll() {
+		return this.dao.getAll(ReqTaskModel.class);
+	}
+
+	public List<ReqTaskModel> findByExample(ReqTaskModel example) {
+		return this.dao.findByExample(example);
+	}
+
+	public ReqTaskModel save(ReqTaskModel model) {
+		return this.dao.save(model);
+	}
+
+	public List<ReqTaskModel> saveAll(Collection<ReqTaskModel> models) {
+		return this.dao.saveAll(models);
+	}
+
+	public void remove(ReqTaskModel model) {
+		this.dao.remove(model);
+	}
+
+	public void removeAll(Collection<ReqTaskModel> models) {
+		this.dao.removeAll(models);
+	}
+
+	public void removeByPk(Date id) {
+		this.dao.removeByPk(ReqTaskModel.class, id);
+	}
+
+	public void removeAllByPk(Collection<Date> ids) {
+		this.dao.removeAllByPk(ReqTaskModel.class, ids);
+	}
+
+}

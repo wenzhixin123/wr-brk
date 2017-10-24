@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="WarehouseFindLotByLodNoQuery">
+		<![CDATA[
+
+SELECT RS.LOT_CODE
+FROM BAS_WAREHOUSE  BW,
+     BAS_LOC_AREA   BLA,
+     BAS_LOT_STOCK  BLS,
+     REMAIN_SINWORK RS,
+     LOGISTICS_ORDER LO,
+     LOGISTICS_ORDER_DETAIL LOD
+WHERE BW.BAS_WAREHOUSE_UUID = BLA.BAS_WAREHOUSE_UUID
+ AND BLA.BAS_LOC_AREA_UUID = BLS.BAS_LOC_AREA_UUID
+ AND RS.LOT_CODE = BLS.LOT_CODE
+ AND RS.OFFICE_CODE = BLS.OFFICE_CODE
+ AND RS.IN_LOGISTICS_ORDER_DETAIL_UUID=LOD.LOGISTICS_ORDER_DETAIL_UUID
+ AND LO.LOGISTICS_ORDER_UUID = LOD.LOGISTICS_ORDER_UUID
+ AND LO.TRANSACTION_TYPE= :transactionType
+ AND RS.OFFICE_CODE = :officeCode
+ <<and bw.bas_warehouse_uuid=:basWarehouseUuid>>
+ 
+ and ##CONDITIONS##
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

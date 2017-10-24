@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<sql-query name="SysRoleQuery">
+		<![CDATA[
+
+select * from SYS_ROLE  sr 
+where sr.role_code <> 'ADMIN'
+and sr.office_code=:officeCode
+<<and sr.status=:status>>
+<<and sr.role_name like '%' || :roleName || '%'>>
+<<and sr.role_name_en like '%' || :roleNameen || '%'>>
+<<and sr.role_type=:roleType>>
+<<and sr.Create_Time >=:startDate>>
+<<and sr.Create_Time <:endDate>>
+
+		]]>
+	</sql-query>
+</hibernate-mapping>

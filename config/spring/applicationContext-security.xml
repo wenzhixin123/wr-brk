@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- ======================== FILTER CHAIN ======================= -->
+	<bean id="filterChainProxy" class="org.springframework.security.util.FilterChainProxy">
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				PATTERN_TYPE_APACHE_ANT
+				/login.jsp*=#NONE#
+				/**/sl.jsp*=#NONE#
+				/jnlp/*=#NONE#
+				<!-- /printTemplateFileAction.do*=DESVcodeFilter -->
+				/printTemplateFileAction.do*=#NONE#
+				/changeLanguage.do*=#NONE#
+				/index.jsp*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/pub/**=#NONE#
+				/main/CheckCode.jsp*=#NONE#
+				/main/**=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/jsp/scanner/**=httpSessionContextIntegrationFilter,logoutFilter,scannerAuthenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,scannerExceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/jsp/news/news2.jsp*=httpSessionContextIntegrationFilter,logoutFilter,scannerAuthenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,scannerExceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/jsp/system/downloadAction.jsp*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/jsp/system/printReportTemplateAccept.jsp*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/jsp/components/*.jsp*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/**/*.jsp*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/**/*.action*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/**/*.do*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/servlet/SinotransServlet*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/JsonFacadeServlet*=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/dwr/**/*.dwr=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/dwr2/**/*.dwr=httpSessionContextIntegrationFilter,logoutFilter,authenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/JsonFacadeNoViaServlet*=#NONE#
+				/authorize=#NONE#
+				/JsonFacadeCallBackServlet*=#NONE#
+				/openapi=httpSessionContextIntegrationFilter,tokenAuthenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+				/ediinter=httpSessionContextIntegrationFilter,ediAuthenticationProcessingFilter,securityContextHolderAwareRequestFilter,rememberMeProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptorWithNoAuthorization
+			</value>
+			<!-- Put channelProcessingFilter before securityContextHolderAwareRequestFilter to turn on SSL switching -->
+		</property>
+	</bean>
+	
+	<!-- Put it before httpSessionContextIntegrationFilter if prohibits simultaneous logins  -->
+	<!-- 
+	<bean id="concurrentSessionFilter" class="org.springframework.security.concurrent.ConcurrentSessionFilter">
+		<property name="expiredUrl" value="/"/>
+		<property name="sessionRegistry" ref="sessionRegistry"/>
+	</bean>
+	 -->
+
+	<bean id="httpSessionContextIntegrationFilter" class="org.springframework.security.context.HttpSessionContextIntegrationFilter"/>
+
+ <!-- 
+   <bean id="DESVcodeFilter" class="com.superlink.extend.filter.DESVcodeFilter">
+   	<property name="DESCheckoutSwtich" value="1"></property>
+   	<property name="DES_KEY" value="abcdefg"></property>
+   </bean> -->
+   
+   <!--  <bean id="tokenValidateFilter" class="com.sinotrans.framework.web.filter.TokenAuthenToticationProcessingFilter" />
+   
+    <bean id="ediValidateFilter" class="com.sinotrans.framework.web.filter.EdiAuthenToticationProcessingFilter" /> -->
+   
+	<bean id="logoutFilter" class="com.sinotrans.framework.core.support.springsecurity.CustomLogoutFilter">
+		<constructor-arg value="/"/>
+		<constructor-arg>
+			<list>
+				<ref local="rememberMeServices"/>
+				<bean class="org.springframework.security.ui.logout.SecurityContextLogoutHandler"/>
+			</list>
+		</constructor-arg>
+		<property name="filterProcessesUrl" value="/logout.action"/>
+		<property name="serverSideRedirect" value="false"/>
+		<property name="redirectFullUrl" value="true"/>
+	</bean>
+
+	<bean id="authenticationProcessingFilter" class="com.sinotrans.framework.core.support.springsecurity.CustomAuthenticationProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="filterProcessesUrl" value="/login.action"/>
+		<property name="usernameParameter" value="j_username"/>
+		<property name="passwordParameter" value="j_password"/>
+		<property name="checkValidationCode" value="false"/>
+		<property name="validationCodeParameter" value="j_validation_code"/>
+		<property name="validationCodeIgnoreUsers" value=""/>
+		<property name="defaultTargetUrl" value="/index.jsp"/>
+		<property name="alwaysUseDefaultTargetUrl" value="false"/>
+		<property name="authenticationFailureUrl" value="/login.jsp?error=true"/>
+		<property name="exceptionMappings">
+			<value>
+				org.springframework.security.userdetails.UsernameNotFoundException=/login.jsp?msg=UsernameNotFoundException
+				org.springframework.security.BadCredentialsException=/login.jsp?msg=BadCredentialsException
+				com.sinotrans.framework.core.support.springsecurity.ValidationCodeErrorException=/login.jsp?msg=ValidationCodeErrorException
+			</value>
+		</property>
+		<property name="serverSideRedirect" value="false"/>
+		<property name="redirectFullUrl" value="true"/>
+	</bean>
+
+	<bean id="tokenAuthenticationProcessingFilter" class="com.sinotrans.framework.core.support.springsecurity.CustomAuthenticationProcessingFilter">
+		<property name="authenticationManager" ref="tokenAuthenticationManager"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="filterProcessesUrl" value="/openapi"/>
+		<property name="usernameParameter" value="j_username"/>
+		<property name="passwordParameter" value="j_password"/>
+		<property name="checkValidationCode" value="false"/>
+		<property name="validationCodeParameter" value="j_validation_code"/>
+		<property name="validationCodeIgnoreUsers" value=""/>
+		<property name="defaultTargetUrl" value="/openapi"/>
+		<property name="alwaysUseDefaultTargetUrl" value="false"/>
+		<property name="authenticationFailureUrl" value="/login.jsp?error=true"/>
+		<property name="exceptionMappings">
+			<value>
+				org.springframework.security.userdetails.UsernameNotFoundException=/openapi
+				org.springframework.security.BadCredentialsException=/openapi
+				com.sinotrans.framework.core.support.springsecurity.ValidationCodeErrorException=/openapi
+			</value>
+		</property>
+		<property name="serverSideRedirect" value="true"/>
+		<property name="redirectFullUrl" value="true"/>
+	</bean>
+	
+	<bean id="ediAuthenticationProcessingFilter" class="com.sinotrans.framework.core.support.springsecurity.CustomAuthenticationProcessingFilter">
+		<property name="authenticationManager" ref="tokenAuthenticationManager"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="filterProcessesUrl" value="/ediinter"/>
+		<property name="usernameParameter" value="j_username"/>
+		<property name="passwordParameter" value="j_password"/>
+		<property name="checkValidationCode" value="false"/>
+		<property name="validationCodeParameter" value="j_validation_code"/>
+		<property name="validationCodeIgnoreUsers" value=""/>
+		<property name="defaultTargetUrl" value="/ediinter"/>
+		<property name="alwaysUseDefaultTargetUrl" value="false"/>
+		<property name="authenticationFailureUrl" value="/login.jsp?error=true"/>
+		<property name="exceptionMappings">
+			<value>
+				org.springframework.security.userdetails.UsernameNotFoundException=/ediinter
+				org.springframework.security.BadCredentialsException=/ediinter
+				com.sinotrans.framework.core.support.springsecurity.ValidationCodeErrorException=/ediinter
+			</value>
+		</property>
+		<property name="serverSideRedirect" value="true"/>
+		<property name="redirectFullUrl" value="true"/>
+	</bean>
+
+	<bean id="scannerAuthenticationProcessingFilter" class="com.sinotrans.framework.core.support.springsecurity.CustomAuthenticationProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="filterProcessesUrl" value="/jsp/scanner/scannerLogin.action"/>
+		<property name="usernameParameter" value="j_username"/>
+		<property name="passwordParameter" value="j_password"/>
+		<property name="checkValidationCode" value="false"/>
+		<property name="validationCodeParameter" value="CheckCode"/>
+		<property name="validationCodeIgnoreUsers" value=""/>
+		<property name="defaultTargetUrl" value="/jsp/scanner/secondMenuPage.jsp"/>
+		<property name="alwaysUseDefaultTargetUrl" value="true"/>
+		<property name="authenticationFailureUrl" value="/jsp/scanner/sl.jsp?error=true"/>
+		<property name="exceptionMappings">
+			<value>
+				org.springframework.security.userdetails.UsernameNotFoundException=/jsp/scanner/sl.jsp?msg=UsernameNotFoundException
+				org.springframework.security.BadCredentialsException=/jsp/scanner/sl.jsp?msg=BadCredentialsException
+				com.sinotrans.framework.core.support.springsecurity.ValidationCodeErrorException=/jsp/scanner/sl.jsp?msg=ValidationCodeErrorException
+			</value>
+		</property>
+		<property name="serverSideRedirect" value="false"/>
+		<property name="redirectFullUrl" value="true"/>
+	</bean>
+
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.wrapper.SecurityContextHolderAwareRequestFilter"/>
+
+	<bean id="rememberMeProcessingFilter" class="org.springframework.security.ui.rememberme.RememberMeProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+	</bean>
+
+	<bean id="anonymousProcessingFilter" class="org.springframework.security.providers.anonymous.AnonymousProcessingFilter">
+		<property name="key" value="anonymous"/>
+		<property name="userAttribute" value="anonymous,ROLE_ANONYMOUS"/>
+	</bean>
+
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint">
+			<bean class="com.sinotrans.framework.core.support.springsecurity.CustomAuthenticationProcessingFilterEntryPoint">
+				<property name="loginFormUrl" value="/login.jsp"/>
+				<property name="serverSideRedirect" value="false"/>
+				<property name="forceHttps" value="false"/>
+				<property name="redirectFullUrl" value="true"/>
+			</bean>
+		</property>
+		<property name="accessDeniedHandler">
+			<bean class="org.springframework.security.ui.AccessDeniedHandlerImpl">
+				<!-- Send 403 -->
+				<!--property name="errorPage" value="/accessDenied.jsp"/-->
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="scannerExceptionTranslationFilter" class="org.springframework.security.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint">
+			<bean class="com.sinotrans.framework.core.support.springsecurity.CustomAuthenticationProcessingFilterEntryPoint">
+				<property name="loginFormUrl" value="/jsp/scanner/sl.jsp"/>
+				<property name="serverSideRedirect" value="false"/>
+				<property name="forceHttps" value="false"/>
+				<property name="redirectFullUrl" value="true"/>
+			</bean>
+		</property>
+		<property name="accessDeniedHandler">
+			<bean class="org.springframework.security.ui.AccessDeniedHandlerImpl">
+				<!-- Send 403 -->
+				<!--property name="errorPage" value="/accessDenied.jsp"/-->
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager">
+			<bean class="org.springframework.security.vote.AffirmativeBased">
+				<property name="allowIfAllAbstainDecisions" value="false"/>
+				<property name="decisionVoters">
+					<list>
+						<bean class="com.sinotrans.framework.core.support.springsecurity.AcegiAccessDecisionVoter">
+							<property name="enabled" value="true"/>
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="objectDefinitionSource">
+			<value>
+				PATTERN_TYPE_APACHE_ANT
+				/pub/**=ROLE_ANONYMOUS
+				/**=ROLE_USER
+			</value>
+		</property>
+	</bean>
+
+	<bean id="filterSecurityInterceptorWithNoAuthorization" class="org.springframework.security.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager">
+			<bean class="org.springframework.security.vote.AffirmativeBased">
+				<property name="allowIfAllAbstainDecisions" value="false"/>
+				<property name="decisionVoters">
+					<list>
+						<bean class="com.sinotrans.framework.core.support.springsecurity.AcegiAccessDecisionVoter">
+							<property name="enabled" value="false"/>
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="objectDefinitionSource">
+			<value>
+				PATTERN_TYPE_APACHE_ANT
+				/pub/**=ROLE_ANONYMOUS
+				/**=ROLE_USER
+			</value>
+		</property>
+	</bean>
+
+	<bean id="rememberMeServices" class="org.springframework.security.ui.rememberme.TokenBasedRememberMeServices">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="key" value="springRocks"/>
+		<property name="parameter" value="rememberMe"/>
+		<property name="cookieName" value="FROS_SECURITY_HASHED_REMEMBER_ME_COOKIE"/>
+		<property name="tokenValiditySeconds" value="1209600"/> <!-- 14 days -->
+	</bean>
+
+	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref local="daoAuthenticationProvider"/>
+				<ref local="anonymousAuthenticationProvider"/>
+				<ref local="rememberMeAuthenticationProvider"/>
+			</list>
+		</property>
+		<!-- Prohibits simultaneous logins -->
+		<!--
+		<property name="sessionController">
+			<bean class="com.sinotrans.framework.core.support.springsecurity.CustomConcurrentSessionController">
+				<property name="sessionRegistry" ref="sessionRegistry"/>
+			</bean>
+		</property>
+		 -->
+	</bean>
+	
+	<bean id="tokenAuthenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref local="tokenDaoAuthenticationProvider"/>
+				<ref local="anonymousAuthenticationProvider"/>
+				<ref local="rememberMeAuthenticationProvider"/>
+			</list>
+		</property>
+	</bean>
+	<!-- 
+	<bean id="sessionRegistry" class="com.sinotrans.framework.core.support.springsecurity.AcegiDefaultSessionRegistry"/>
+	 -->
+
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
+		<!--property name="saltSource" ref="saltSource"/-->
+		<property name="hideUserNotFoundExceptions" value="true"/>
+	</bean>
+
+	<bean id="tokenDaoAuthenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="passwordEncoder" ref="tokenPasswordEncoder"/>
+		<!--property name="saltSource" ref="saltSource"/-->
+		<property name="hideUserNotFoundExceptions" value="true"/>
+	</bean>
+
+	<bean id="userDetailsService" class="com.sinotrans.framework.core.support.springsecurity.AcegiDefaultUserDetailsService"/>
+
+	<!--
+	<bean id="passwordEncoder" class="org.springframework.security.providers.encoding.PlaintextPasswordEncoder"/>
+	 -->
+	<bean id="passwordEncoder" class="org.springframework.security.providers.encoding.Md5PasswordEncoder"/>
+
+	<bean id="tokenPasswordEncoder" class="com.sinotrans.framework.security.providers.encoding.TokenPasswordEncoder"/>
+
+	<!--
+	<bean id="saltSource" class="org.springframework.security.providers.dao.salt.SystemWideSaltSource">
+		<property name="systemWideSalt" value="systemWideSalt"/>
+	</bean>
+	 -->
+	<bean id="saltSource" class="org.springframework.security.providers.dao.salt.ReflectionSaltSource">
+		<property name="userPropertyToUse" value="getUsername"/>
+	</bean>
+
+	<bean id="anonymousAuthenticationProvider" class="org.springframework.security.providers.anonymous.AnonymousAuthenticationProvider">
+		<property name="key" value="anonymous"/>
+	</bean>
+
+	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.providers.rememberme.RememberMeAuthenticationProvider">
+		<property name="key" value="springRocks"/>
+	</bean>
+	
+	<!-- Listens and logs -->
+	<!--
+	<bean id="loggerListener" class="org.springframework.security.event.authentication.LoggerListener"/>
+	 -->
+
+	<!-- SSL Switching: to use this, configure it in the filterChainProxy bean -->
+	<!--
+	<bean id="channelProcessingFilter" class="org.springframework.security.securechannel.ChannelProcessingFilter">
+		<property name="channelDecisionManager" ref="channelDecisionManager"/>
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				PATTERN_TYPE_APACHE_ANT
+				/admin/**=REQUIRES_SECURE_CHANNEL
+				/login*=REQUIRES_SECURE_CHANNEL
+				/j_security_check*=REQUIRES_SECURE_CHANNEL
+				/editProfile.html*=REQUIRES_SECURE_CHANNEL
+				/signup.html*=REQUIRES_SECURE_CHANNEL
+				/saveUser.html*=REQUIRES_SECURE_CHANNEL
+				/**=REQUIRES_INSECURE_CHANNEL
+			</value>
+		</property>
+	</bean>
+
+	<bean id="channelDecisionManager" class="org.springframework.security.securechannel.ChannelDecisionManagerImpl">
+		<property name="channelProcessors">
+			<list>
+				<bean class="org.springframework.security.securechannel.SecureChannelProcessor"/>
+				<bean class="org.springframework.security.securechannel.InsecureChannelProcessor"/>
+			</list>
+		</property>
+	</bean>
+	 -->
+</beans>

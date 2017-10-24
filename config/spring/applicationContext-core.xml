@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/jee
+						http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+
+	<context:property-placeholder location="classpath:jdbc.properties,classpath:mail.properties, classpath:basenames.properties"/>
+
+	<!-- JNDI DataSource for J2EE environments -->
+
+<!--	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/ManagedDS" />-->
+
+
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+<!-- 	在log中打印出回收Connection的错误信息，包括在哪个地方用了Connection却忘记关闭了 -->
+		<property name="logAbandoned" value="true" />
+<!-- 		#是否自动回收超时连接 -->
+		<property name="removeAbandoned" value="true" />
+<!-- 		#超时时间(以秒数为单位) -->
+		<property name="removeAbandonedTimeout" value="300" />
+<!-- 		最大连接数据库连接数，设置为0时，表示没有限制； -->
+		<property name="maxActive" value="100" />
+		<!--最少空闲连接数-->
+		<property name="minIdle" value="10" />
+		 <!--MaxWait是最大等待秒钟数，这里取值-1，表示无限等待,最大建立连接等待时间。如果超过此时间将接到异常-->
+		<property name="maxWait" value="1000" /> 
+<!-- 		当数据库连接池中的连接被创建而长时间不使用的情况下，该连接会自动回收并失效,所以需要验证此连接还是否可用 -->
+		<property name="validationQuery" value="select 1 from dual"/>
+		<property name="poolPreparedStatements" value="false" />
+		<property name="defaultAutoCommit" value="true" />
+	</bean> 
+
+	<!-- 
+	<bean id="multiDataSource" class="com.sinotrans.framework.core.support.spring.MultiDataSource">
+		<property name="targetDataSources">
+			<map>
+				<entry key="dataSource1" value-ref="dataSource1" />
+				<entry key="dataSource2" value-ref="dataSource2" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource" />
+	</bean>
+	 -->
+
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedPackages">
+			<list>
+				<value>com.sinotrans.framework.core.model</value>
+			</list>
+		</property>
+		<property name="annotatedClasses">
+			<bean class="com.sinotrans.framework.core.support.hibernate.HibernateEntityClassesFactoryBean" />
+		</property>
+		<property name="mappingLocations">
+			<bean class="com.sinotrans.framework.core.support.hibernate.HibernateMappingLocationsFactoryBean" />
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=com.sinotrans.gd.wlp.util.MySQL5Dialect
+				hibernate.query.substitutions=true 'Y', false 'N'
+				hibernate.cache.use_second_level_cache=true
+				hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+				hibernate.jdbc.fetch_size=50
+				hibernate.jdbc.batch_size=25
+				hibernate.show_sql=false
+				hibernate.format_sql=false
+				hibernate.use_sql_comments=true
+			</value>
+		</property>
+		<property name="lobHandler" ref="lobHandler" />
+	</bean>
+
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+		<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor" />
+	</bean>
+
+	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor" />
+
+	<!-- Transaction manager for a single Hibernate SessionFactory -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="globalRollbackOnParticipationFailure" value="false" />
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="java.util.Date">
+					<bean class="com.sinotrans.framework.core.support.spring.CustomDateEditor" />
+				</entry>
+				<entry key="java.lang.String[]">
+					<bean class="com.sinotrans.framework.core.support.spring.CustomStringArrayEditor" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean class="com.sinotrans.framework.core.support.spring.ApplicationContextRegister" />
+	<!-- <bean id="startOnloadManagerPostProcessor" class="com.sinotrans.gd.wlp.dcs.web.StartOnloadManagerPostProcessor"/> -->
+	<bean id="cookieLocaleResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="FROS_CUSTOM_LOCALE_COOKIE" />
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="${basenames}" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+
+	<!-- 
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="javaMailProperties">
+			<value>
+				mail.smtp.auth=true
+			</value>
+		</property>
+	</bean>
+	 -->
+
+	<!-- 
+	<bean id="multicastService" class="com.sinotrans.framework.core.support.ClusterServiceInvoker">
+		<property name="groupAddress" value="225.0.0.1" />
+		<property name="port" value="6789" />
+		<property name="messageBufferSize" value="1024" />
+	</bean>
+	 -->
+
+	<!-- Enable annotation-based configuration -->
+	<context:annotation-config />
+
+	<!-- Enable classpath scanning for managed components -->
+	<context:component-scan base-package="com.sinotrans"
+							name-generator="com.sinotrans.framework.core.support.spring.CustomBeanNameGenerator" />
+
+	<!-- Enable @AspectJ support -->
+	<aop:aspectj-autoproxy />
+
+</beans>
